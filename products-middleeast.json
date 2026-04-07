@@ -1,0 +1,75 @@
+{
+  "continent": "MiddleEast",
+  "country": "ME Multi",
+  "totalProducts": 33,
+  "categories": [
+    {
+      "name": "อินทผลัมและอาหาร",
+      "items": [
+        "Medjool Dates",
+        "Ajwa Dates",
+        "Halva",
+        "Baklava",
+        "Tahini",
+        "Hummus",
+        "Zaatar"
+      ]
+    },
+    {
+      "name": "น้ำหอมและ Oud",
+      "items": [
+        "Oud Oil",
+        "Bakhoor",
+        "Arabian Perfume",
+        "Attar",
+        "Incense"
+      ]
+    },
+    {
+      "name": "Saffron",
+      "items": [
+        "Iranian Saffron",
+        "Afghan Saffron",
+        "Saffron Powder",
+        "Saffron Thread"
+      ]
+    },
+    {
+      "name": "พรม Carpet",
+      "items": [
+        "Persian Carpet",
+        "Turkish Carpet",
+        "Kilim",
+        "Prayer Rug"
+      ]
+    },
+    {
+      "name": "ทองและเครื่องประดับ",
+      "items": [
+        "Gold Jewelry Dubai",
+        "Silver",
+        "Pearl",
+        "Gemstone"
+      ]
+    },
+    {
+      "name": "สินค้าฮาลาล",
+      "items": [
+        "Halal Food Products",
+        "Halal Cosmetics",
+        "Halal Supplements",
+        "Modest Fashion"
+      ]
+    },
+    {
+      "name": "หัตถกรรม",
+      "items": [
+        "Mosaic Lamp Turkey",
+        "Ceramics",
+        "Calligraphy Art",
+        "Lantern",
+        "Brass Work"
+      ]
+    }
+  ]
+}

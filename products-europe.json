@@ -1,0 +1,97 @@
+{
+  "continent": "Europe",
+  "country": "EU Multi",
+  "totalProducts": 45,
+  "categories": [
+    {
+      "name": "แฟชั่น Luxury",
+      "items": [
+        "กระเป๋า Designer (FR/IT)",
+        "รองเท้า Italian",
+        "นาฬิกา Swiss",
+        "แว่นตา Italian",
+        "เครื่องหนัง",
+        "Perfume FR"
+      ]
+    },
+    {
+      "name": "ไวน์และเครื่องดื่ม",
+      "items": [
+        "Wine FR/IT/ES",
+        "Champagne",
+        "Whisky Scotch",
+        "Beer DE/BE",
+        "Olive Oil IT/ES/GR",
+        "Gin UK"
+      ]
+    },
+    {
+      "name": "ชีสและอาหาร",
+      "items": [
+        "Cheese FR/IT/NL/CH",
+        "Chocolate BE/CH",
+        "Pasta IT",
+        "Jamón ES",
+        "Sausage DE",
+        "Truffle IT"
+      ]
+    },
+    {
+      "name": "เครื่องสำอาง",
+      "items": [
+        "Skincare FR",
+        "Makeup IT",
+        "Natural Cosmetics DE",
+        "Organic Beauty Nordic"
+      ]
+    },
+    {
+      "name": "Design/Home",
+      "items": [
+        "Scandinavian Design",
+        "German Engineering",
+        "Italian Furniture",
+        "Dutch Design",
+        "Porcelain"
+      ]
+    },
+    {
+      "name": "Organic/Bio",
+      "items": [
+        "Organic Food",
+        "Bio Cosmetics",
+        "Fair Trade Coffee",
+        "Natural Supplements",
+        "Herbal Tea"
+      ]
+    },
+    {
+      "name": "เทคโนโลยี",
+      "items": [
+        "Bosch/Siemens DE",
+        "Philips NL",
+        "Nokia FI",
+        "Dyson UK",
+        "IKEA SE"
+      ]
+    },
+    {
+      "name": "ยานยนต์",
+      "items": [
+        "BMW/Mercedes Parts",
+        "VW Accessories",
+        "Volvo Parts",
+        "Fiat Parts"
+      ]
+    },
+    {
+      "name": "กีฬา",
+      "items": [
+        "Football Merchandise",
+        "Cycling Gear",
+        "Ski Equipment",
+        "Running Shoes EU"
+      ]
+    }
+  ]
+}

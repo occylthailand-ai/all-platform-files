@@ -1,0 +1,65 @@
+{
+  "continent": "Asia",
+  "country": "Vietnam",
+  "totalProducts": 28,
+  "categories": [
+    {
+      "name": "กาแฟ",
+      "items": [
+        "Vietnamese Coffee Robusta",
+        "Ca Phe Sua Da",
+        "Weasel Coffee",
+        "Coffee Filter Phin"
+      ]
+    },
+    {
+      "name": "อาหาร",
+      "items": [
+        "Pho Noodle",
+        "Fish Sauce Nuoc Mam",
+        "Cashew Nuts",
+        "Dried Fruits",
+        "Rice Paper",
+        "Spring Roll"
+      ]
+    },
+    {
+      "name": "หัตถกรรม",
+      "items": [
+        "เครื่องเขิน Lacquerware",
+        "Silk Lantern",
+        "Bamboo Craft",
+        "Conical Hat Non La",
+        "Ceramic Bat Trang"
+      ]
+    },
+    {
+      "name": "สิ่งทอ",
+      "items": [
+        "Ao Dai",
+        "Silk",
+        "Cotton Garment",
+        "Shoes/Sandals",
+        "Bags"
+      ]
+    },
+    {
+      "name": "เฟอร์นิเจอร์",
+      "items": [
+        "Rattan Furniture",
+        "Bamboo Furniture",
+        "Wood Furniture",
+        "Home Decor"
+      ]
+    },
+    {
+      "name": "Seafood",
+      "items": [
+        "Shrimp",
+        "Pangasius Fish",
+        "Squid",
+        "Dried Seafood"
+      ]
+    }
+  ]
+}

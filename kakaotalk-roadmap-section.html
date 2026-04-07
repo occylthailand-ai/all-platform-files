@@ -1,0 +1,164 @@
+<!-- KakaoTalk Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .kk-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .kk-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(254,229,0,0.07) 0%,transparent 65%);pointer-events:none}
+  .kk-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .kk-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .kk-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(254,229,0,0.12);border:1px solid rgba(254,229,0,0.3);border-radius:999px;padding:6px 16px;font-size:13px;color:#c9b800;font-weight:600;margin-bottom:18px}
+  .kk-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .kk-title .green{color:#1D9E75}.kk-title .yellow{color:#fee900}
+  .kk-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .kk-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .kk-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .kk-tab:hover,.kk-tab.active{border-color:#fee900;background:rgba(254,229,0,0.1);color:#fee900}
+  .kk-phase{display:none}.kk-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(254,229,0,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(254,229,0,0.12);color:#fee900;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(254,229,0,0.05);border-color:rgba(254,229,0,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(254,229,0,0.15);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fee900;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#fee900;color:#fee900}
+  .nav-btn.primary{background:#fee900;border-color:#fee900;color:#1a1600}
+  .nav-btn.primary:hover{background:#e6d200}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .kk-cta{margin-top:40px;background:linear-gradient(135deg,rgba(254,229,0,0.08),rgba(29,158,117,0.07));border:1px solid rgba(254,229,0,0.2);border-radius:20px;padding:32px;text-align:center}
+  .kk-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .kk-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .kk-cta-btn{display:inline-block;background:#fee900;color:#1a1600;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:background 0.2s}
+  .kk-cta-btn:hover{background:#e6d200}
+</style>
+
+<section class="kk-section" id="kakaotalk-guide">
+  <div class="kk-inner">
+    <div class="kk-badge">💛 KakaoTalk Roadmap</div>
+    <h2 class="kk-title">ขายสินค้าไทยบน <span class="yellow">KakaoTalk</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="kk-subtitle">49 ขั้นตอน ใน 9 ส่วน — LINE เกาหลี 47M+ Users ทั้งประเทศ สินค้าไทยสู่ตลาดเกาหลี</p>
+    <div class="kk-tabs" id="kk-tabs"></div>
+    <div id="kk-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="kk-prev" onclick="kkChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="kk-prog">ส่วนที่ 1 จาก 9</span>
+      <button class="nav-btn primary" id="kk-next" onclick="kkChange(1)">ถัดไป →</button>
+    </div>
+    <div class="kk-cta">
+      <h3>ให้ OpenThai AI เขียน Channel Post + Chat Reply ภาษาเกาหลีให้ทุกสินค้า</h3>
+      <p>Channel Post · Chat Reply · Broadcast · Product Description เกาหลี — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="kk-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const kkPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี KakaoTalk",desc:"เริ่มต้นสร้าง KakaoTalk Account",steps:[
+    {n:1,t:"โหลดแอป KakaoTalk",d:"Play Store / App Store"},
+    {n:2,t:"กด 'สมัคร' + เบอร์มือถือ",d:"รองรับเบอร์ต่างประเทศ"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ตั้งชื่อ (ภาษาเกาหลี/อังกฤษ)",d:"ใช้ชื่อแบรนด์",ai:true},
+    {n:5,t:"ใส่รูปโปรไฟล์แบรนด์",d:"สื่อถึงสินค้าไทย"},
+    {n:6,t:"เปิด Notification",d:"รับแจ้งเตือนข้อความจากลูกค้า"},
+  ]},
+  {id:2,icon:"📢",label:"KakaoTalk Channel",name:"สมัคร KakaoTalk Channel ธุรกิจ",desc:"หน้าธุรกิจสำหรับลูกค้าเกาหลี",steps:[
+    {n:7,t:"ไปที่ business.kakao.com",d:"กด '채널 만들기' สร้าง Channel"},
+    {n:8,t:"ลงทะเบียนด้วย Kakao Account",d:"หรืออีเมลธุรกิจ"},
+    {n:9,t:"กรอกข้อมูล Channel",d:"ชื่อ/หมวดธุรกิจ/คำอธิบาย",ai:true},
+    {n:10,t:"อัปโหลด Logo + Cover Image",d:""},
+    {n:11,t:"ยืนยันตัวตนธุรกิจ",d:"สำหรับ Verified Channel"},
+    {n:12,t:"รอ Kakao อนุมัติ 1–3 วัน",d:""},
+    {n:13,t:"ได้รับ KakaoTalk Channel",d:"พร้อมใช้งาน"},
+  ]},
+  {id:3,icon:"⚙️",label:"ตั้งค่า Channel",name:"ตั้งค่า Channel และโปรไฟล์ธุรกิจ",desc:"AI เขียนคำอธิบายภาษาเกาหลี",steps:[
+    {n:14,t:"ตั้งค่า Channel Profile",d:"ชื่อ/คำอธิบาย/ลิงก์ร้าน/เบอร์",ai:true},
+    {n:15,t:"เขียน Channel Description เกาหลี",d:"จุดเด่น/สินค้า/วิธีสั่งซื้อ",ai:true},
+    {n:16,t:"ตั้งค่า Welcome Message",d:"ต้อนรับเมื่อลูกค้า Add Channel",ai:true},
+    {n:17,t:"ตั้งค่า Auto Reply",d:"ตอบอัตโนมัตินอกเวลาทำการ",ai:true},
+    {n:18,t:"เพิ่มปุ่ม Quick Reply",d:"ราคา/สั่งซื้อ/ติดต่อ/ดูสินค้า"},
+  ]},
+  {id:4,icon:"🛒",label:"Kakao Shopping",name:"สมัคร Kakao Shopping เชื่อมร้านค้า",desc:"เปิดร้านค้าในระบบ Kakao",steps:[
+    {n:19,t:"ไปที่ shopping.kakao.com",d:"สมัคร Kakao Shopping Seller"},
+    {n:20,t:"เชื่อม KakaoTalk Channel กับ Shopping",d:""},
+    {n:21,t:"กรอกข้อมูลธุรกิจ",d:"ทะเบียนพาณิชย์/ที่อยู่/บัญชีธนาคาร",warn:true},
+    {n:22,t:"เพิ่มสินค้าใน Kakao Shopping",d:"ชื่อ/รายละเอียด/ราคา/รูป",ai:true},
+    {n:23,t:"ตั้งค่าการจัดส่ง",d:"ค่าส่ง/เวลาจัดส่ง/ขนส่ง"},
+    {n:24,t:"เปิดใช้ KakaoPay",d:"รับชำระเงินออนไลน์"},
+  ]},
+  {id:5,icon:"📝",label:"สร้าง Content",name:"สร้างคอนเทนต์และโพสต์ใน Channel",desc:"AI เขียน Channel Post ภาษาเกาหลี",steps:[
+    {n:25,t:"สร้างโพสต์สินค้าใน Channel",d:"รูป + ข้อความภาษาเกาหลี",ai:true},
+    {n:26,t:"โพสต์รูปสินค้า + รายละเอียด",d:"ราคา + วิธีสั่ง",ai:true},
+    {n:27,t:"สร้าง Card News (Infographic)",d:"แบบ KakaoTalk Channel Post",ai:true},
+    {n:28,t:"ใช้ Kakao Story",d:"โพสต์เรื่องราวเบื้องหลังสินค้าไทย"},
+    {n:29,t:"ไลฟ์ขาย Kakao Live (라이브)",d:"ขายของสดในแอป"},
+    {n:30,t:"ส่ง Channel Broadcast",d:"โปรโมชั่นถึงผู้ติดตามทั้งหมด",ai:true},
+  ]},
+  {id:6,icon:"💬",label:"สื่อสารลูกค้า",name:"รับคำถามและสื่อสารกับลูกค้า",desc:"ตอบเร็ว = ปิดขายได้",steps:[
+    {n:31,t:"รับข้อความจากลูกค้า",d:"KakaoTalk Channel Chat"},
+    {n:32,t:"ตอบคำถามสินค้า",d:"รายละเอียด/ราคา/วิธีสั่ง/ค่าส่ง",ai:true},
+    {n:33,t:"ส่งรูปเพิ่มเติมหรือวิดีโอ",d:"สาธิตใน Chat"},
+    {n:34,t:"ยืนยันออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่จัดส่ง"},
+    {n:35,t:"แจ้งราคารวมและช่องทางชำระ",d:"KakaoPay / โอนธนาคาร"},
+  ]},
+  {id:7,icon:"✅",label:"ยืนยันชำระ",name:"ตรวจสอบการชำระเงิน",desc:"เช็คเงินเข้าก่อนส่งสินค้าเสมอ",steps:[
+    {n:36,t:"ลูกค้าชำระผ่าน KakaoPay",d:"หรือโอนธนาคารเกาหลี"},
+    {n:37,t:"ตรวจสอบใน KakaoPay Dashboard",d:"หรือ Mobile Banking",warn:true},
+    {n:38,t:"ยืนยันชำระทาง KakaoTalk Chat",d:"",ai:true},
+    {n:39,t:"บันทึกออร์เดอร์",d:"Excel / Google Sheets"},
+  ]},
+  {id:8,icon:"📦",label:"จัดส่งสินค้า",name:"จัดส่งสินค้าและแจ้งติดตาม",desc:"ส่งพัสดุระหว่างประเทศ TH→KR",steps:[
+    {n:40,t:"แพ็คสินค้าให้มิดชิด",d:"ป้องกันความเสียหาย"},
+    {n:41,t:"ส่งพัสดุ EMS/DHL/Korea Post",d:"หรือขนส่งที่ตกลง"},
+    {n:42,t:"แจ้งเลข Tracking ทาง KakaoTalk",d:"",ai:true},
+    {n:43,t:"ติดตามสถานะพัสดุ",d:"จนถึงมือลูกค้า"},
+    {n:44,t:"ลูกค้ารับสินค้า → ขอรีวิว",d:"ใน Kakao Shopping / Channel",ai:true},
+  ]},
+  {id:9,icon:"⭐",label:"หลังการขาย",name:"หลังการขายและขยายฐานลูกค้า",desc:"วิเคราะห์และขยาย Channel",steps:[
+    {n:45,t:"ตอบรีวิวลูกค้าใน Kakao Shopping",d:"",ai:true},
+    {n:46,t:"วิเคราะห์ Channel Analytics",d:"ผู้ติดตาม/Engagement/ยอดขาย"},
+    {n:47,t:"ส่ง Broadcast โปรโมชั่นใหม่",d:"ถึงผู้ติดตาม Channel",ai:true},
+    {n:48,t:"ใช้ Kakao Ads",d:"โฆษณาเพิ่ม Follower ใน Channel"},
+    {n:49,t:"ขยายไปยัง Naver / Coupang",d:"ตลาดเกาหลีเต็มรูปแบบ"},
+  ]},
+];
+
+let kkCur=0;
+function kkBuild(){
+  const tabs=document.getElementById('kk-tabs');
+  const phases=document.getElementById('kk-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  kkPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='kk-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>kkGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='kk-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  kkUpdateNav();
+}
+function kkGo(i){
+  document.querySelectorAll('.kk-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.kk-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  kkCur=i;kkUpdateNav();
+}
+function kkChange(d){kkGo(Math.max(0,Math.min(kkPhases.length-1,kkCur+d)));}
+function kkUpdateNav(){
+  document.getElementById('kk-prog').textContent=`ส่วนที่ ${kkCur+1} จาก ${kkPhases.length}`;
+  document.getElementById('kk-prev').style.opacity=kkCur===0?'0.3':'1';
+  document.getElementById('kk-next').textContent=kkCur===kkPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+kkBuild();
+</script>

@@ -1,0 +1,185 @@
+<!-- WeChat Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .wc-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .wc-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(7,193,96,0.07) 0%,transparent 65%);pointer-events:none}
+  .wc-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .wc-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .wc-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(7,193,96,0.1);border:1px solid rgba(7,193,96,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#07c160;font-weight:600;margin-bottom:18px}
+  .wc-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .wc-title .green{color:#1D9E75}.wc-title .wgreen{color:#07c160}
+  .wc-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .wc-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .wc-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .wc-tab:hover,.wc-tab.active{border-color:#07c160;background:rgba(7,193,96,0.1);color:#07c160}
+  .wc-phase{display:none}.wc-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(7,193,96,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(7,193,96,0.12);color:#07c160;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(7,193,96,0.05);border-color:rgba(7,193,96,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(7,193,96,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#07c160;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600}
+  .note-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(255,196,0,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#07c160;color:#07c160}
+  .nav-btn.primary{background:#07c160;border-color:#07c160;color:#fff}
+  .nav-btn.primary:hover{background:#06a050}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .wc-cta{margin-top:40px;background:linear-gradient(135deg,rgba(7,193,96,0.1),rgba(29,158,117,0.07));border:1px solid rgba(7,193,96,0.22);border-radius:20px;padding:32px;text-align:center}
+  .wc-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .wc-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .wc-cta-btn{display:inline-block;background:#07c160;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .wc-cta-btn:hover{background:#06a050}
+</style>
+
+<section class="wc-section" id="wechat-guide">
+  <div class="wc-inner">
+    <div class="wc-badge">💚 WeChat Roadmap</div>
+    <h2 class="wc-title">ขายของผ่าน <span class="wgreen">WeChat</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="wc-subtitle">66 ขั้นตอน ใน 11 ส่วน — ครอบคลุมลูกค้าจีนและ Cross-border</p>
+    <div class="wc-tabs" id="wc-tabs"></div>
+    <div id="wc-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="wc-prev" onclick="wcChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="wc-prog">ส่วนที่ 1 จาก 11</span>
+      <button class="nav-btn primary" id="wc-next" onclick="wcChange(1)">ถัดไป →</button>
+    </div>
+    <div class="wc-cta">
+      <h3>ให้ OpenThai AI เขียนข้อความจีน-ไทย ให้ทุกขั้น</h3>
+      <p>Moments · Broadcast · Caption · Hashtag — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="wc-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const wcPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี WeChat",desc:"เริ่มต้นสร้าง WeChat Account",steps:[
+    {n:1,t:"โหลดแอป WeChat",d:"Play Store / App Store"},
+    {n:2,t:"กด Sign Up + ใส่เบอร์",d:"รองรับเบอร์ไทย"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ตั้งชื่อโปรไฟล์ + รูป",d:"สื่อถึงแบรนด์หรือสินค้า"},
+    {n:5,t:"ตั้งรหัสผ่าน WeChat",d:"อย่างน้อย 8 ตัวอักษร"},
+    {n:6,t:"ยืนยันตัวตนผ่านเพื่อน",d:"WeChat ต้องการผู้ใช้เดิมยืนยัน",note:true},
+    {n:7,t:"ตั้งค่า Privacy",d:"ใครเพิ่มเป็นเพื่อนได้บ้าง"},
+    {n:8,t:"เปิด Notification",d:"รับแจ้งเตือนข้อความและออร์เดอร์"},
+  ]},
+  {id:2,icon:"⚙️",label:"ตั้งค่าโปรไฟล์",name:"ตั้งค่าโปรไฟล์สำหรับขายของ",desc:"โปรไฟล์ดี ลูกค้าเชื่อถือมากขึ้น",steps:[
+    {n:9,t:"ตั้งชื่อ WeChat ID",d:"จำง่าย เปลี่ยนได้ครั้งเดียว"},
+    {n:10,t:"เขียน Bio / Status",d:"ขายอะไร ราคาเริ่มต้น",ai:true},
+    {n:11,t:"ใส่รูปโปรไฟล์แบรนด์",d:"รูปชัดเจน สื่อถึงสินค้า"},
+    {n:12,t:"ตั้งรูปปก Cover Photo",d:"แสดงสินค้าหรือโปรโมชั่น"},
+    {n:13,t:"แชร์ WeChat ID + QR Code",d:"ให้ลูกค้าเพิ่มเพื่อนได้เลย"},
+  ]},
+  {id:3,icon:"💳",label:"WeChat Pay",name:"ตั้งค่า WeChat Pay",desc:"รับชำระเงินจากลูกค้าจีน",steps:[
+    {n:14,t:"Me → WeChat Pay → สมัคร",d:"เริ่มตั้งค่า WeChat Pay"},
+    {n:15,t:"ยืนยันตัวตน",d:"บัตรประชาชนหรือ Passport"},
+    {n:16,t:"ผูกบัตรเดบิต / เครดิต",d:"หรือบัญชีธนาคาร"},
+    {n:17,t:"ตั้ง Payment Password 6 หลัก",d:"ใช้ยืนยันทุกธุรกรรม"},
+    {n:18,t:"เปิด Receive Money QR",d:"ลูกค้าสแกนจ่ายได้เลย"},
+    {n:19,t:"ตั้งค่า Withdrawal",d:"โอนเงินออกไปบัญชีธนาคาร"},
+    {n:20,t:"ทดสอบรับ-ส่งเงิน",d:"ทดสอบก่อนใช้งานจริง",note:true},
+  ]},
+  {id:4,icon:"🏢",label:"Official Account",name:"สร้าง WeChat Official Account",desc:"บัญชีร้านค้ามืออาชีพ",steps:[
+    {n:21,t:"ไปที่ mp.weixin.qq.com",d:"สมัคร Official Account"},
+    {n:22,t:"เลือกประเภท Account",d:"Subscription (โพสต์) / Service (ฟีเจอร์ครบ)"},
+    {n:23,t:"กรอกข้อมูลธุรกิจ",d:"ชื่อร้าน / ประเภท / เอกสาร"},
+    {n:24,t:"ยืนยันด้วยเอกสารธุรกิจ",d:"ทะเบียนพาณิชย์สำหรับ Service Account"},
+    {n:25,t:"ตั้งชื่อ + รูปโปรไฟล์",d:"ชื่อร้านที่จำง่าย สื่อถึงแบรนด์"},
+    {n:26,t:"เขียน Bio ร้านค้า",d:"ขายอะไร ราคา วิธีสั่งซื้อ",ai:true},
+    {n:27,t:"เปิด Auto Reply",d:"ข้อความต้อนรับเมื่อมีคน Follow",ai:true},
+  ]},
+  {id:5,icon:"🏪",label:"Mini Program",name:"ตั้งค่า WeChat Mini Program",desc:"ร้านค้าออนไลน์ในแอป WeChat",steps:[
+    {n:28,t:"สมัคร Mini Program",d:"WeChat Open Platform"},
+    {n:29,t:"เลือก Template ร้านค้า",d:"หรือพัฒนาเอง"},
+    {n:30,t:"เพิ่มสินค้า",d:"ชื่อ/รายละเอียด/ราคา/รูป/สต็อก",ai:true},
+    {n:31,t:"ตั้งค่าการจัดส่ง",d:"ค่าส่ง/พื้นที่/บริษัทขนส่ง"},
+    {n:32,t:"เชื่อม WeChat Pay",d:"รับชำระเงินผ่าน Mini Program"},
+    {n:33,t:"เผยแพร่ Mini Program",d:"ลูกค้าค้นหาและใช้งานได้เลย"},
+  ]},
+  {id:6,icon:"📣",label:"สร้าง Content",name:"สร้างคอนเทนต์และโปรโมท",desc:"AI เขียนโพสต์จีน-ไทย ให้ทุกวัน",steps:[
+    {n:34,t:"โพสต์ใน Moments (朋友圈)",d:"รูป/วิดีโอ/ข้อความสินค้า",ai:true},
+    {n:35,t:"โพสต์ 3-5 ครั้ง/วัน",d:"ไม่ Spam — คุณภาพสำคัญกว่าปริมาณ"},
+    {n:36,t:"ใช้ WeChat Channels (视频号)",d:"วิดีโอสั้นคล้าย TikTok",ai:true},
+    {n:37,t:"Live บน WeChat Channels",d:"ขายของสดครอบคลุมลูกค้าจีน",ai:true},
+    {n:38,t:"ส่ง Broadcast โปรโมชั่น",d:"ผ่าน Official Account หาลูกค้าทุกคน",ai:true},
+    {n:39,t:"สร้าง Group Chat VIP",d:"แชร์โปรโมชั่นพิเศษลูกค้าประจำ"},
+    {n:40,t:"แชร์ QR Code ข้ามแพลตฟอร์ม",d:"TikTok/LINE/Facebook ดึงลูกค้าเข้า WeChat"},
+  ]},
+  {id:7,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อใน WeChat Chat",steps:[
+    {n:41,t:"รับข้อความสั่งซื้อใน Chat",d:"แจ้งเตือนทันทีเมื่อมีออร์เดอร์"},
+    {n:42,t:"ตอบคำถามสินค้า / ราคา",d:"ตอบเร็ว 5 นาที = ปิดการขายสูง",ai:true},
+    {n:43,t:"ส่งรูปสินค้า / วิดีโอรีวิว",d:"ข้อมูลเพิ่มเติมใน Chat"},
+    {n:44,t:"ยืนยันออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่จัดส่ง"},
+    {n:45,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:46,t:"ส่ง WeChat Pay QR / PromptPay",d:"ให้ลูกค้าเลือกวิธีชำระ"},
+    {n:47,t:"รอยืนยันจาก WeChat Pay",d:"หรือสลิป PromptPay จากลูกค้า"},
+  ]},
+  {id:8,icon:"✅",label:"ยืนยันชำระ",name:"ตรวจสอบและยืนยันชำระเงิน",desc:"เช็คเงินเข้าและยืนยันลูกค้า",steps:[
+    {n:48,t:"ตรวจสอบ WeChat Pay / สลิป",d:"ยอด/วันที่/ชื่อผู้โอน"},
+    {n:49,t:"เช็คยอดเข้าจริง",d:"WeChat Pay Wallet หรือ Mobile Banking"},
+    {n:50,t:"แจ้งยืนยันชำระแล้ว",d:"ส่งข้อความยืนยันทาง Chat",ai:true},
+    {n:51,t:"บันทึกออร์เดอร์ลงระบบ",d:"Excel/Google Sheets/Mini Program"},
+    {n:52,t:"ออก Receipt ให้ลูกค้า",d:"Order Confirmation ทาง Chat",ai:true},
+  ]},
+  {id:9,icon:"📦",label:"จัดส่ง",name:"แพ็คและจัดส่งสินค้า",desc:"ส่งสินค้าให้ถึงมือลูกค้า",steps:[
+    {n:53,t:"แพ็คสินค้า + ใบปะหน้า",d:"เขียนที่อยู่ลูกค้าชัดเจน"},
+    {n:54,t:"ส่งพัสดุกับขนส่ง",d:"Flash/Kerry/J&T/ไปรษณีย์/Kerry จีน"},
+    {n:55,t:"แจ้ง Tracking ทาง WeChat",d:"ส่ง Tracking Number ให้ลูกค้า",ai:true},
+    {n:56,t:"ลูกค้าติดตามพัสดุ",d:"แอปขนส่งหรือเว็บไซต์"},
+    {n:57,t:"ลูกค้ารับสินค้าแล้ว",d:"ขอรีวิวทาง WeChat Chat",ai:true},
+  ]},
+  {id:10,icon:"💰",label:"ถอนเงิน",name:"ถอนเงินและจัดการรายได้",desc:"โอนเงินจาก WeChat Pay เข้าธนาคาร",steps:[
+    {n:58,t:"WeChat Pay → Wallet → Withdraw",d:"เลือกบัญชีธนาคารที่ผูกไว้"},
+    {n:59,t:"โอนเงินออกบัญชีธนาคาร",d:"ใช้เวลา 1-3 วันทำการ"},
+    {n:60,t:"ตรวจสอบยอดรายได้",d:"WeChat Pay Dashboard"},
+    {n:61,t:"บันทึกรายรับ-รายจ่าย",d:"ระบบบัญชีหรือ Google Sheets"},
+  ]},
+  {id:11,icon:"⭐",label:"หลังการขาย",name:"หลังการขายและ Retention",desc:"รักษาลูกค้าจีนให้กลับมาซื้อ",steps:[
+    {n:62,t:"ขอรีวิวและรูปถ่าย",d:"รูปสินค้าจากลูกค้าจริง",ai:true},
+    {n:63,t:"โพสต์รีวิวใน Moments",d:"Social Proof สร้างความน่าเชื่อถือ",ai:true},
+    {n:64,t:"Follow up หลัง 3-5 วัน",d:"ถามความพอใจ แนะนำสินค้าเพิ่ม",ai:true},
+    {n:65,t:"เพิ่มลูกค้าใน VIP Group",d:"รับโปรโมชั่นก่อนใคร"},
+    {n:66,t:"วิเคราะห์ยอดขาย Dashboard",d:"WeChat Pay + Mini Program Analytics",ai:true},
+  ]},
+];
+
+let wcCur=0;
+function wcBuild(){
+  const tabs=document.getElementById('wc-tabs');
+  const phases=document.getElementById('wc-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  wcPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='wc-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>wcGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='wc-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.note?'<span class="note-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  wcUpdateNav();
+}
+function wcGo(i){
+  document.querySelectorAll('.wc-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.wc-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  wcCur=i;wcUpdateNav();
+}
+function wcChange(d){wcGo(Math.max(0,Math.min(wcPhases.length-1,wcCur+d)));}
+function wcUpdateNav(){
+  document.getElementById('wc-prog').textContent=`ส่วนที่ ${wcCur+1} จาก ${wcPhases.length}`;
+  document.getElementById('wc-prev').style.opacity=wcCur===0?'0.3':'1';
+  document.getElementById('wc-next').textContent=wcCur===wcPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+wcBuild();
+</script>

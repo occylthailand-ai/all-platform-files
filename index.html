@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenThai AI — 241 Platforms | 512 Products | 29 Affiliates | ขายทั่วโลก</title>
+<meta name="description" content="OpenThai AI ระบบ AI ช่วยขายสินค้าทั่วโลก 241 แพลตฟอร์ม 56 ระบบชำระเงิน 512 สินค้า 29 Affiliate Programs">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Sarabun','Segoe UI',sans-serif;background:#0a0a0a;color:#fff;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#FF6B00,#FF0066,#7B2FBE);padding:60px 20px;text-align:center}
+.hero h1{font-size:2.8rem;margin-bottom:12px}
+.hero p{font-size:1.2rem;opacity:0.9;max-width:700px;margin:0 auto}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:24px}
+.stat{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);padding:16px 24px;border-radius:16px;min-width:140px}
+.stat-num{font-size:2rem;font-weight:bold}
+.stat-label{font-size:0.85rem;opacity:0.8}
+
+/* Search */
+.search-bar{max-width:600px;margin:24px auto;position:relative}
+.search-bar input{width:100%;padding:14px 20px 14px 48px;border-radius:24px;border:none;font-size:1rem;background:rgba(255,255,255,0.95);color:#333}
+.search-bar::before{content:"🔍";position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.2rem}
+
+/* Tabs */
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:20px;max-width:1200px;margin:0 auto}
+.tab{padding:8px 18px;border-radius:20px;cursor:pointer;font-size:0.9rem;border:2px solid #333;background:#111;transition:all 0.3s}
+.tab:hover,.tab.active{background:#FF6B00;border-color:#FF6B00;color:#fff}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:20px;max-width:1200px;margin:0 auto}
+.card{background:#1a1a1a;border-radius:16px;padding:20px;border:1px solid #333;transition:all 0.3s;cursor:pointer}
+.card:hover{border-color:#FF6B00;transform:translateY(-4px);box-shadow:0 8px 24px rgba(255,107,0,0.2)}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card-name{font-size:1.1rem;font-weight:bold}
+.card-badge{padding:3px 10px;border-radius:10px;font-size:0.75rem;font-weight:bold}
+.card-desc{font-size:0.85rem;color:#999;margin-bottom:12px}
+.card-meta{display:flex;gap:8px;flex-wrap:wrap}
+.card-meta span{background:#222;padding:3px 8px;border-radius:8px;font-size:0.75rem;color:#ccc}
+.card-link{display:inline-block;margin-top:12px;padding:8px 16px;border-radius:16px;font-size:0.85rem;font-weight:bold;transition:all 0.3s}
+.card-link:hover{opacity:0.8}
+
+/* Section Headers */
+.section-header{text-align:center;padding:40px 20px 10px;max-width:1200px;margin:0 auto}
+.section-header h2{font-size:2rem;margin-bottom:8px}
+.section-header p{color:#999}
+
+/* Affiliate Banner */
+.aff-banner{background:linear-gradient(135deg,#00C853,#00BFA5);padding:40px 20px;text-align:center;margin:40px 0}
+.aff-banner h2{font-size:2rem;margin-bottom:12px}
+.aff-btn{display:inline-block;padding:14px 32px;background:#fff;color:#00C853;border-radius:24px;font-weight:bold;font-size:1.1rem;margin-top:12px}
+
+/* Footer */
+footer{background:#111;padding:40px 20px;text-align:center;margin-top:40px}
+footer p{color:#666;font-size:0.9rem}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:1.8rem}
+  .stat-num{font-size:1.5rem}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>🤖 OpenThai AI</h1>
+  <p>ระบบ AI ช่วยขายสินค้าทั่วโลก — สร้าง Content + ขาย + รับเงิน ครบจบในที่เดียว</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">241</div><div class="stat-label">แพลตฟอร์ม</div></div>
+    <div class="stat"><div class="stat-num">56</div><div class="stat-label">ระบบชำระเงิน</div></div>
+    <div class="stat"><div class="stat-num">512</div><div class="stat-label">สินค้าพร้อมขาย</div></div>
+    <div class="stat"><div class="stat-num">29</div><div class="stat-label">Affiliate Programs</div></div>
+    <div class="stat"><div class="stat-num">11K+</div><div class="stat-label">ขั้นตอน</div></div>
+    <div class="stat"><div class="stat-num">591</div><div class="stat-label">ไฟล์ทั้งหมด</div></div>
+  </div>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="ค้นหาแพลตฟอร์ม เช่น TikTok, Shopee, Amazon, WeChat..." oninput="filterCards()">
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="tabs" id="tabs">
+  <div class="tab active" onclick="filterByGroup('all')">ทั้งหมด</div>
+  <div class="tab" onclick="filterByGroup('th')">🇹🇭 ไทย</div>
+  <div class="tab" onclick="filterByGroup('cn')">🇨🇳 จีน</div>
+  <div class="tab" onclick="filterByGroup('kr')">🇰🇷 เกาหลี</div>
+  <div class="tab" onclick="filterByGroup('jp')">🇯🇵 ญี่ปุ่น</div>
+  <div class="tab" onclick="filterByGroup('sea')">🌏 อาเซียน</div>
+  <div class="tab" onclick="filterByGroup('in')">🇮🇳 อินเดีย</div>
+  <div class="tab" onclick="filterByGroup('eu')">🇪🇺 ยุโรป</div>
+  <div class="tab" onclick="filterByGroup('us')">🇺🇸 อเมริกา</div>
+  <div class="tab" onclick="filterByGroup('me')">🕌 ตะวันออกกลาง</div>
+  <div class="tab" onclick="filterByGroup('af')">🌍 แอฟริกา</div>
+  <div class="tab" onclick="filterByGroup('latam')">🌎 ละตินอเมริกา</div>
+  <div class="tab" onclick="filterByGroup('bank')">🏦 ชำระเงิน</div>
+  <div class="tab" onclick="filterByGroup('aff')">💰 Affiliate</div>
+  <div class="tab" onclick="filterByGroup('product')">📦 สินค้า</div>
+  <div class="tab" onclick="filterByGroup('ecom')">🛒 E-com Platform</div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="grid" id="mainGrid"></div>
+
+<!-- AFFILIATE BANNER -->
+<section class="aff-banner">
+  <h2>💰 Affiliate Hub — คลิกเดียวเริ่มขาย มีรายได้ทันที</h2>
+  <p>29 Affiliate Programs ทุกแพลตฟอร์ม | ไม่ต้องมีสินค้าเอง | แชร์ลิงก์ → ลูกค้าซื้อ → ได้ Commission</p>
+  <a href="affiliate-hub.html" class="aff-btn">เปิด Affiliate Hub →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🤖 OpenThai AI — ระบบ AI ช่วยขายสินค้าทั่วโลก</p>
+  <p>241 แพลตฟอร์ม | 56 ระบบชำระเงิน | 512 สินค้า | 29 Affiliate Programs | 7 ทวีป</p>
+  <p style="margin-top:8px;color:#444;">สร้างโดย OpenThai AI Team — www.openthaiai.com</p>
+</footer>
+
+<script>
+const platforms = [
+  // THAILAND
+  {name:'TikTok',group:'th',color:'#FE2C55',steps:50,users:'40M+ TH',file:'tiktok-roadmap-section.html',type:'Social Commerce'},
+  {name:'LINE',group:'th',color:'#06C755',steps:56,users:'54M+ TH',file:'line-roadmap-section.html',type:'Messaging + Shop'},
+  {name:'Facebook',group:'th',color:'#1877F2',steps:72,users:'50M+ TH',file:'facebook-roadmap-section.html',type:'Social + Shop'},
+  {name:'Threads',group:'th',color:'#000000',steps:55,users:'10M+ TH',file:'threads-roadmap-section.html',type:'Social Commerce'},
+  {name:'Instagram',group:'th',color:'#E1306C',steps:75,users:'20M+ TH',file:'instagram-roadmap-section.html',type:'Social + Shop'},
+  {name:'TikTok Shop',group:'th',color:'#FE2C55',steps:75,users:'40M+ TH',file:'tiktokshop-roadmap-section.html',type:'E-commerce'},
+  {name:'Shopee TH',group:'th',color:'#EE4D2D',steps:69,users:'20M+ TH',file:'shopee-roadmap-section.html',type:'Marketplace'},
+  {name:'Lazada TH',group:'th',color:'#0F146D',steps:67,users:'10M+ TH',file:'lazada-roadmap-section.html',type:'Marketplace'},
+  {name:'Kaidee',group:'th',color:'#FF6600',steps:43,users:'10M+ TH',file:'kaidee-roadmap-section.html',type:'Classifieds'},
+
+  // CHINA
+  {name:'WeChat',group:'cn',color:'#07C160',steps:66,users:'1.3B',file:'wechat-roadmap-section.html',type:'Super App'},
+  {name:'Pinduoduo',group:'cn',color:'#F14E4E',steps:70,users:'900M+',file:'pinduoduo-roadmap-section.html',type:'Group Buying'},
+  {name:'Weibo',group:'cn',color:'#E6162D',steps:73,users:'600M+',file:'weibo-roadmap-section.html',type:'Social Media'},
+  {name:'Xiaohongshu',group:'cn',color:'#FF2442',steps:76,users:'300M+',file:'xiaohongshu-roadmap-section.html',type:'Social Commerce'},
+  {name:'Kuaishou',group:'cn',color:'#FF6600',steps:79,users:'700M+',file:'kuaishou-roadmap-section.html',type:'Short Video'},
+  {name:'Zhihu',group:'cn',color:'#0066FF',steps:66,users:'100M+',file:'zhihu-roadmap-section.html',type:'Q&A + Content'},
+  {name:'QQ',group:'cn',color:'#12B7F5',steps:63,users:'600M+',file:'qq-roadmap-section.html',type:'Messaging'},
+  {name:'Douban',group:'cn',color:'#007722',steps:58,users:'60M+',file:'douban-roadmap-section.html',type:'Culture + Community'},
+  {name:'Baidu',group:'cn',color:'#2932E1',steps:62,users:'1B+',file:'baidu-roadmap-section.html',type:'Search + SEO'},
+  {name:'Taobao',group:'cn',color:'#FF5000',steps:69,users:'800M+',file:'taobao-roadmap-section.html',type:'Marketplace'},
+  {name:'iQiyi',group:'cn',color:'#00BE06',steps:61,users:'500M+',file:'iqiyi-roadmap-section.html',type:'Video'},
+  {name:'JD (京东)',group:'cn',color:'#E1251B',steps:65,users:'580M+',file:'jd-roadmap-section.html',type:'E-commerce'},
+  {name:'Xianyu (闲鱼)',group:'cn',color:'#FFD700',steps:48,users:'300M+',file:'xianyu-roadmap-section.html',type:'C2C Used'},
+  {name:'Meituan (美团)',group:'cn',color:'#FFD100',steps:58,users:'680M+',file:'meituan-roadmap-section.html',type:'Food + Service'},
+  {name:'Dianping',group:'cn',color:'#FF6633',steps:55,users:'400M+',file:'dianping-roadmap-section.html',type:'Review + Food'},
+  {name:'Ele.me',group:'cn',color:'#009FE8',steps:52,users:'300M+',file:'eleme-roadmap-section.html',type:'Food Delivery'},
+  {name:'Toutiao',group:'cn',color:'#F85959',steps:50,users:'700M+',file:'toutiao-roadmap-section.html',type:'News/Content'},
+  {name:'Youku',group:'cn',color:'#1890FF',steps:48,users:'500M+',file:'youku-roadmap-section.html',type:'Video'},
+  {name:'Tencent Video',group:'cn',color:'#FF6A00',steps:48,users:'600M+',file:'tencentvideo-roadmap-section.html',type:'Video'},
+  {name:'Huya',group:'cn',color:'#FFCA28',steps:45,users:'200M+',file:'huya-roadmap-section.html',type:'Game Stream'},
+  {name:'Douyu',group:'cn',color:'#FF6600',steps:45,users:'150M+',file:'douyu-roadmap-section.html',type:'Game Stream'},
+
+  // KOREA
+  {name:'KakaoTalk',group:'kr',color:'#FFCD00',steps:49,users:'47M+',file:'kakaotalk-roadmap-section.html',type:'Messaging + Shop'},
+  {name:'Naver',group:'kr',color:'#03C75A',steps:69,users:'42M+',file:'naver-roadmap-section.html',type:'Search + Smart Store'},
+  {name:'Coupang',group:'kr',color:'#E01E5A',steps:55,users:'30M+',file:'coupang-roadmap-section.html',type:'Marketplace'},
+
+  // GLOBAL
+  {name:'Amazon',group:'us',color:'#FF9900',steps:66,users:'300M+',file:'amazon-roadmap-section.html',type:'Marketplace'},
+  {name:'eBay',group:'us',color:'#E53238',steps:62,users:'135M+',file:'ebay-roadmap-section.html',type:'Marketplace'},
+  {name:'Etsy',group:'us',color:'#F1641E',steps:58,users:'90M+',file:'etsy-roadmap-section.html',type:'Handmade'},
+  {name:'AliExpress',group:'us',color:'#FF4747',steps:58,users:'150M+',file:'aliexpress-roadmap-section.html',type:'Cross-border'},
+  {name:'Alibaba B2B',group:'us',color:'#FF6A00',steps:60,users:'40M+',file:'alibaba-roadmap-section.html',type:'B2B Wholesale'},
+  {name:'TEMU',group:'us',color:'#FB7701',steps:50,users:'100M+',file:'temu-roadmap-section.html',type:'Cross-border'},
+  {name:'SHEIN',group:'us',color:'#000000',steps:52,users:'150M+',file:'shein-roadmap-section.html',type:'Fashion'},
+  {name:'YouTube',group:'us',color:'#FF0000',steps:73,users:'2.5B',file:'youtube-roadmap-section.html',type:'Video + Shopping'},
+  {name:'X Twitter',group:'us',color:'#000000',steps:63,users:'500M+',file:'x-twitter-roadmap-section.html',type:'Social'},
+  {name:'WhatsApp',group:'us',color:'#25D366',steps:62,users:'2B',file:'whatsapp-roadmap-section.html',type:'Messaging + Catalog'},
+  {name:'Google',group:'us',color:'#4285F4',steps:75,users:'4.3B',file:'google-roadmap-section.html',type:'Search + Shopping'},
+  {name:'LinkedIn',group:'us',color:'#0077B5',steps:55,users:'1B',file:'linkedin-roadmap-section.html',type:'B2B Social'},
+  {name:'Shopify',group:'ecom',color:'#7AB55C',steps:65,users:'4.4M Stores',file:'shopify-roadmap-section.html',type:'E-com Platform'},
+  {name:'WooCommerce',group:'ecom',color:'#96588A',steps:62,users:'5M Stores',file:'woocommerce-roadmap-section.html',type:'E-com Platform'},
+  {name:'Wix',group:'ecom',color:'#0C6EFC',steps:52,users:'200M+',file:'wix-roadmap-section.html',type:'Website Builder'},
+
+  // SEA
+  {name:'Zalo',group:'sea',color:'#0068FF',steps:65,users:'75M+ VN',file:'zalo-roadmap-section.html',type:'VN Super App'},
+  {name:'Tokopedia',group:'sea',color:'#42B549',steps:65,users:'100M+ ID',file:'tokopedia-roadmap-section.html',type:'ID Marketplace'},
+  {name:'Tiki',group:'sea',color:'#1A94FF',steps:58,users:'20M+ VN',file:'tiki-roadmap-section.html',type:'VN Marketplace'},
+  {name:'Bukalapak',group:'sea',color:'#E31E52',steps:60,users:'70M+ ID',file:'bukalapak-roadmap-section.html',type:'ID Marketplace'},
+  {name:'Carousell',group:'sea',color:'#FF4747',steps:45,users:'30M+ SEA',file:'carousell-roadmap-section.html',type:'C2C SEA'},
+  {name:'Zalora',group:'sea',color:'#000000',steps:55,users:'40M+ SEA',file:'zalora-roadmap-section.html',type:'Fashion SEA'},
+
+  // EU
+  {name:'Zalando',group:'eu',color:'#FF6900',steps:55,users:'50M+',file:'zalando-roadmap-section.html',type:'Fashion EU'},
+  {name:'Allegro',group:'eu',color:'#FF5A00',steps:58,users:'22M+ PL',file:'allegro-roadmap-section.html',type:'PL Marketplace'},
+  {name:'OTTO',group:'eu',color:'#E60000',steps:52,users:'12M+ DE',file:'otto-roadmap-section.html',type:'DE Marketplace'},
+  {name:'Bol.com',group:'eu',color:'#0000A4',steps:55,users:'13M+ NL/BE',file:'bol-roadmap-section.html',type:'NL Marketplace'},
+  {name:'Kaufland',group:'eu',color:'#E10019',steps:52,users:'32M+ DE',file:'kaufland-roadmap-section.html',type:'DE Marketplace'},
+  {name:'Cdiscount',group:'eu',color:'#00539F',steps:55,users:'23M+ FR',file:'cdiscount-roadmap-section.html',type:'FR Marketplace'},
+
+  // INDIA
+  {name:'Flipkart',group:'in',color:'#2874F0',steps:62,users:'450M+',file:'flipkart-roadmap-section.html',type:'IN Marketplace #1'},
+  {name:'Amazon India',group:'in',color:'#FF9900',steps:62,users:'300M+',file:'amazonin-roadmap-section.html',type:'IN Marketplace #2'},
+  {name:'Meesho',group:'in',color:'#570A57',steps:48,users:'150M+',file:'meesho-roadmap-section.html',type:'Social Commerce'},
+  {name:'Myntra',group:'in',color:'#FF3F6C',steps:52,users:'50M+',file:'myntra-roadmap-section.html',type:'IN Fashion'},
+
+  // MIDDLE EAST
+  {name:'Noon',group:'me',color:'#FEEE00',steps:58,users:'25M+',file:'noon-roadmap-section.html',type:'ME Marketplace'},
+  {name:'Trendyol',group:'me',color:'#F27A1A',steps:58,users:'30M+ TR',file:'trendyol-roadmap-section.html',type:'TR Marketplace'},
+  {name:'Talabat',group:'me',color:'#FF5722',steps:48,users:'15M+',file:'talabat-roadmap-section.html',type:'ME Food Delivery'},
+
+  // AFRICA
+  {name:'Jumia',group:'af',color:'#F68B1E',steps:62,users:'30M+',file:'jumia-roadmap-section.html',type:'AF Marketplace #1'},
+  {name:'Takealot',group:'af',color:'#0B79BF',steps:58,users:'7M+ ZA',file:'takealot-roadmap-section.html',type:'ZA Marketplace'},
+  {name:'Konga',group:'af',color:'#ED1C24',steps:55,users:'15M+ NG',file:'konga-roadmap-section.html',type:'NG Marketplace'},
+
+  // LATAM
+  {name:'MercadoLibre',group:'latam',color:'#FFE600',steps:65,users:'148M+',file:'mercadolibre-roadmap-section.html',type:'LATAM #1'},
+  {name:'Rappi',group:'latam',color:'#FF441F',steps:48,users:'30M+',file:'rappi-roadmap-section.html',type:'LATAM Super App'},
+
+  // BANKING/PAYMENT
+  {name:'PromptPay',group:'bank',color:'#1E3A5F',steps:25,users:'70M+ TH',file:'promptpay-roadmap-section.html',type:'🇹🇭 Payment'},
+  {name:'Alipay',group:'bank',color:'#00A0E9',steps:35,users:'1.3B',file:'alipay-roadmap-section.html',type:'🇨🇳 Payment'},
+  {name:'WeChat Pay',group:'bank',color:'#07C160',steps:35,users:'900M+',file:'wechatpay-roadmap-section.html',type:'🇨🇳 Payment'},
+  {name:'Stripe',group:'bank',color:'#635BFF',steps:35,users:'Global',file:'stripe-roadmap-section.html',type:'🌍 Payment'},
+  {name:'PayPal',group:'bank',color:'#003087',steps:35,users:'430M+',file:'paypal-roadmap-section.html',type:'🌍 Payment'},
+  {name:'M-Pesa',group:'bank',color:'#4CAF50',steps:35,users:'50M+ AF',file:'mpesa-roadmap-section.html',type:'🌍 Mobile Money'},
+  {name:'GrabPay',group:'bank',color:'#00B14F',steps:30,users:'40M+ SEA',file:'grabpay-roadmap-section.html',type:'🌏 Payment'},
+  {name:'UPI India',group:'bank',color:'#4CAF50',steps:30,users:'300M+ IN',file:'upi-roadmap-section.html',type:'🇮🇳 Payment'},
+  {name:'Wise',group:'bank',color:'#9FE870',steps:32,users:'16M+ Global',file:'wise-roadmap-section.html',type:'🌍 Cross-border'},
+  {name:'Payoneer',group:'bank',color:'#FF4800',steps:32,users:'5M+ Global',file:'payoneer-roadmap-section.html',type:'🌍 Marketplace Pay'},
+
+  // PRODUCTS
+  {name:'🇹🇭 สินค้าไทย',group:'product',color:'#0066CC',steps:54,users:'8 หมวด',file:'products-thailand-catalog.html',type:'OTOP/สมุนไพร/อาหาร'},
+  {name:'🇨🇳 สินค้าจีน',group:'product',color:'#DE2910',steps:62,users:'10 หมวด',file:'products-china-catalog.html',type:'Electronics/Fashion'},
+  {name:'🇯🇵 สินค้าญี่ปุ่น',group:'product',color:'#BC002D',steps:47,users:'8 หมวด',file:'products-japan-catalog.html',type:'Skincare/Anime/Tech'},
+  {name:'🇰🇷 สินค้าเกาหลี',group:'product',color:'#003478',steps:40,users:'7 หมวด',file:'products-korea-catalog.html',type:'K-Beauty/K-Pop/K-Food'},
+  {name:'🇮🇳 สินค้าอินเดีย',group:'product',color:'#FF9933',steps:41,users:'7 หมวด',file:'products-india-catalog.html',type:'Spice/Ayurveda/Textile'},
+  {name:'🇪🇺 สินค้ายุโรป',group:'product',color:'#003399',steps:45,users:'9 หมวด',file:'products-europe-catalog.html',type:'Luxury/Wine/Design'},
+  {name:'🌍 สินค้าแอฟริกา',group:'product',color:'#009639',steps:34,users:'7 หมวด',file:'products-africa-catalog.html',type:'Coffee/Shea/Fabric'},
+  {name:'🌎 สินค้า LATAM',group:'product',color:'#009B3A',steps:35,users:'7 หมวด',file:'products-latam-catalog.html',type:'Coffee/Cacao/Superfoods'},
+  {name:'🕌 สินค้าตะวันออกกลาง',group:'product',color:'#006C35',steps:33,users:'7 หมวด',file:'products-middleeast-catalog.html',type:'Dates/Saffron/Oud'},
+  {name:'🇺🇸 สินค้าอเมริกา',group:'product',color:'#002868',steps:39,users:'8 หมวด',file:'products-northamerica-catalog.html',type:'Tech/Fashion/Supplements'},
+
+  // AFFILIATE
+  {name:'💰 Affiliate Hub',group:'aff',color:'#FF6B00',steps:29,users:'29 Programs',file:'affiliate-hub.html',type:'รวม Affiliate ทุกแพลตฟอร์ม'}
+];
+
+let currentGroup = 'all';
+
+function renderCards(filter='') {
+  const grid = document.getElementById('mainGrid');
+  const filtered = platforms.filter(p => {
+    const matchGroup = currentGroup === 'all' || p.group === currentGroup;
+    const matchSearch = filter === '' || p.name.toLowerCase().includes(filter.toLowerCase()) || p.type.toLowerCase().includes(filter.toLowerCase());
+    return matchGroup && matchSearch;
+  });
+
+  grid.innerHTML = filtered.map(p => `
+    <a href="${p.file}" class="card">
+      <div class="card-header">
+        <span class="card-name">${p.name}</span>
+        <span class="card-badge" style="background:${p.color};color:#fff;">${p.steps} ขั้นตอน</span>
+      </div>
+      <div class="card-desc">${p.type}</div>
+      <div class="card-meta">
+        <span>👥 ${p.users}</span>
+      </div>
+      <div class="card-link" style="background:${p.color};color:#fff;">เปิด Roadmap →</div>
+    </a>
+  `).join('');
+
+  // Update count
+  document.querySelector('.hero-stats .stat:first-child .stat-num').textContent = filtered.length;
+}
+
+function filterByGroup(group) {
+  currentGroup = group;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  renderCards(document.getElementById('searchInput').value);
+}
+
+function filterCards() {
+  renderCards(document.getElementById('searchInput').value);
+}
+
+// Initial render
+renderCards();
+</script>
+
+</body>
+</html>

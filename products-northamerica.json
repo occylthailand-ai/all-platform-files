@@ -1,0 +1,86 @@
+{
+  "continent": "NorthAmerica",
+  "country": "US/CA",
+  "totalProducts": 39,
+  "categories": [
+    {
+      "name": "เทคโนโลยี",
+      "items": [
+        "Apple Products",
+        "Google Devices",
+        "Amazon Devices",
+        "Gaming PC Parts",
+        "Software/SaaS"
+      ]
+    },
+    {
+      "name": "แฟชั่น",
+      "items": [
+        "Nike/Adidas",
+        "Levi's",
+        "Ralph Lauren",
+        "Coach",
+        "Victoria's Secret"
+      ]
+    },
+    {
+      "name": "สุขภาพ Supplements",
+      "items": [
+        "Whey Protein",
+        "Vitamins",
+        "Probiotics",
+        "CBD Products",
+        "Organic Supplements"
+      ]
+    },
+    {
+      "name": "Organic/Natural",
+      "items": [
+        "Organic Food",
+        "Natural Skincare",
+        "Essential Oils",
+        "Honey",
+        "Maple Syrup CA"
+      ]
+    },
+    {
+      "name": "Entertainment",
+      "items": [
+        "Vinyl Records",
+        "Board Games",
+        "Collectibles",
+        "Sports Memorabilia",
+        "Disney Merchandise"
+      ]
+    },
+    {
+      "name": "Outdoor",
+      "items": [
+        "Camping Gear",
+        "Fishing Equipment",
+        "BBQ/Grill",
+        "Hunting Accessories"
+      ]
+    },
+    {
+      "name": "Pet Products",
+      "items": [
+        "Premium Dog Food",
+        "Cat Toys",
+        "Pet Supplements",
+        "Pet Clothing",
+        "Pet Tech"
+      ]
+    },
+    {
+      "name": "Home",
+      "items": [
+        "Kitchen Gadgets",
+        "Smart Home",
+        "Bedding",
+        "Candles",
+        "Wall Art"
+      ]
+    }
+  ]
+}

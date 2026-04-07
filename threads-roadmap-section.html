@@ -1,0 +1,169 @@
+<!-- Threads Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .th-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .th-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 65%);pointer-events:none}
+  .th-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .th-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .th-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:6px 16px;font-size:13px;color:#fff;font-weight:600;margin-bottom:18px}
+  .th-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .th-title .green{color:#1D9E75}
+  .th-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .th-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .th-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .th-tab:hover,.th-tab.active{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.1);color:#fff}
+  .th-phase{display:none}.th-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,0.08);color:#fff;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.18)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fff;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+  .nav-btn.primary{background:#fff;border-color:#fff;color:#000}
+  .nav-btn.primary:hover{background:rgba(255,255,255,0.85)}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .th-cta{margin-top:40px;background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(29,158,117,0.07));border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:32px;text-align:center}
+  .th-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .th-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .th-cta-btn{display:inline-block;background:#fff;color:#000;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:background 0.2s}
+  .th-cta-btn:hover{background:rgba(255,255,255,0.85)}
+</style>
+
+<section class="th-section" id="threads-guide">
+  <div class="th-inner">
+    <div class="th-badge">🧵 Threads Roadmap</div>
+    <h2 class="th-title">ขายของผ่าน Threads<br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="th-subtitle">55 ขั้นตอน ใน 9 ส่วน — ตั้งแต่สมัครจนรับเงินเข้าบัญชี</p>
+    <div class="th-tabs" id="th-tabs"></div>
+    <div id="th-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="th-prev" onclick="thChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="th-prog">ส่วนที่ 1 จาก 9</span>
+      <button class="nav-btn primary" id="th-next" onclick="thChange(1)">ถัดไป →</button>
+    </div>
+    <div class="th-cta">
+      <h3>ให้ OpenThai AI เขียนโพสต์ Threads ให้ทุกวัน</h3>
+      <p>โพสต์ · Reply · Caption · Hashtag — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="th-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const thPhases=[
+  {id:1,icon:"📸",label:"Instagram ก่อน",name:"เตรียมบัญชี Instagram ก่อน",desc:"Threads ต้องใช้ IG Account",steps:[
+    {n:1,t:"โหลดแอป Instagram",d:"Play Store / App Store"},
+    {n:2,t:"สมัครด้วยเบอร์ / อีเมล",d:"กรอกข้อมูลส่วนตัว"},
+    {n:3,t:"ตั้ง Username",d:"สั้น จำง่าย สื่อถึงแบรนด์"},
+    {n:4,t:"ใส่รูปโปรไฟล์ + Bio",d:"บอกว่าขายอะไร ราคาเริ่มต้น",ai:true},
+    {n:5,t:"Switch to Professional Account",d:"Creator หรือ Business"},
+    {n:6,t:"ยืนยันอีเมลหรือเบอร์",d:"กดลิงก์ยืนยันในอีเมล"},
+  ]},
+  {id:2,icon:"🧵",label:"สมัคร Threads",name:"สมัครและตั้งค่า Threads",desc:"สร้างบัญชีผ่าน Instagram",steps:[
+    {n:7,t:"โหลดแอป Threads",d:"Play Store / App Store"},
+    {n:8,t:"Log in with Instagram",d:"เข้าสู่ระบบด้วย IG Account"},
+    {n:9,t:"นำเข้าโปรไฟล์จาก IG",d:"ข้อมูลดึงมาอัตโนมัติ"},
+    {n:10,t:"ปรับ Bio ใน Threads",d:"บอกขายอะไร ราคา ช่องทางสั่ง",ai:true},
+    {n:11,t:"เลือก Privacy: Public",d:"แนะนำสำหรับขายของ"},
+    {n:12,t:"ติดตาม Account ที่เกี่ยวข้อง",d:"Creator / ซัพพลายเออร์ / ลูกค้าเป้าหมาย"},
+    {n:13,t:"เปิด Notification",d:"รับแจ้งเตือน DM และ Reply ทันที"},
+  ]},
+  {id:3,icon:"⚙️",label:"ตั้งค่าโปรไฟล์",name:"ตั้งค่าโปรไฟล์ให้พร้อมขาย",desc:"โปรไฟล์ที่ดีขายได้ง่ายกว่า",steps:[
+    {n:14,t:"ปรับชื่อโปรไฟล์",d:"ให้ตรงกับแบรนด์สินค้า"},
+    {n:15,t:"เขียน Bio ให้ครบ",d:"ขายอะไร / ราคา / สั่งซื้อที่ไหน",ai:true},
+    {n:16,t:"เพิ่มลิงก์",d:"Instagram Shop / LINE / PromptPay QR"},
+    {n:17,t:"Profile Picture ตรงกับ IG",d:"Branding เดียวกันทุกแพลตฟอร์ม"},
+    {n:18,t:"Pin โพสต์ขายดีด้านบน",d:"โปรโมชั่นหรือสินค้าหลักให้คนเห็นก่อน"},
+  ]},
+  {id:4,icon:"✍️",label:"สร้าง Content",name:"สร้างคอนเทนต์และโพสต์ขาย",desc:"AI เขียนโพสต์ Threads ให้ทุกวัน",steps:[
+    {n:19,t:"เขียนโพสต์ข้อความขาย",d:"สูงสุด 500 ตัวอักษร Hook ดึงใจ",ai:true},
+    {n:20,t:"แนบรูปสินค้า",d:"สูงสุด 10 รูปต่อโพสต์"},
+    {n:21,t:"แนบวิดีโอสินค้า",d:"สูงสุด 5 นาที"},
+    {n:22,t:"ใส่ Hashtag 3–5 อัน",d:"ที่เกี่ยวข้องกับสินค้า",ai:true},
+    {n:23,t:"Tag บัญชี IG ร้านตัวเอง",d:"เชื่อม Threads กับ Instagram"},
+    {n:24,t:"Reply ต่อโพสต์ตัวเอง",d:"สร้าง Thread ยาว ใส่รายละเอียดเพิ่ม",ai:true},
+    {n:25,t:"Quote Repost + Caption ใหม่",d:"โพสต์ซ้ำด้วยมุมมองใหม่",ai:true},
+    {n:26,t:"Cross-post ไป IG Stories",d:"ขยาย Reach อัตโนมัติ"},
+    {n:27,t:"โพสต์ 3–5 ครั้ง/วัน",d:"07:00 / 12:00 / 19:00–21:00 น."},
+  ]},
+  {id:5,icon:"💫",label:"Engagement",name:"สร้าง Engagement และการมองเห็น",desc:"ยิ่ง Engage มาก ยิ่งคนเห็นเยอะ",steps:[
+    {n:28,t:"ตอบ Reply ทุกความคิดเห็น",d:"ตอบเร็ว = อัลกอริทึมชอบ",ai:true},
+    {n:29,t:"Like และ Repost Content เกี่ยวข้อง",d:"สร้างความสัมพันธ์กับ Creator อื่น"},
+    {n:30,t:"Follow และ Engage Creator กลุ่มเดียว",d:"เพิ่มโอกาสถูก Follow กลับ"},
+    {n:31,t:"สร้าง Poll / ถามความคิดเห็น",d:"ดึง Engagement จากผู้ติดตาม",ai:true},
+    {n:32,t:"ร่วม Thread กระแสที่เกี่ยวข้อง",d:"เพิ่มการมองเห็นจากคนที่ยังไม่รู้จัก"},
+    {n:33,t:"Mention @ Account ที่เกี่ยวข้อง",d:"ขนส่ง / ซัพพลายเออร์ / พาร์ทเนอร์"},
+  ]},
+  {id:6,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อทาง DM",steps:[
+    {n:34,t:"รับ DM คำสั่งซื้อใน Threads",d:"แจ้งเตือนทันทีเมื่อมีออร์เดอร์"},
+    {n:35,t:"ตอบคำถามสินค้า / ราคา",d:"ตอบเร็ว 5 นาที = ปิดการขายสูง",ai:true},
+    {n:36,t:"ส่งรูปสินค้า / วิดีโอรีวิว",d:"ข้อมูลเพิ่มเติมทาง DM"},
+    {n:37,t:"ยืนยันออร์เดอร์",d:"สินค้า / จำนวน / ที่อยู่จัดส่ง"},
+    {n:38,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:39,t:"ส่ง QR PromptPay / เลขบัญชี",d:"ให้ลูกค้าโอนเงินทาง DM"},
+    {n:40,t:"รอสลิปโอนเงิน",d:"ลูกค้าส่งสลิปมาทาง DM"},
+  ]},
+  {id:7,icon:"✅",label:"ยืนยันชำระ",name:"ตรวจสอบและยืนยันชำระเงิน",desc:"เช็คเงินเข้าและยืนยันลูกค้า",steps:[
+    {n:41,t:"ตรวจสอบสลิปลูกค้า",d:"ยอด / วันที่ / ชื่อผู้โอน"},
+    {n:42,t:"เช็คยอดเข้าจริง",d:"เปิด Mobile Banking ยืนยัน"},
+    {n:43,t:"แจ้งยืนยันชำระแล้ว",d:"ส่งข้อความยืนยันทาง DM",ai:true},
+    {n:44,t:"บันทึกออร์เดอร์ลงระบบ",d:"Excel / Google Sheets"},
+    {n:45,t:"ออก Receipt ให้ลูกค้า",d:"Order Confirmation ทาง DM",ai:true},
+  ]},
+  {id:8,icon:"📦",label:"จัดส่ง",name:"แพ็คและจัดส่งสินค้า",desc:"ส่งสินค้าให้ถึงมือลูกค้า",steps:[
+    {n:46,t:"แพ็คสินค้า + ใบปะหน้า",d:"เขียนที่อยู่ลูกค้าชัดเจน"},
+    {n:47,t:"ส่งพัสดุกับขนส่ง",d:"Flash / Kerry / J&T / ไปรษณีย์ไทย"},
+    {n:48,t:"แจ้งเลข Tracking ทาง DM",d:"ส่ง Tracking Number ให้ลูกค้า",ai:true},
+    {n:49,t:"ลูกค้าติดตามพัสดุ",d:"แอปขนส่งหรือเว็บไซต์"},
+    {n:50,t:"ลูกค้ารับสินค้าแล้ว",d:"ขอรีวิวและรูปถ่ายทาง DM",ai:true},
+  ]},
+  {id:9,icon:"⭐",label:"หลังการขาย",name:"หลังการขายและ Cross-Platform",desc:"รักษาลูกค้าและขยาย Reach",steps:[
+    {n:51,t:"ขอรีวิวและรูปถ่าย",d:"รูปสินค้าจากลูกค้าจริง",ai:true},
+    {n:52,t:"โพสต์รีวิวใน Threads + IG",d:"สร้าง Social Proof ข้ามแพลตฟอร์ม",ai:true},
+    {n:53,t:"Follow up หลัง 3–5 วัน",d:"ถามความพอใจ แนะนำสินค้าเพิ่ม",ai:true},
+    {n:54,t:"แชร์โพสต์ Threads ไป IG Stories",d:"ขยาย Reach อัตโนมัติ"},
+    {n:55,t:"วิเคราะห์ Insights",d:"โพสต์ไหน Engagement สูง → ทำเพิ่ม",ai:true},
+  ]},
+];
+
+let thCur=0;
+function thBuild(){
+  const tabs=document.getElementById('th-tabs');
+  const phases=document.getElementById('th-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  thPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='th-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>thGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='th-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  thUpdateNav();
+}
+function thGo(i){
+  document.querySelectorAll('.th-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.th-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  thCur=i;thUpdateNav();
+}
+function thChange(d){thGo(Math.max(0,Math.min(thPhases.length-1,thCur+d)));}
+function thUpdateNav(){
+  document.getElementById('th-prog').textContent=`ส่วนที่ ${thCur+1} จาก ${thPhases.length}`;
+  document.getElementById('th-prev').style.opacity=thCur===0?'0.3':'1';
+  document.getElementById('th-next').textContent=thCur===thPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+thBuild();
+</script>

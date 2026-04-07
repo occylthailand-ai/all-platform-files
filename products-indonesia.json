@@ -1,0 +1,66 @@
+{
+  "continent": "Asia",
+  "country": "Indonesia",
+  "totalProducts": 29,
+  "categories": [
+    {
+      "name": "Batik และสิ่งทอ",
+      "items": [
+        "ผ้า Batik",
+        "Ikat Weaving",
+        "Songket",
+        "Kebaya",
+        "Sarong"
+      ]
+    },
+    {
+      "name": "กาแฟและอาหาร",
+      "items": [
+        "Kopi Luwak",
+        "Toraja Coffee",
+        "Rendang Paste",
+        "Sambal",
+        "Krupuk",
+        "Tempeh Chips"
+      ]
+    },
+    {
+      "name": "เครื่องเทศ",
+      "items": [
+        "Clove",
+        "Nutmeg",
+        "Vanilla",
+        "Cinnamon",
+        "White Pepper"
+      ]
+    },
+    {
+      "name": "หัตถกรรม",
+      "items": [
+        "Rattan Basket",
+        "Wood Carving Bali",
+        "Silver Jewelry Bali",
+        "Wayang Puppet",
+        "Ceramic"
+      ]
+    },
+    {
+      "name": "ความงาม",
+      "items": [
+        "Jamu Herbal",
+        "Coconut Oil",
+        "Lulur Scrub",
+        "Boreh Mask"
+      ]
+    },
+    {
+      "name": "เฟอร์นิเจอร์",
+      "items": [
+        "Teak Furniture",
+        "Rattan Furniture",
+        "Bamboo Products",
+        "Garden Furniture"
+      ]
+    }
+  ]
+}

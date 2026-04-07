@@ -1,0 +1,180 @@
+<!-- iQiyi Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .iq-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .iq-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,160,233,0.07) 0%,transparent 65%);pointer-events:none}
+  .iq-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .iq-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .iq-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,160,233,0.1);border:1px solid rgba(0,160,233,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#00a0e9;font-weight:600;margin-bottom:18px}
+  .iq-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .iq-title .green{color:#1D9E75}.iq-title .blue{color:#00a0e9}
+  .iq-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .iq-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .iq-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .iq-tab:hover,.iq-tab.active{border-color:#00a0e9;background:rgba(0,160,233,0.1);color:#00a0e9}
+  .iq-phase{display:none}.iq-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(0,160,233,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(0,160,233,0.12);color:#00a0e9;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(0,160,233,0.05);border-color:rgba(0,160,233,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(0,160,233,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#00a0e9;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#00a0e9;color:#00a0e9}
+  .nav-btn.primary{background:#00a0e9;border-color:#00a0e9;color:#fff}
+  .nav-btn.primary:hover{background:#0088c7}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .iq-cta{margin-top:40px;background:linear-gradient(135deg,rgba(0,160,233,0.1),rgba(29,158,117,0.07));border:1px solid rgba(0,160,233,0.22);border-radius:20px;padding:32px;text-align:center}
+  .iq-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .iq-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .iq-cta-btn{display:inline-block;background:#00a0e9;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .iq-cta-btn:hover{background:#0088c7}
+</style>
+
+<section class="iq-section" id="iqiyi-guide">
+  <div class="iq-inner">
+    <div class="iq-badge">🎬 iQiyi (爱奇艺) Roadmap</div>
+    <h2 class="iq-title">ขายของผ่าน <span class="blue">iQiyi</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="iq-subtitle">61 ขั้นตอน ใน 11 ส่วน — Video Platform จีน 500M+ Brand Awareness + Live Shopping</p>
+    <div class="iq-tabs" id="iq-tabs"></div>
+    <div id="iq-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="iq-prev" onclick="iqChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="iq-prog">ส่วนที่ 1 จาก 11</span>
+      <button class="nav-btn primary" id="iq-next" onclick="iqChange(1)">ถัดไป →</button>
+    </div>
+    <div class="iq-cta">
+      <h3>ให้ OpenThai AI เขียน Video Script + Description + Title จีนให้ทุกวิดีโอ</h3>
+      <p>Script · Title · Description · Tag · Caption — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="iq-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const iqPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี iQiyi",desc:"เริ่มต้นสร้าง iQiyi Account",steps:[
+    {n:1,t:"โหลดแอป iQiyi (爱奇艺)",d:"App Store/Play Store หรือ iq.com"},
+    {n:2,t:"กด 注册 + เบอร์/WeChat/Weibo/QQ",d:"สมัครด้วยเบอร์หรือ Social"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ตั้งชื่อบัญชี (昵称)",d:"สื่อถึงแบรนด์",ai:true},
+    {n:5,t:"ตั้งรหัสผ่าน",d:"อย่างน้อย 8 ตัวอักษร"},
+    {n:6,t:"ใส่รูปโปรไฟล์แบรนด์",d:"รูปชัดเจน สื่อถึงสินค้า"},
+    {n:7,t:"เปิด Notification",d:"รับแจ้งเตือน Comment และ Follower"},
+  ]},
+  {id:2,icon:"✅",label:"Creator Account",name:"สมัคร iQiyi Creator Account",desc:"ได้ Badge + ฟีเจอร์ Creator ครบ",steps:[
+    {n:8,t:"Creator Center (号主中心)",d:"สมัครเป็น Creator"},
+    {n:9,t:"เลือกประเภท Content",d:"Lifestyle/Food/Travel/Beauty ฯลฯ"},
+    {n:10,t:"กรอกข้อมูล Channel",d:"ชื่อ/หมวด/จุดเด่น",ai:true},
+    {n:11,t:"อัปโหลดเอกสารยืนยันตัวตน",d:"Passport/บัตรปชช."},
+    {n:12,t:"รอ iQiyi ตรวจสอบ 3–7 วัน",d:""},
+    {n:13,t:"ได้รับ Creator Badge",d:"เปิดฟีเจอร์ Creator ครบ"},
+  ]},
+  {id:3,icon:"⚙️",label:"ตั้งค่า Channel",name:"ตั้งค่า Channel ให้พร้อมขาย",desc:"โปรไฟล์ดี ลูกค้าจีนเชื่อถือมากขึ้น",steps:[
+    {n:14,t:"ตั้งชื่อ Channel + Banner",d:"สื่อถึงแบรนด์หรือสินค้า",ai:true},
+    {n:15,t:"เขียน Channel Description",d:"ขายอะไร จุดเด่น วิธีติดต่อ",ai:true},
+    {n:16,t:"ใส่ลิงก์ร้านค้าใน Bio",d:"Taobao/WeChat Shop/Pinduoduo"},
+    {n:17,t:"เพิ่ม WeChat ID ใน Profile",d:"สำหรับลูกค้าที่ต้องการสั่ง"},
+    {n:18,t:"Pin วิดีโอขายดีด้านบน",d:"Brand Showcase ให้คนเห็นก่อน"},
+  ]},
+  {id:4,icon:"🎬",label:"สร้างวิดีโอ",name:"สร้างคอนเทนต์วิดีโอ",desc:"AI เขียน Script + Title + Description จีน",steps:[
+    {n:19,t:"ถ่ายวิดีโอรีวิวสินค้า",d:"คุณภาพสูง แสงดี เสียงชัด"},
+    {n:20,t:"ตัดต่อให้น่าสนใจ",d:"Intro Hook ดึงใจใน 3 วิแรก",ai:true},
+    {n:21,t:"เพิ่ม Subtitle ภาษาจีน",d:"ในวิดีโอ",ai:true},
+    {n:22,t:"เขียน Title วิดีโอจีน",d:"Keyword หลักที่คนค้นหา",ai:true},
+    {n:23,t:"เขียน Description วิดีโอ",d:"รายละเอียดสินค้า + ลิงก์ร้าน",ai:true},
+    {n:24,t:"เพิ่ม Tag / Keyword",d:"เกี่ยวข้องกับสินค้า",ai:true},
+    {n:25,t:"ตั้งปก (Thumbnail) ดึงดูด",d:"คลิก"},
+    {n:26,t:"อัปโหลดและเผยแพร่วิดีโอ",d:""},
+  ]},
+  {id:5,icon:"📱",label:"Short Video",name:"ใช้ iQiyi Short Video (随刻)",desc:"วิดีโอสั้น ขยาย Reach ใหม่",steps:[
+    {n:27,t:"เข้า iQiyi → Random (随刻)",d:"แพลตฟอร์มวิดีโอสั้นในตัว"},
+    {n:28,t:"สร้างวิดีโอสั้น 15 วิ–3 นาที",d:"แนวตั้ง 9:16 เกี่ยวกับสินค้า"},
+    {n:29,t:"ใส่ Hashtag ที่ Trending",d:"ในหมวดสินค้า",ai:true},
+    {n:30,t:"Tag สินค้าหรือใส่ลิงก์ร้าน",d:""},
+    {n:31,t:"โพสต์ 1–2 ครั้ง/วัน",d:"สม่ำเสมอ"},
+  ]},
+  {id:6,icon:"📢",label:"Brand Ads",name:"iQiyi Brand Advertising",desc:"โฆษณาสำหรับแบรนด์ระดับสูง",steps:[
+    {n:32,t:"iQiyi Brand Marketing Platform",d:"爱奇艺品牌广告"},
+    {n:33,t:"เลือกรูปแบบโฆษณา",d:"Pre-roll/Banner/Sponsored Content",ai:true},
+    {n:34,t:"เลือก Target Audience",d:"อายุ/เพศ/ความสนใจ/ภูมิภาคจีน",ai:true},
+    {n:35,t:"ตั้งงบโฆษณา",d:"CPM หรือ CPV"},
+    {n:36,t:"เผยแพร่ + ติดตาม Views/CTR",d:"Brand Recall Dashboard"},
+  ]},
+  {id:7,icon:"🔴",label:"iQiyi Live",name:"ใช้ iQiyi Live ขายสด",desc:"Live Shopping ครอบคลุมผู้ชม 500M+",steps:[
+    {n:37,t:"เปิดแอป → Live (直播)",d:"สร้าง Live ใหม่",ai:true},
+    {n:38,t:"ตั้งชื่อ Live",d:"บอกสินค้าและโปรโมชั่น"},
+    {n:39,t:"เชื่อมลิงก์สินค้าใน Live",d:"จากร้านค้าภายนอก"},
+    {n:40,t:"Live 30–60 นาที",d:"ตอบ Comment ตลอด"},
+    {n:41,t:"แชร์ลิงก์ Live ไป WeChat/Weibo",d:"ดึงผู้ชม"},
+  ]},
+  {id:8,icon:"🔗",label:"ดึง Traffic",name:"ดึง Traffic จาก iQiyi ไปร้านค้า",desc:"iQiyi → WeChat / Taobao / ร้านค้า",steps:[
+    {n:42,t:"ใส่ลิงก์ร้านค้าใน Description",d:"ทุกวิดีโอ Taobao/WeChat/PDD"},
+    {n:43,t:"พูดถึงลิงก์ในวิดีโอ",d:"'สั่งซื้อที่ลิงก์ใน Description'"},
+    {n:44,t:"เพิ่ม WeChat ID",d:"ให้ลูกค้า DM เพื่อสั่งซื้อ"},
+    {n:45,t:"แชร์วิดีโอไป WeChat/Weibo/Douban",d:"ขยาย Reach"},
+  ]},
+  {id:9,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อทาง DM / WeChat",steps:[
+    {n:46,t:"รับ DM คำสั่งซื้อใน iQiyi",d:"หรือ WeChat ถ้าลูกค้าเพิ่มเพื่อน"},
+    {n:47,t:"รับออร์เดอร์ผ่าน WeChat",d:"ถ้าลูกค้าเพิ่มเพื่อนมา"},
+    {n:48,t:"ตอบคำถามสินค้า/ราคา/สั่ง",d:"ตอบเร็ว = ปิดขายสูง",ai:true},
+    {n:49,t:"ยืนยันออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่จัดส่ง"},
+    {n:50,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:51,t:"ส่ง QR Alipay/WeChat/PromptPay",d:"ให้ลูกค้าชำระ"},
+  ]},
+  {id:10,icon:"📦",label:"ชำระ+จัดส่ง",name:"ตรวจสอบชำระและจัดส่ง",desc:"เช็คเงินเข้าและส่งสินค้า",steps:[
+    {n:52,t:"ตรวจสอบ Alipay/WeChat/PromptPay",d:"ยอด/วันที่/ชื่อ"},
+    {n:53,t:"เช็คยอดเข้าจริง",d:"Wallet หรือ Mobile Banking"},
+    {n:54,t:"แจ้งยืนยันชำระแล้ว",d:"ทาง DM / WeChat",ai:true},
+    {n:55,t:"แพ็คสินค้า + ส่งพัสดุ",d:"SF Express/ไปรษณีย์ไทย"},
+    {n:56,t:"แจ้งเลข Tracking",d:"ให้ลูกค้าติดตามพัสดุ",ai:true},
+    {n:57,t:"ลูกค้ารับสินค้า → ขอรีวิว",d:"รูปถ่ายทาง DM/WeChat",ai:true},
+  ]},
+  {id:11,icon:"⭐",label:"หลังการขาย",name:"หลังการขายและ Analytics",desc:"วิเคราะห์และปรับกลยุทธ์ Content",steps:[
+    {n:58,t:"นำรีวิวสร้างวิดีโอ Testimonial",d:"ใน iQiyi",ai:true},
+    {n:59,t:"วิเคราะห์ Creator Analytics",d:"Views/Watch Time/Fans Growth"},
+    {n:60,t:"ปรับ Content Strategy",d:"วิดีโอ Views สูง → ทำเพิ่ม",ai:true},
+    {n:61,t:"Follow up ลูกค้าหลัง 3–5 วัน",d:"ทาง WeChat",ai:true},
+  ]},
+];
+
+let iqCur=0;
+function iqBuild(){
+  const tabs=document.getElementById('iq-tabs');
+  const phases=document.getElementById('iq-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  iqPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='iq-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>iqGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='iq-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  iqUpdateNav();
+}
+function iqGo(i){
+  document.querySelectorAll('.iq-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.iq-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  iqCur=i;iqUpdateNav();
+}
+function iqChange(d){iqGo(Math.max(0,Math.min(iqPhases.length-1,iqCur+d)));}
+function iqUpdateNav(){
+  document.getElementById('iq-prog').textContent=`ส่วนที่ ${iqCur+1} จาก ${iqPhases.length}`;
+  document.getElementById('iq-prev').style.opacity=iqCur===0?'0.3':'1';
+  document.getElementById('iq-next').textContent=iqCur===iqPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+iqBuild();
+</script>

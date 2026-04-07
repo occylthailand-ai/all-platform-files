@@ -1,0 +1,195 @@
+<!-- Instagram Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .ig-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .ig-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(225,48,108,0.07) 0%,transparent 65%);pointer-events:none}
+  .ig-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .ig-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .ig-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#e1306c;font-weight:600;margin-bottom:18px}
+  .ig-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .ig-title .green{color:#1D9E75}.ig-title .pink{color:#e1306c}
+  .ig-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .ig-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .ig-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .ig-tab:hover,.ig-tab.active{border-color:#e1306c;background:rgba(225,48,108,0.1);color:#e1306c}
+  .ig-phase{display:none}.ig-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(225,48,108,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(225,48,108,0.12);color:#e1306c;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(225,48,108,0.05);border-color:rgba(225,48,108,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(225,48,108,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#e1306c;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#e1306c;color:#e1306c}
+  .nav-btn.primary{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border:none;color:#fff}
+  .nav-btn.primary:hover{opacity:0.88}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .ig-cta{margin-top:40px;background:linear-gradient(135deg,rgba(225,48,108,0.1),rgba(29,158,117,0.07));border:1px solid rgba(225,48,108,0.22);border-radius:20px;padding:32px;text-align:center}
+  .ig-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .ig-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .ig-cta-btn{display:inline-block;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:opacity 0.2s}
+  .ig-cta-btn:hover{opacity:0.88}
+</style>
+
+<section class="ig-section" id="instagram-guide">
+  <div class="ig-inner">
+    <div class="ig-badge">📸 Instagram Roadmap</div>
+    <h2 class="ig-title">ขายของผ่าน <span class="pink">Instagram</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="ig-subtitle">75 ขั้นตอน ใน 12 ส่วน — ตั้งแต่สมัครจนรับเงินเข้าบัญชี</p>
+    <div class="ig-tabs" id="ig-tabs"></div>
+    <div id="ig-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="ig-prev" onclick="igChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="ig-prog">ส่วนที่ 1 จาก 12</span>
+      <button class="nav-btn primary" id="ig-next" onclick="igChange(1)">ถัดไป →</button>
+    </div>
+    <div class="ig-cta">
+      <h3>ให้ OpenThai AI เขียน Caption + Hashtag ให้ทุกโพสต์</h3>
+      <p>Feed · Reels · Stories · DM — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="ig-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const igPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี Instagram",desc:"เริ่มต้นสร้าง IG Account",steps:[
+    {n:1,t:"โหลดแอป Instagram",d:"Play Store / App Store"},
+    {n:2,t:"สร้างบัญชีใหม่",d:"ใส่อีเมลหรือเบอร์มือถือ"},
+    {n:3,t:"ตั้ง Username",d:"สั้น จำง่าย สื่อถึงแบรนด์"},
+    {n:4,t:"ตั้งรหัสผ่าน",d:"อย่างน้อย 8 ตัวอักษร"},
+    {n:5,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์หรืออีเมล"},
+    {n:6,t:"ใส่รูปโปรไฟล์",d:"สื่อถึงแบรนด์หรือสินค้า"},
+    {n:7,t:"เขียน Bio 150 ตัวอักษร",d:"ขายอะไร ราคาเริ่มต้น ช่องทางสั่ง",ai:true},
+    {n:8,t:"เพิ่มลิงก์ใน Bio",d:"LINE / เว็บ / Linktree / PromptPay"},
+  ]},
+  {id:2,icon:"🏢",label:"Professional",name:"Switch to Professional Account",desc:"เปิด Analytics และ Shopping",steps:[
+    {n:9,t:"Settings → Switch to Professional",d:"Creator หรือ Business Account"},
+    {n:10,t:"เลือกประเภท Creator / Business",d:"Creator=คอนเทนต์ / Business=ร้านค้า"},
+    {n:11,t:"เลือกหมวดธุรกิจ",d:"สินค้า / แฟชั่น / อาหาร / ความงาม"},
+    {n:12,t:"เชื่อม Facebook Page",d:"สำหรับใช้ Meta Ads"},
+    {n:13,t:"ใส่ข้อมูลติดต่อ",d:"อีเมล / เบอร์โทร / ที่อยู่ร้าน"},
+    {n:14,t:"เปิด Instagram Insights",d:"ดู Analytics: Reach/Engagement/Followers"},
+  ]},
+  {id:3,icon:"🛍️",label:"IG Shop",name:"ตั้งค่า Instagram Shop",desc:"ขายของในแอปโดยตรง",steps:[
+    {n:15,t:"Settings → Business → Shopping",d:"เริ่มตั้งค่า IG Shop"},
+    {n:16,t:"เชื่อม Facebook Commerce Manager",d:"ระบบกลางจัดการ Catalog"},
+    {n:17,t:"สร้าง Product Catalog",d:"กลุ่มสินค้าหลักของร้าน"},
+    {n:18,t:"เพิ่มสินค้าใน Catalog",d:"ชื่อ/รายละเอียด/ราคา/รูป/สต็อก",ai:true},
+    {n:19,t:"ใส่ลิงก์สินค้า URL",d:"เว็บหรือ Line Shop"},
+    {n:20,t:"Submit รอ Instagram Approve",d:"1-3 วันทำการ"},
+    {n:21,t:"เปิดใช้งาน Shopping บน Profile",d:"ลูกค้าซื้อได้เลย"},
+    {n:22,t:"เพิ่ม Shop Tab บน Profile",d:"แสดงสินค้าทั้งหมดในโปรไฟล์"},
+  ]},
+  {id:4,icon:"🖼️",label:"Feed Posts",name:"สร้างคอนเทนต์ Feed Posts",desc:"AI เขียน Caption + Hashtag ให้",steps:[
+    {n:23,t:"ถ่ายรูปสินค้าคุณภาพสูง",d:"แสงดี พื้นหลังสะอาด"},
+    {n:24,t:"แก้ไขรูปด้วย Filter / Preset",d:"Aesthetic สม่ำเสมอทุกโพสต์"},
+    {n:25,t:"เขียน Caption + Hook",d:"บรรทัดแรกดึงใจก่อนกด 'อ่านเพิ่ม'",ai:true},
+    {n:26,t:"ใส่ Hashtag 5–30 อัน",d:"ผสมใหญ่ กลาง เล็ก ตรงกลุ่มเป้า",ai:true},
+    {n:27,t:"Tag สินค้าจาก IG Shop",d:"ลูกค้ากดซื้อได้เลยจากรูป"},
+    {n:28,t:"Tag Location",d:"เพิ่มการมองเห็นในพื้นที่"},
+    {n:29,t:"Tag บัญชีที่เกี่ยวข้อง",d:"ซัพพลายเออร์ / พาร์ทเนอร์"},
+    {n:30,t:"ตั้งเวลาโพสต์ที่ดี",d:"ไทย: 19:00–21:00 น. / 07:00–09:00 น."},
+  ]},
+  {id:5,icon:"🎬",label:"Reels",name:"Instagram Reels วิดีโอสั้น",desc:"Reels = Reach สูงสุดบน IG",steps:[
+    {n:31,t:"ถ่ายวิดีโอแนวตั้ง 9:16",d:"15–90 วินาที"},
+    {n:32,t:"ตัดต่อใน CapCut / Instagram",d:"subtitle, transition, effect"},
+    {n:33,t:"ใส่เสียง Trending",d:"เลือกจาก Instagram Audio"},
+    {n:34,t:"เพิ่ม Text / Sticker / Effect",d:"feature ที่ IG ส่งเสริมอัลกอริทึม"},
+    {n:35,t:"เขียน Caption + Hashtag สำหรับ Reels",d:"ต่างจาก Feed ได้",ai:true},
+    {n:36,t:"Tag สินค้าจาก Shop ใน Reels",d:"ลูกค้ากดซื้อได้เลย"},
+    {n:37,t:"แชร์ Reels ไป Feed + Stories",d:"ขยาย Reach พร้อมกัน"},
+  ]},
+  {id:6,icon:"⭕",label:"Stories",name:"Instagram Stories",desc:"โปรโมทสินค้าแบบ 24 ชั่วโมง",steps:[
+    {n:38,t:"โพสต์ Stories 3–10 ชิ้น/วัน",d:"อายุ 24 ชั่วโมง ลูกค้าเห็นบ่อย"},
+    {n:39,t:"ใช้ Poll / Quiz / Question",d:"ดึง Engagement จากผู้ติดตาม",ai:true},
+    {n:40,t:"เพิ่ม Product Link Sticker",d:"ลูกค้ากด Link ซื้อสินค้าได้เลย"},
+    {n:41,t:"ใช้ Countdown Sticker",d:"โปรโมชั่นจำกัดเวลา สร้าง FOMO"},
+    {n:42,t:"บันทึก Highlights",d:"แยกหมวด: สินค้า / รีวิว / โปรฯ / วิธีสั่ง"},
+  ]},
+  {id:7,icon:"🔴",label:"Live ขายสด",name:"Instagram Live ขายของสด",desc:"Live = ยอดขายพุ่งไวที่สุด",steps:[
+    {n:43,t:"กด + → Live → ตั้งชื่อ",d:"ชื่อ Live บอกสินค้าและโปรโมชั่น",ai:true},
+    {n:44,t:"เพิ่ม Product ใน Live Shopping",d:"เลือกสินค้าที่จะขายระหว่าง Live"},
+    {n:45,t:"Live อย่างน้อย 30 นาที",d:"ตอบ Comment ตลอด"},
+    {n:46,t:"Pin สินค้าให้คนเห็นตลอด",d:"กด Pin Product ทุกครั้งที่นำเสนอ"},
+    {n:47,t:"สรุปยอดขายและบันทึก Live",d:"ดูใน Insights หลังจบ"},
+  ]},
+  {id:8,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อทาง DM",steps:[
+    {n:48,t:"รับ DM คำสั่งซื้อใน Instagram",d:"แจ้งเตือนทันทีเมื่อมีออร์เดอร์"},
+    {n:49,t:"ตอบคำถามสินค้า / ราคา",d:"ตอบเร็ว 5 นาที = ปิดการขายสูง",ai:true},
+    {n:50,t:"ส่งรูปสินค้า / วิดีโอรีวิว",d:"ข้อมูลเพิ่มเติมใน DM"},
+    {n:51,t:"ยืนยันออร์เดอร์",d:"สินค้า / จำนวน / ที่อยู่จัดส่ง"},
+    {n:52,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:53,t:"ส่ง QR PromptPay / เลขบัญชี",d:"ให้ลูกค้าโอนเงิน"},
+    {n:54,t:"รอสลิปโอนเงิน",d:"ลูกค้าส่งสลิปทาง DM"},
+  ]},
+  {id:9,icon:"✅",label:"ยืนยันชำระ",name:"ตรวจสอบและยืนยันชำระเงิน",desc:"เช็คเงินเข้าและยืนยันลูกค้า",steps:[
+    {n:55,t:"ตรวจสอบสลิปลูกค้า",d:"ยอด / วันที่ / ชื่อผู้โอน"},
+    {n:56,t:"เช็คยอดเข้าจริง",d:"เปิด Mobile Banking ยืนยัน"},
+    {n:57,t:"แจ้งยืนยันชำระแล้ว",d:"ส่งข้อความยืนยันทาง DM",ai:true},
+    {n:58,t:"บันทึกออร์เดอร์ลงระบบ",d:"Excel / Google Sheets"},
+    {n:59,t:"ออก Receipt ให้ลูกค้า",d:"Order Confirmation ทาง DM",ai:true},
+  ]},
+  {id:10,icon:"📦",label:"จัดส่ง",name:"แพ็คและจัดส่งสินค้า",desc:"ส่งสินค้าให้ถึงมือลูกค้า",steps:[
+    {n:60,t:"แพ็คสินค้า + ใบปะหน้า",d:"เขียนที่อยู่ลูกค้าชัดเจน"},
+    {n:61,t:"ส่งพัสดุกับขนส่ง",d:"Flash / Kerry / J&T / ไปรษณีย์ไทย"},
+    {n:62,t:"แจ้งเลข Tracking ทาง DM",d:"ส่ง Tracking Number ให้ลูกค้า",ai:true},
+    {n:63,t:"ลูกค้าติดตามพัสดุ",d:"แอปขนส่งหรือเว็บไซต์"},
+    {n:64,t:"ลูกค้ารับสินค้าแล้ว",d:"ขอรีวิวและรูปถ่ายทาง DM",ai:true},
+  ]},
+  {id:11,icon:"📢",label:"IG Ads",name:"ใช้ Instagram Ads โปรโมท",desc:"ขยายการเข้าถึงด้วยโฆษณา",steps:[
+    {n:65,t:"Boost Post จากโพสต์ปกติ",d:"ง่ายสุด สำหรับมือใหม่"},
+    {n:66,t:"ตั้งค่า Meta Ads Manager",d:"Campaign / Ad Set / Ad"},
+    {n:67,t:"เลือก Objective",d:"ยอดขาย / Traffic / Engagement",ai:true},
+    {n:68,t:"ตั้ง Target Audience",d:"อายุ/เพศ/ความสนใจ/Location",ai:true},
+    {n:69,t:"ตั้งงบ + เผยแพร่โฆษณา",d:"Daily Budget + ระยะเวลา"},
+  ]},
+  {id:12,icon:"⭐",label:"หลังการขาย",name:"หลังการขายและ Retention",desc:"รักษาลูกค้าให้กลับมาซื้อ",steps:[
+    {n:70,t:"ขอรีวิวและรูปถ่าย",d:"รูปสินค้าจากลูกค้าจริง",ai:true},
+    {n:71,t:"Repost รีวิวใน Stories",d:"บันทึกใน Highlights 'รีวิว'",ai:true},
+    {n:72,t:"Tag ลูกค้าที่ Repost",d:"สร้างชุมชนลูกค้า"},
+    {n:73,t:"Follow up หลัง 3–5 วัน",d:"ถามความพอใจ แนะนำสินค้าเพิ่ม",ai:true},
+    {n:74,t:"สร้าง Close Friends List",d:"โปรโมชั่น VIP ก่อนใคร"},
+    {n:75,t:"วิเคราะห์ Instagram Insights",d:"Reach/Engagement สูง → ทำเพิ่ม",ai:true},
+  ]},
+];
+
+let igCur=0;
+function igBuild(){
+  const tabs=document.getElementById('ig-tabs');
+  const phases=document.getElementById('ig-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  igPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='ig-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>igGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='ig-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  igUpdateNav();
+}
+function igGo(i){
+  document.querySelectorAll('.ig-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.ig-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  igCur=i;igUpdateNav();
+}
+function igChange(d){igGo(Math.max(0,Math.min(igPhases.length-1,igCur+d)));}
+function igUpdateNav(){
+  document.getElementById('ig-prog').textContent=`ส่วนที่ ${igCur+1} จาก ${igPhases.length}`;
+  document.getElementById('ig-prev').style.opacity=igCur===0?'0.3':'1';
+  document.getElementById('ig-next').textContent=igCur===igPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+igBuild();
+</script>

@@ -1,0 +1,165 @@
+<!-- TEMU Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .tm-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .tm-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,106,0,0.07) 0%,transparent 65%);pointer-events:none}
+  .tm-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .tm-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .tm-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,106,0,0.1);border:1px solid rgba(255,106,0,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#ff6a00;font-weight:600;margin-bottom:18px}
+  .tm-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .tm-title .green{color:#1D9E75}.tm-title .orange{color:#ff6a00}
+  .tm-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .tm-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .tm-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .tm-tab:hover,.tm-tab.active{border-color:#ff6a00;background:rgba(255,106,0,0.1);color:#ff6a00}
+  .tm-phase{display:none}.tm-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,106,0,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(255,106,0,0.12);color:#ff6a00;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(255,106,0,0.05);border-color:rgba(255,106,0,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(255,106,0,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#ff6a00;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#ff6a00;color:#ff6a00}
+  .nav-btn.primary{background:#ff6a00;border-color:#ff6a00;color:#fff}
+  .nav-btn.primary:hover{background:#e55a00}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .tm-cta{margin-top:40px;background:linear-gradient(135deg,rgba(255,106,0,0.1),rgba(29,158,117,0.07));border:1px solid rgba(255,106,0,0.22);border-radius:20px;padding:32px;text-align:center}
+  .tm-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .tm-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .tm-cta-btn{display:inline-block;background:#ff6a00;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .tm-cta-btn:hover{background:#e55a00}
+</style>
+
+<section class="tm-section" id="temu-guide">
+  <div class="tm-inner">
+    <div class="tm-badge">🌍 TEMU Roadmap</div>
+    <h2 class="tm-title">ขายของบน <span class="orange">TEMU</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="tm-subtitle">50 ขั้นตอน ใน 9 ส่วน — Cross-border 50+ ประเทศ USA/EU/AU สินค้าไทยสู่ตลาดโลก</p>
+    <div class="tm-tabs" id="tm-tabs"></div>
+    <div id="tm-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="tm-prev" onclick="tmChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="tm-prog">ส่วนที่ 1 จาก 9</span>
+      <button class="nav-btn primary" id="tm-next" onclick="tmChange(1)">ถัดไป →</button>
+    </div>
+    <div class="tm-cta">
+      <h3>ให้ OpenThai AI เขียน Product Title + Description อังกฤษให้ทุกสินค้า</h3>
+      <p>Product Title · Description · Keyword · Listing — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="tm-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const tmPhases=[
+  {id:1,icon:"📋",label:"เตรียมตัว",name:"เตรียมตัวก่อนสมัคร",desc:"เตรียมเอกสารและสินค้าให้พร้อม",steps:[
+    {n:1,t:"เตรียมทะเบียนพาณิชย์ไทย",d:"ภ.พ.20 หรือทะเบียนบริษัท",warn:true},
+    {n:2,t:"เตรียมบัตรปชช. หรือ Passport",d:"สำหรับยืนยันตัวตน"},
+    {n:3,t:"เตรียมบัญชีธนาคาร",d:"รองรับ Payoneer / Wire Transfer",warn:true},
+    {n:4,t:"เตรียมสินค้าราคาแข่งขันได้",d:"TEMU เน้นสินค้าราคาต่ำมาก",warn:true},
+    {n:5,t:"เลือกหมวดสินค้า",d:"แฟชั่น/ของใช้บ้าน/ของเล่น/อิเล็กทรอนิกส์"},
+  ]},
+  {id:2,icon:"🏪",label:"เปิดร้านค้า",name:"สมัครและเปิดร้าน TEMU Seller",desc:"เปิดร้านค้าบน TEMU Global",steps:[
+    {n:6,t:"ไปที่ seller.temu.com",d:"กด 'Register as Seller'"},
+    {n:7,t:"เลือก Thailand → กรอกอีเมล",d:"ตั้งรหัสผ่าน"},
+    {n:8,t:"ยืนยันอีเมล",d:"รับ OTP ทางอีเมล"},
+    {n:9,t:"กรอกข้อมูลธุรกิจ",d:"ชื่อบริษัท/ที่อยู่/เบอร์"},
+    {n:10,t:"อัปโหลดเอกสาร",d:"ทะเบียนพาณิชย์+บัตรปชช./Passport"},
+    {n:11,t:"รอ TEMU Approve 3–7 วัน",d:""},
+    {n:12,t:"ได้รับ Seller Account",d:"เข้า TEMU Seller Center"},
+  ]},
+  {id:3,icon:"💳",label:"ตั้งค่าการเงิน",name:"ตั้งค่าบัญชีและการเงิน",desc:"รับเงินผ่าน Payoneer → ธนาคารไทย",steps:[
+    {n:13,t:"Account Settings → ข้อมูลธุรกิจครบ",d:""},
+    {n:14,t:"สมัคร Payoneer",d:"แนะนำ — รับเงินสะดวกที่สุด",warn:true},
+    {n:15,t:"เชื่อม Payoneer กับ TEMU",d:""},
+    {n:16,t:"ยืนยันข้อมูลภาษี (Tax Info)",d:"ตามที่ TEMU กำหนด"},
+    {n:17,t:"ตั้งค่าสกุลเงิน",d:"USD / EUR ตามตลาดที่ขาย"},
+  ]},
+  {id:4,icon:"📦",label:"เพิ่มสินค้า",name:"เพิ่มสินค้าและตั้งค่า Listing",desc:"AI เขียน Title + Description อังกฤษ",steps:[
+    {n:18,t:"Products → Add New Product",d:""},
+    {n:19,t:"เลือกหมวดหมู่ให้ถูกต้อง",d:"Category สำคัญมาก",warn:true},
+    {n:20,t:"ตั้งชื่อสินค้าภาษาอังกฤษ",d:"Keyword หลัก + จุดเด่น",ai:true},
+    {n:21,t:"อัปโหลดรูปสินค้า",d:"Main พื้นขาว + รายละเอียด 3–8 รูป"},
+    {n:22,t:"เขียนรายละเอียดสินค้าอังกฤษ",d:"วัสดุ/ขนาด/วิธีใช้/จุดเด่น",ai:true},
+    {n:23,t:"ตั้งราคาสินค้า",d:"ต้องต่ำกว่าตลาด — TEMU กำหนด",warn:true},
+    {n:24,t:"ตั้งสต็อก + SKU Variant",d:"สี/ขนาด/รุ่น"},
+    {n:25,t:"กรอก HS Code",d:"สำหรับ Cross-border Customs"},
+    {n:26,t:"Submit รอ TEMU Approve 24–72 ชม.",d:""},
+  ]},
+  {id:5,icon:"🚚",label:"ส่งเข้า Warehouse",name:"ส่งสินค้าเข้า TEMU Warehouse",desc:"TEMU จัดการ Logistics ให้ทั้งหมด",steps:[
+    {n:27,t:"Logistics → Shipping Plan",d:""},
+    {n:28,t:"เลือกประเทศปลายทาง",d:"USA / UK / EU / AU ฯลฯ"},
+    {n:29,t:"TEMU จัดสรร Warehouse",d:"มักอยู่จีนหรือ USA",warn:true},
+    {n:30,t:"เตรียมสินค้าตาม TEMU Standard",d:"บาร์โค้ด/Label ครบ"},
+    {n:31,t:"ส่งสินค้าเข้า Warehouse",d:"ผ่านขนส่งที่ TEMU แนะนำ"},
+    {n:32,t:"TEMU รับสินค้า → สินค้า Active",d:"บนแพลตฟอร์มทั่วโลก"},
+  ]},
+  {id:6,icon:"🎁",label:"โปรโมชั่น",name:"ตั้งค่าโปรโมชั่น",desc:"เข้าร่วม Campaign ระดับโลก",steps:[
+    {n:33,t:"Promotions → สร้างโปรโมชั่น",d:""},
+    {n:34,t:"เข้าร่วม TEMU Flash/Daily Deal",d:"TEMU คัดเลือกสินค้า",ai:true},
+    {n:35,t:"ตั้ง Coupon / Bundle Deal",d:""},
+    {n:36,t:"เข้าร่วม TEMU Campaign",d:"Black Friday/Cyber Monday/11.11"},
+  ]},
+  {id:7,icon:"🛎️",label:"จัดการออร์เดอร์",name:"การจัดการออร์เดอร์",desc:"TEMU จัดการ Fulfillment เองจาก Warehouse",steps:[
+    {n:37,t:"รับ Notification ออร์เดอร์ใหม่",d:"Seller Center"},
+    {n:38,t:"ตรวจสอบออร์เดอร์",d:"TEMU จัดการ Fulfillment เอง"},
+    {n:39,t:"ติดตามสถานะออร์เดอร์",d:"Dashboard"},
+    {n:40,t:"จัดการ Return / Refund",d:"TEMU นโยบาย Customer-first",warn:true},
+    {n:41,t:"ตรวจสอบสต็อกใน Warehouse",d:"Replenish เมื่อใกล้หมด"},
+  ]},
+  {id:8,icon:"💰",label:"รับเงิน",name:"ระบบการชำระเงินและรับเงิน",desc:"TEMU Escrow → Wallet → Payoneer → ธนาคารไทย",steps:[
+    {n:42,t:"ลูกค้าชำระผ่าน TEMU Payment",d:"บัตรเครดิต/PayPal/Apple Pay ฯลฯ"},
+    {n:43,t:"เงินเข้า TEMU Escrow",d:"รอ Release หลังลูกค้ารับสินค้า",warn:true},
+    {n:44,t:"เงิน Release เข้า TEMU Wallet",d:"7–14 วันหลังยืนยันส่งสินค้า"},
+    {n:45,t:"โอนเงิน TEMU Wallet → Payoneer",d:""},
+    {n:46,t:"โอน Payoneer → ธนาคารไทย",d:"แลก USD → THB"},
+  ]},
+  {id:9,icon:"📊",label:"วิเคราะห์+ปรับ",name:"วิเคราะห์และปรับปรุง",desc:"Data-driven ขยายตลาดโลก",steps:[
+    {n:47,t:"ติดตาม Seller Analytics",d:"GMV/Orders/Conversion/Return Rate",ai:true},
+    {n:48,t:"ปรับราคาตาม TEMU Suggestion",d:"ระบบแนะนำราคาที่เหมาะสม",ai:true},
+    {n:49,t:"เพิ่มสต็อกสินค้าขายดี",d:"ใน Warehouse"},
+    {n:50,t:"ขยาย Category และตลาดใหม่",d:"เพิ่มประเทศ 50+ แห่ง",ai:true},
+  ]},
+];
+
+let tmCur=0;
+function tmBuild(){
+  const tabs=document.getElementById('tm-tabs');
+  const phases=document.getElementById('tm-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  tmPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='tm-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>tmGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='tm-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  tmUpdateNav();
+}
+function tmGo(i){
+  document.querySelectorAll('.tm-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.tm-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  tmCur=i;tmUpdateNav();
+}
+function tmChange(d){tmGo(Math.max(0,Math.min(tmPhases.length-1,tmCur+d)));}
+function tmUpdateNav(){
+  document.getElementById('tm-prog').textContent=`ส่วนที่ ${tmCur+1} จาก ${tmPhases.length}`;
+  document.getElementById('tm-prev').style.opacity=tmCur===0?'0.3':'1';
+  document.getElementById('tm-next').textContent=tmCur===tmPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+tmBuild();
+</script>

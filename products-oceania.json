@@ -1,0 +1,62 @@
+{
+  "continent": "Oceania",
+  "country": "AU/NZ",
+  "totalProducts": 25,
+  "categories": [
+    {
+      "name": "น้ำผึ้ง Manuka",
+      "items": [
+        "Manuka Honey NZ",
+        "Manuka Skincare",
+        "Propolis",
+        "Bee Pollen"
+      ]
+    },
+    {
+      "name": "ขนสัตว์ Wool",
+      "items": [
+        "Merino Wool AU",
+        "Possum Merino NZ",
+        "Sheepskin",
+        "UGG Boots"
+      ]
+    },
+    {
+      "name": "ไวน์",
+      "items": [
+        "Shiraz AU",
+        "Sauvignon Blanc NZ",
+        "Pinot Noir NZ",
+        "Chardonnay AU"
+      ]
+    },
+    {
+      "name": "สุขภาพ",
+      "items": [
+        "Vitamin AU",
+        "Collagen",
+        "Fish Oil",
+        "Probiotic",
+        "Tea Tree Oil"
+      ]
+    },
+    {
+      "name": "Organic Food",
+      "items": [
+        "Organic Beef",
+        "Dairy Products",
+        "Macadamia",
+        "Avocado Oil"
+      ]
+    },
+    {
+      "name": "Aboriginal/Maori Art",
+      "items": [
+        "Aboriginal Art",
+        "Maori Carving",
+        "Greenstone Jade NZ",
+        "Boomerang"
+      ]
+    }
+  ]
+}

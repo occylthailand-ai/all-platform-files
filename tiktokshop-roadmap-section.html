@@ -1,0 +1,198 @@
+<!-- TikTok Shop Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .tts-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .tts-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(254,44,85,0.07) 0%,transparent 65%);pointer-events:none}
+  .tts-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .tts-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .tts-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(254,44,85,0.1);border:1px solid rgba(254,44,85,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#fe2c55;font-weight:600;margin-bottom:18px}
+  .tts-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .tts-title .green{color:#1D9E75}.tts-title .red{color:#fe2c55}
+  .tts-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .tts-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .tts-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .tts-tab:hover,.tts-tab.active{border-color:#fe2c55;background:rgba(254,44,85,0.1);color:#fe2c55}
+  .tts-phase{display:none}.tts-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(254,44,85,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(254,44,85,0.12);color:#fe2c55;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(254,44,85,0.05);border-color:rgba(254,44,85,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(254,44,85,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fe2c55;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#fe2c55;color:#fe2c55}
+  .nav-btn.primary{background:#fe2c55;border-color:#fe2c55;color:#fff}
+  .nav-btn.primary:hover{background:#e01843}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .tts-cta{margin-top:40px;background:linear-gradient(135deg,rgba(254,44,85,0.1),rgba(29,158,117,0.07));border:1px solid rgba(254,44,85,0.22);border-radius:20px;padding:32px;text-align:center}
+  .tts-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .tts-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .tts-cta-btn{display:inline-block;background:#fe2c55;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .tts-cta-btn:hover{background:#e01843}
+</style>
+
+<section class="tts-section" id="tiktokshop-guide">
+  <div class="tts-inner">
+    <div class="tts-badge">🛍️ TikTok Shop Roadmap</div>
+    <h2 class="tts-title">ขายของบน <span class="red">TikTok Shop</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="tts-subtitle">75 ขั้นตอน ใน 13 ส่วน — Social Commerce อันดับ 1 ไทย 40M+ วิดีโอ+Live+Shop ในแอปเดียว</p>
+    <div class="tts-tabs" id="tts-tabs"></div>
+    <div id="tts-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="tts-prev" onclick="ttsChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="tts-prog">ส่วนที่ 1 จาก 13</span>
+      <button class="nav-btn primary" id="tts-next" onclick="ttsChange(1)">ถัดไป →</button>
+    </div>
+    <div class="tts-cta">
+      <h3>ให้ OpenThai AI เขียน Script วิดีโอ + Caption + Live Script ให้ทุกวัน</h3>
+      <p>Video Script · Hook · Caption · Hashtag · Live Script — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="tts-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const ttsPhases=[
+  {id:1,icon:"📋",label:"เตรียมตัว",name:"เตรียมตัวก่อนสมัคร",desc:"เตรียมเอกสารและข้อมูลให้พร้อม",steps:[
+    {n:1,t:"เตรียมเบอร์มือถือไทย",d:"สำหรับสมัคร TikTok Account"},
+    {n:2,t:"เตรียมบัตรปชช./ทะเบียนพาณิชย์",d:"สำหรับยืนยันตัวตน"},
+    {n:3,t:"เตรียมบัญชีธนาคารไทย",d:"สำหรับรับเงิน"},
+    {n:4,t:"เตรียมรูปสินค้าและรายละเอียด",d:"ให้พร้อมก่อนเริ่ม"},
+  ]},
+  {id:2,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี TikTok",desc:"สร้าง TikTok Account สำหรับขาย",steps:[
+    {n:5,t:"โหลดแอป TikTok",d:"Play Store / App Store"},
+    {n:6,t:"กด 'สมัคร' + เบอร์/Email/Google/FB",d:""},
+    {n:7,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:8,t:"ตั้ง Username",d:"สื่อถึงแบรนด์หรือร้านค้า",ai:true},
+    {n:9,t:"ใส่รูปโปรไฟล์แบรนด์",d:"รูปชัดเจน สื่อถึงสินค้า"},
+    {n:10,t:"เขียน Bio",d:"ขายอะไร จุดเด่น ช่องทางติดต่อ",ai:true},
+  ]},
+  {id:3,icon:"🏪",label:"เปิด TikTok Shop",name:"สมัครเปิด TikTok Shop Seller",desc:"เปิดร้านค้าอย่างเป็นทางการ",steps:[
+    {n:11,t:"ไปที่ seller-th.tiktok.com",d:"หรือจากแอป TikTok → Shop"},
+    {n:12,t:"กด 'สมัครเป็นผู้ขาย'",d:"บุคคลธรรมดา หรือ นิติบุคคล"},
+    {n:13,t:"กรอกข้อมูลธุรกิจ",d:"ชื่อร้าน/ที่อยู่/เบอร์/อีเมล",ai:true},
+    {n:14,t:"อัปโหลดบัตรปชช./ทะเบียนพาณิชย์",d:""},
+    {n:15,t:"ถ่าย Selfie คู่บัตรปชช.",d:"ยืนยันตัวตน"},
+    {n:16,t:"รอ TikTok Shop Approve 1–3 วัน",d:""},
+    {n:17,t:"ได้รับ Seller Account",d:"เข้า TikTok Seller Center"},
+  ]},
+  {id:4,icon:"⚙️",label:"ตั้งค่าร้าน",name:"ตั้งค่าร้านค้าและบัญชีธนาคาร",desc:"พร้อมรับเงินเข้าธนาคารโดยตรง",steps:[
+    {n:18,t:"ตั้งค่าร้านค้า",d:"ชื่อร้าน/โลโก้/คำอธิบาย",ai:true},
+    {n:19,t:"เขียน Shop Description",d:"ขายอะไร จุดเด่น นโยบายร้าน",ai:true},
+    {n:20,t:"เพิ่มบัญชีธนาคารไทย",d:"ชื่อ/เลขบัญชี/ธนาคาร"},
+    {n:21,t:"ยืนยันบัญชีธนาคาร",d:"กับ TikTok Shop"},
+    {n:22,t:"ตั้งค่า TikTok Shop Wallet",d:""},
+    {n:23,t:"ตั้งค่า Chat Auto Reply",d:"ข้อความนอกเวลาทำการ",ai:true},
+  ]},
+  {id:5,icon:"🚚",label:"ตั้งค่าจัดส่ง",name:"ตั้งค่าการจัดส่ง",desc:"เลือกขนส่งและตั้งค่าค่าส่ง",steps:[
+    {n:24,t:"Seller Center → การจัดส่ง",d:"เลือกบริษัทขนส่ง"},
+    {n:25,t:"เลือก Flash/J&T/Kerry/ไปรษณีย์/Shopee",d:""},
+    {n:26,t:"ตั้ง Warehouse / Pickup Address",d:""},
+    {n:27,t:"ตั้งค่าน้ำหนักและขนาด Default",d:""},
+    {n:28,t:"ตั้ง Free Shipping Threshold",d:"ฟรีค่าส่งเมื่อซื้อครบ X บาท"},
+  ]},
+  {id:6,icon:"📦",label:"เพิ่มสินค้า",name:"เพิ่มสินค้าและตั้งค่า Listing",desc:"AI เขียนชื่อ + รายละเอียดสินค้า",steps:[
+    {n:29,t:"Seller Center → เพิ่มสินค้าใหม่",d:"สินค้า"},
+    {n:30,t:"เลือกหมวดหมู่ให้ถูกต้อง",d:"Category สำคัญมาก",warn:true},
+    {n:31,t:"ตั้งชื่อสินค้า",d:"Keyword หลัก + จุดเด่น ≤255 ตัว",ai:true},
+    {n:32,t:"อัปโหลดรูปสินค้า",d:"Main 1:1 + รายละเอียด 2–8 รูป"},
+    {n:33,t:"อัปโหลดวิดีโอสินค้าสั้น",d:"สำหรับโปรโมทสินค้า"},
+    {n:34,t:"เขียนรายละเอียดสินค้า",d:"วัสดุ/ขนาด/วิธีใช้/จุดเด่น",ai:true},
+    {n:35,t:"ตั้งราคาและโปรโมชั่น",d:""},
+    {n:36,t:"ตั้งสต็อก + Variation",d:"สี/ขนาด/รุ่น (ถ้ามี)"},
+    {n:37,t:"Submit รอ Approve 24 ชม.",d:""},
+  ]},
+  {id:7,icon:"🔗",label:"เชื่อม TikTok",name:"เชื่อม TikTok Shop กับ TikTok Account",desc:"Tag สินค้าในวิดีโอ กดซื้อได้เลย",steps:[
+    {n:38,t:"เชื่อม Shop กับ TikTok Account",d:"Personal/Business Account"},
+    {n:39,t:"Tag สินค้าจาก Shop ในวิดีโอ",d:"ลูกค้ากดซื้อได้เลย"},
+    {n:40,t:"ตั้งค่า Shop Tab ใน Profile",d:"ให้ลูกค้าเข้าชมร้าน"},
+    {n:41,t:"Pin สินค้าขายดีใน Shop Tab",d:"โปรโมชั่นให้คนเห็นก่อน"},
+  ]},
+  {id:8,icon:"🎁",label:"โปรโมชั่น",name:"ตั้งค่าโปรโมชั่นและ Voucher",desc:"AI เขียน Voucher + Campaign ให้",steps:[
+    {n:42,t:"Seller Center → การตลาด",d:"สร้างโปรโมชั่น"},
+    {n:43,t:"สร้าง Voucher ส่วนลด",d:"% หรือลดราคา หรือฟรีค่าส่ง",ai:true},
+    {n:44,t:"ตั้ง Flash Sale",d:"โปรลดราคาจำกัดเวลา"},
+    {n:45,t:"เข้าร่วม TikTok Campaign",d:"9.9/10.10/11.11/12.12/Payday"},
+    {n:46,t:"ตั้ง Bundle Deal",d:"ซื้อหลายชิ้นได้ราคาถูก"},
+    {n:47,t:"ใช้ TikTok Coins Cashback",d:"สร้าง Loyalty กับลูกค้า"},
+  ]},
+  {id:9,icon:"🎬",label:"Content+Live",name:"สร้าง Content วิดีโอและ Live ขาย",desc:"AI เขียน Script + Hook + Live Script",steps:[
+    {n:48,t:"ถ่ายและอัปโหลดวิดีโอสินค้า",d:"Hook ดึงใจใน 3 วิแรก",ai:true},
+    {n:49,t:"Tag สินค้าในวิดีโอ",d:"ลูกค้ากดซื้อได้เลย"},
+    {n:50,t:"ใส่ Hashtag Trending + สินค้า",d:"",ai:true},
+    {n:51,t:"เปิด TikTok Live",d:"ตั้งชื่อ Live บอกสินค้าและโปร",ai:true},
+    {n:52,t:"เพิ่มสินค้าเข้า Live Cart",d:"ก่อน Live"},
+    {n:53,t:"Live 1+ ชม. ตอบ Comment",d:"Pin สินค้าตลอด"},
+    {n:54,t:"สรุปยอดขายหลัง Live",d:"Analytics Dashboard"},
+  ]},
+  {id:10,icon:"📢",label:"Ads+Affiliate",name:"ใช้ TikTok Ads และ Affiliate",desc:"ขยาย Reach ด้วยโฆษณาและ Creator",steps:[
+    {n:55,t:"Seller Center → TikTok Ads",d:"Product Shopping Ads",ai:true},
+    {n:56,t:"เลือกสินค้า + Target Audience",d:"",ai:true},
+    {n:57,t:"ตั้งงบโฆษณาต่อวัน",d:"Bid per Click / CPM"},
+    {n:58,t:"เปิด TikTok Affiliate Program",d:"ให้ Creator โปรโมทสินค้า"},
+    {n:59,t:"กำหนด Commission Rate",d:"ให้ Creator ที่ช่วยขาย"},
+  ]},
+  {id:11,icon:"🛎️",label:"รับออร์เดอร์",name:"รับออร์เดอร์และจัดการ",desc:"จัดการคำสั่งซื้ออย่างรวดเร็ว",steps:[
+    {n:60,t:"รับ Notification ออร์เดอร์ใหม่",d:"TikTok Seller App"},
+    {n:61,t:"ตรวจสอบรายละเอียด",d:"สินค้า/จำนวน/ที่อยู่/ช่องทางชำระ"},
+    {n:62,t:"ยืนยันออร์เดอร์ภายใน 2 วัน",d:"",warn:true},
+    {n:63,t:"แพ็คสินค้าตาม Standard",d:"TikTok Shop มีมาตรฐาน"},
+    {n:64,t:"พิมพ์ใบปะหน้าพัสดุ",d:"จาก Seller Center"},
+    {n:65,t:"ส่งพัสดุภายในเวลากำหนด",d:"",warn:true},
+  ]},
+  {id:12,icon:"💰",label:"รับเงิน",name:"ระบบการชำระเงินและรับเงิน",desc:"TikTok Pay Escrow → Wallet → ธนาคาร",steps:[
+    {n:66,t:"ลูกค้าชำระ TikTok Pay/บัตร/PromptPay",d:"หรือเคาน์เตอร์เซอร์วิส"},
+    {n:67,t:"เงินเข้า TikTok Escrow",d:"รอ Release หลังลูกค้ารับสินค้า",warn:true},
+    {n:68,t:"เงิน Release เข้า TikTok Wallet",d:"อัตโนมัติ"},
+    {n:69,t:"โอนเงินจาก Wallet → ธนาคาร",d:""},
+    {n:70,t:"รับเงินเข้าบัญชี 1–3 วันทำการ",d:""},
+  ]},
+  {id:13,icon:"⭐",label:"หลังการขาย",name:"จัดการหลังการขายและ Analytics",desc:"วิเคราะห์และปรับกลยุทธ์ต่อเนื่อง",steps:[
+    {n:71,t:"ติดตามสถานะพัสดุ",d:"Seller Center"},
+    {n:72,t:"จัดการ Return / Refund",d:"ถ้าลูกค้าร้องเรียน"},
+    {n:73,t:"ตอบรีวิวลูกค้าทุกรายการ",d:"รีวิวดี = อันดับขึ้น",ai:true},
+    {n:74,t:"วิเคราะห์ TikTok Shop Analytics",d:"GMV/Orders/Conversion/Traffic",ai:true},
+    {n:75,t:"ปรับกลยุทธ์",d:"วิดีโอ Conversion สูง → ทำเพิ่ม",ai:true},
+  ]},
+];
+
+let ttsCur=0;
+function ttsBuild(){
+  const tabs=document.getElementById('tts-tabs');
+  const phases=document.getElementById('tts-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  ttsPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='tts-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>ttsGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='tts-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  ttsUpdateNav();
+}
+function ttsGo(i){
+  document.querySelectorAll('.tts-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.tts-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  ttsCur=i;ttsUpdateNav();
+}
+function ttsChange(d){ttsGo(Math.max(0,Math.min(ttsPhases.length-1,ttsCur+d)));}
+function ttsUpdateNav(){
+  document.getElementById('tts-prog').textContent=`ส่วนที่ ${ttsCur+1} จาก ${ttsPhases.length}`;
+  document.getElementById('tts-prev').style.opacity=ttsCur===0?'0.3':'1';
+  document.getElementById('tts-next').textContent=ttsCur===ttsPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+ttsBuild();
+</script>

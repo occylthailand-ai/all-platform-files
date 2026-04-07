@@ -1,0 +1,188 @@
+<!-- Taobao Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .tb-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .tb-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,90,0,0.07) 0%,transparent 65%);pointer-events:none}
+  .tb-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .tb-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .tb-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,90,0,0.1);border:1px solid rgba(255,90,0,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#ff5a00;font-weight:600;margin-bottom:18px}
+  .tb-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .tb-title .green{color:#1D9E75}.tb-title .red{color:#ff5a00}
+  .tb-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .tb-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .tb-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .tb-tab:hover,.tb-tab.active{border-color:#ff5a00;background:rgba(255,90,0,0.1);color:#ff5a00}
+  .tb-phase{display:none}.tb-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,90,0,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(255,90,0,0.12);color:#ff5a00;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(255,90,0,0.05);border-color:rgba(255,90,0,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(255,90,0,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#ff5a00;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#ff5a00;color:#ff5a00}
+  .nav-btn.primary{background:#ff5a00;border-color:#ff5a00;color:#fff}
+  .nav-btn.primary:hover{background:#e04e00}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .tb-cta{margin-top:40px;background:linear-gradient(135deg,rgba(255,90,0,0.1),rgba(29,158,117,0.07));border:1px solid rgba(255,90,0,0.22);border-radius:20px;padding:32px;text-align:center}
+  .tb-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .tb-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .tb-cta-btn{display:inline-block;background:#ff5a00;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .tb-cta-btn:hover{background:#e04e00}
+</style>
+
+<section class="tb-section" id="taobao-guide">
+  <div class="tb-inner">
+    <div class="tb-badge">🛒 Taobao (淘宝) Roadmap</div>
+    <h2 class="tb-title">ขายของบน <span class="red">Taobao</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="tb-subtitle">69 ขั้นตอน ใน 11 ส่วน — E-commerce จีนอันดับ 1 โลก 800M+ ผู้ใช้</p>
+    <div class="tb-tabs" id="tb-tabs"></div>
+    <div id="tb-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="tb-prev" onclick="tbChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="tb-prog">ส่วนที่ 1 จาก 11</span>
+      <button class="nav-btn primary" id="tb-next" onclick="tbChange(1)">ถัดไป →</button>
+    </div>
+    <div class="tb-cta">
+      <h3>ให้ OpenThai AI เขียนชื่อสินค้า + รายละเอียด + Detail Page จีนให้ทุกชิ้น</h3>
+      <p>Product Title · Description · Detail Page · Coupon — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="tb-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const tbPhases=[
+  {id:1,icon:"📋",label:"เตรียมตัว",name:"เตรียมตัวก่อนสมัคร",desc:"เตรียมเอกสารและเลือกโมเดลขาย",steps:[
+    {n:1,t:"เตรียมเบอร์มือถือจีน",d:"หรือสมัครผ่าน Agent จีน",warn:true},
+    {n:2,t:"เตรียมบัตรปชช.จีนหรือ Passport",d:"สำหรับยืนยันตัวตน"},
+    {n:3,t:"เตรียม Alipay Account",d:"สำคัญมาก ใช้รับเงิน",warn:true},
+    {n:4,t:"เตรียมทะเบียนพาณิชย์ไทย",d:"ภ.พ.20 หรือทะเบียนบริษัท"},
+    {n:5,t:"เลือกโมเดล",d:"Taobao ในจีน หรือ Taobao Global"},
+  ]},
+  {id:2,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี Taobao",desc:"สร้าง Taobao Account",steps:[
+    {n:6,t:"ไปที่ taobao.com → 免费注册",d:"สมัครบัญชีฟรี"},
+    {n:7,t:"ใส่เบอร์จีน → ยืนยัน OTP",d:""},
+    {n:8,t:"ตั้ง Taobao ID + รหัสผ่าน",d:""},
+    {n:9,t:"เชื่อมบัญชีกับ Alipay",d:"จำเป็นมากสำหรับรับเงิน",warn:true},
+    {n:10,t:"ยืนยันตัวตน Real-name",d:"บัตรปชช.จีน / Passport"},
+    {n:11,t:"ตั้งรูปโปรไฟล์และชื่อแสดง",d:"",ai:true},
+    {n:12,t:"เปิด Notification",d:"รับแจ้งเตือนออร์เดอร์และข้อความ"},
+  ]},
+  {id:3,icon:"🏪",label:"เปิดร้านค้า",name:"สมัครเปิดร้าน Taobao Store",desc:"ขั้นตอนเปิดร้านอย่างเป็นทางการ",steps:[
+    {n:13,t:"consumerservice.taobao.com",d:"สมัครเปิดร้าน"},
+    {n:14,t:"เลือกประเภทร้าน",d:"ร้านทั่วไป (普通店) หรือ Tmall"},
+    {n:15,t:"กรอกข้อมูลร้านค้า",d:"ชื่อร้าน/ประเภทสินค้า/คำอธิบาย",ai:true},
+    {n:16,t:"อัปโหลดเอกสาร",d:"Business License/Passport/หลักฐานสินค้า"},
+    {n:17,t:"ชำระค่ามัดจำ",d:"1,000–10,000 หยวน แล้วแต่หมวด",warn:true},
+    {n:18,t:"รอ Taobao Approve 3–7 วัน",d:""},
+    {n:19,t:"ลงนามสัญญาผู้ขาย",d:"Seller Agreement"},
+    {n:20,t:"ได้รับ Seller Account",d:"เข้า Seller Center (千牛卖家中心)"},
+  ]},
+  {id:4,icon:"⚙️",label:"ตั้งค่าร้าน",name:"ตั้งค่าร้านค้า",desc:"ตั้งค่าก่อนเริ่มขาย",steps:[
+    {n:21,t:"ตั้งชื่อร้านจีน + โลโก้",d:"",ai:true},
+    {n:22,t:"ออกแบบหน้าร้าน",d:"Banner/Shop Decoration"},
+    {n:23,t:"เขียน Shop Description จีน",d:"จุดเด่น/สินค้าหลัก/นโยบาย",ai:true},
+    {n:24,t:"ตั้งค่าการจัดส่ง",d:"SF/YTO/ZTO + ค่าส่ง + พื้นที่"},
+    {n:25,t:"เชื่อม Alipay กับร้านค้า",d:"รับชำระเงิน"},
+    {n:26,t:"ตั้ง After-sale Policy",d:"คืนสินค้า/รับประกัน/เวลาจัดส่ง"},
+  ]},
+  {id:5,icon:"📦",label:"เพิ่มสินค้า",name:"เพิ่มสินค้าและตั้งค่า Listing",desc:"AI เขียนชื่อ + รายละเอียด + Detail Page จีน",steps:[
+    {n:27,t:"Seller Center → เพิ่มสินค้า (发布宝贝)",d:""},
+    {n:28,t:"เลือกหมวดหมู่ให้ถูกต้อง",d:"Category ผิดถูกลบ",warn:true},
+    {n:29,t:"ตั้งชื่อสินค้าภาษาจีน",d:"Keyword หลัก ≤60 ตัวอักษร",ai:true},
+    {n:30,t:"อัปโหลดรูปสินค้า",d:"Main พื้นขาว + รายละเอียด 3–9 รูป"},
+    {n:31,t:"สร้าง Detail Page (产品详情)",d:"Infographic + ข้อมูล Long Page",ai:true},
+    {n:32,t:"เขียนรายละเอียดสินค้าจีน",d:"วัสดุ/ขนาด/วิธีใช้/จุดเด่น",ai:true},
+    {n:33,t:"ตั้งราคาปกติ + ราคาโปรโมชั่น",d:""},
+    {n:34,t:"ตั้งสต็อก + SKU Variant",d:"สี/ขนาด/รุ่น"},
+    {n:35,t:"Submit รอ Approve 24–48 ชม.",d:""},
+  ]},
+  {id:6,icon:"🎁",label:"โปรโมชั่น",name:"ตั้งค่าโปรโมชั่นและ Marketing",desc:"AI เขียน Coupon + Campaign ให้",steps:[
+    {n:36,t:"Taobao Marketing Center",d:"ตั้งค่าโปรโมชั่น"},
+    {n:37,t:"สร้าง Coupon (优惠券)",d:"ส่วนลด % หรือลดราคาคงที่",ai:true},
+    {n:38,t:"ตั้ง Limited Time Discount",d:"限时打折 โปรจำกัดเวลา"},
+    {n:39,t:"เข้าร่วม Taobao Campaign",d:"618/11.11/12.12/99"},
+    {n:40,t:"ตั้ง Bundle Deal",d:"ซื้อหลายชิ้นได้ราคาถูก"},
+    {n:41,t:"ตั้ง Free Shipping Threshold",d:"ฟรีค่าส่งเมื่อซื้อครบ X หยวน"},
+    {n:42,t:"ตั้ง Taobao Points (积分)",d:"คะแนนสะสมกับลูกค้า"},
+  ]},
+  {id:7,icon:"📢",label:"Taobao Train",name:"ใช้ Taobao Train โฆษณา",desc:"Pay-per-Click โฆษณาใน Taobao",steps:[
+    {n:43,t:"เข้า Taobao Train (直通车)",d:"ระบบโฆษณา PPC"},
+    {n:44,t:"สร้าง Ad Campaign",d:"เลือกสินค้าที่จะโปรโมท",ai:true},
+    {n:45,t:"เลือก Keyword + ตั้ง Bid",d:"ราคาประมูลแต่ละ Keyword",ai:true},
+    {n:46,t:"ตั้งงบโฆษณาต่อวัน",d:"Daily Budget"},
+    {n:47,t:"ติดตาม CTR/CPC/ROI/CVR",d:"Dashboard"},
+  ]},
+  {id:8,icon:"🔴",label:"Taobao Live",name:"ใช้ Taobao Live ขายสด",desc:"Live = ยอดขายพุ่ง + Reach ใหม่",steps:[
+    {n:48,t:"เปิดแอป Taobao → Live (淘宝直播)",d:"ตั้งชื่อ Live",ai:true},
+    {n:49,t:"เชื่อมสินค้าจากร้านเข้า Live Cart",d:""},
+    {n:50,t:"Live 1–2 ชั่วโมง ตอบ Comment",d:""},
+    {n:51,t:"Pin สินค้าและโปรโมชั่น",d:"ให้ผู้ชมกดซื้อได้"},
+    {n:52,t:"สรุปยอดขายและวิเคราะห์",d:"หลังจบ Live"},
+  ]},
+  {id:9,icon:"🛎️",label:"รับออร์เดอร์",name:"รับออร์เดอร์และจัดการ",desc:"จัดการคำสั่งซื้ออย่างรวดเร็ว",steps:[
+    {n:53,t:"รับ Notification ออร์เดอร์ใหม่",d:"Seller Center (千牛)"},
+    {n:54,t:"ตรวจสอบรายละเอียดออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่/Alipay"},
+    {n:55,t:"ยืนยันออร์เดอร์",d:"เริ่มเตรียมสินค้า"},
+    {n:56,t:"แพ็คสินค้าตาม Standard",d:"Taobao มีมาตรฐานบรรจุภัณฑ์"},
+    {n:57,t:"พิมพ์ใบปะหน้าพัสดุ",d:"จาก Seller Center"},
+    {n:58,t:"ส่งพัสดุภายใน 24–72 ชม.",d:"SF Express/YTO/ZTO",warn:true},
+  ]},
+  {id:10,icon:"💰",label:"รับเงิน",name:"ระบบชำระเงินและรับเงิน",desc:"Alipay Escrow → Wallet → ธนาคาร",steps:[
+    {n:59,t:"ลูกค้าชำระผ่าน Alipay/Huabei",d:"หรือบัตรเครดิตจีน"},
+    {n:60,t:"เงินเข้า Alipay Escrow",d:"รอ Release หลังรับสินค้า 15 วัน",warn:true},
+    {n:61,t:"เงิน Release เข้า Alipay Wallet",d:"อัตโนมัติ"},
+    {n:62,t:"โอนเงินจาก Alipay → ธนาคารจีน",d:""},
+    {n:63,t:"แลกเงินหยวน → บาท",d:"ธนาคารหรือ Money Changer"},
+  ]},
+  {id:11,icon:"⭐",label:"หลังการขาย",name:"จัดการหลังการขายและ Reputation",desc:"DSR Score สูง = ขายดีระยะยาว",steps:[
+    {n:64,t:"ติดตามสถานะพัสดุ",d:"Seller Center"},
+    {n:65,t:"จัดการ Return/Refund (退款退货)",d:"ถ้าลูกค้าร้องเรียน"},
+    {n:66,t:"ตอบรีวิวลูกค้า (DSR Score)",d:"ตอบทุกรายการ รักษาคะแนน 4.8+",ai:true},
+    {n:67,t:"ขอรีวิวจากลูกค้า",d:"ผ่าน Taobao Chat หลังรับสินค้า",ai:true},
+    {n:68,t:"ติดตาม Shop Score DSR",d:"Detailed Seller Rating คะแนนร้าน"},
+    {n:69,t:"วิเคราะห์ Seller Dashboard",d:"GMV/Conversion/Traffic/Best-seller",ai:true},
+  ]},
+];
+
+let tbCur=0;
+function tbBuild(){
+  const tabs=document.getElementById('tb-tabs');
+  const phases=document.getElementById('tb-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  tbPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='tb-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>tbGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='tb-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  tbUpdateNav();
+}
+function tbGo(i){
+  document.querySelectorAll('.tb-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.tb-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  tbCur=i;tbUpdateNav();
+}
+function tbChange(d){tbGo(Math.max(0,Math.min(tbPhases.length-1,tbCur+d)));}
+function tbUpdateNav(){
+  document.getElementById('tb-prog').textContent=`ส่วนที่ ${tbCur+1} จาก ${tbPhases.length}`;
+  document.getElementById('tb-prev').style.opacity=tbCur===0?'0.3':'1';
+  document.getElementById('tb-next').textContent=tbCur===tbPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+tbBuild();
+</script>

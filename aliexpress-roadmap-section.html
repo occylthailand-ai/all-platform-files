@@ -1,0 +1,175 @@
+<!-- AliExpress Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .ae-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .ae-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(230,0,18,0.07) 0%,transparent 65%);pointer-events:none}
+  .ae-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .ae-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .ae-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(230,0,18,0.1);border:1px solid rgba(230,0,18,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#e60012;font-weight:600;margin-bottom:18px}
+  .ae-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .ae-title .green{color:#1D9E75}.ae-title .red{color:#e60012}
+  .ae-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .ae-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .ae-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .ae-tab:hover,.ae-tab.active{border-color:#e60012;background:rgba(230,0,18,0.1);color:#e60012}
+  .ae-phase{display:none}.ae-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(230,0,18,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(230,0,18,0.12);color:#e60012;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(230,0,18,0.05);border-color:rgba(230,0,18,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(230,0,18,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#e60012;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#e60012;color:#e60012}
+  .nav-btn.primary{background:#e60012;border-color:#e60012;color:#fff}
+  .nav-btn.primary:hover{background:#c0000f}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .ae-cta{margin-top:40px;background:linear-gradient(135deg,rgba(230,0,18,0.1),rgba(29,158,117,0.07));border:1px solid rgba(230,0,18,0.22);border-radius:20px;padding:32px;text-align:center}
+  .ae-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .ae-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .ae-cta-btn{display:inline-block;background:#e60012;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .ae-cta-btn:hover{background:#c0000f}
+</style>
+
+<section class="ae-section" id="aliexpress-guide">
+  <div class="ae-inner">
+    <div class="ae-badge">🛒 AliExpress (速卖通) Roadmap</div>
+    <h2 class="ae-title">ขายสินค้าไทยบน <span class="red">AliExpress</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="ae-subtitle">58 ขั้นตอน ใน 10 ส่วน — 200+ ประเทศ 150M+ ผู้ซื้อ รัสเซีย/ยุโรป/ตะวันออกกลาง/ละตินอเมริกา</p>
+    <div class="ae-tabs" id="ae-tabs"></div>
+    <div id="ae-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="ae-prev" onclick="aeChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="ae-prog">ส่วนที่ 1 จาก 10</span>
+      <button class="nav-btn primary" id="ae-next" onclick="aeChange(1)">ถัดไป →</button>
+    </div>
+    <div class="ae-cta">
+      <h3>ให้ OpenThai AI เขียน Title + Description + Keyword อังกฤษให้ทุกสินค้า</h3>
+      <p>Product Title · Description · Keyword · Ad Copy — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="ae-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const aePhases=[
+  {id:1,icon:"📋",label:"เตรียมตัว",name:"เตรียมตัวก่อนสมัคร",desc:"เตรียมเอกสารและเลือกตลาดเป้าหมาย",steps:[
+    {n:1,t:"เตรียมทะเบียนพาณิชย์ไทย",d:"ภ.พ.20 หรือทะเบียนบริษัท",warn:true},
+    {n:2,t:"เตรียม Passport หรือบัตรปชช.",d:"สำหรับยืนยันตัวตน"},
+    {n:3,t:"เตรียมบัญชีรับเงิน",d:"Payoneer หรือธนาคาร SWIFT",warn:true},
+    {n:4,t:"เตรียมสินค้ามีเอกลักษณ์",d:"ไม่ควรแข่งราคากับจีน",warn:true},
+    {n:5,t:"เลือกตลาดเป้าหมาย",d:"รัสเซีย/ยุโรป/ตะวันออกกลาง/ลาตินฯ",ai:true},
+  ]},
+  {id:2,icon:"🏪",label:"สมัครและยืนยัน",name:"สมัครและยืนยันตัวตน AliExpress",desc:"เปิดร้านค้าบน AliExpress Global",steps:[
+    {n:6,t:"ไปที่ sell.aliexpress.com",d:"กด 'Start Selling'"},
+    {n:7,t:"สร้างบัญชี Alibaba/AliExpress",d:"ด้วยอีเมลธุรกิจ",ai:true},
+    {n:8,t:"เลือก Thailand → Individual/Enterprise",d:""},
+    {n:9,t:"กรอกข้อมูลธุรกิจ",d:"ชื่อร้าน/ที่อยู่/เบอร์",ai:true},
+    {n:10,t:"อัปโหลดเอกสาร",d:"ทะเบียนพาณิชย์+Passport/บัตรปชช."},
+    {n:11,t:"ชำระค่าสมัครประจำปี",d:"Annual Fee ~$799–$999/ปี",warn:true},
+    {n:12,t:"รอ AliExpress Approve 3–7 วัน",d:""},
+  ]},
+  {id:3,icon:"⚙️",label:"ตั้งค่าร้าน",name:"ตั้งค่าร้านค้าและบัญชีการเงิน",desc:"พร้อมรับเงินผ่าน Payoneer",steps:[
+    {n:13,t:"ตั้งค่าชื่อร้านและ Banner",d:"",ai:true},
+    {n:14,t:"เขียน Shop Description อังกฤษ",d:"จุดเด่น/สินค้าหลัก/นโยบาย",ai:true},
+    {n:15,t:"เชื่อม Payoneer กับ AliExpress",d:""},
+    {n:16,t:"ยืนยันบัญชีธนาคาร / Payoneer",d:""},
+    {n:17,t:"ตั้งค่าสกุลเงิน",d:"USD เป็นหลัก"},
+    {n:18,t:"ตั้งค่า Return / Warranty Policy",d:""},
+  ]},
+  {id:4,icon:"📦",label:"เพิ่มสินค้า",name:"เพิ่มสินค้าและตั้งค่า Listing",desc:"AI เขียน Title + Description อังกฤษ",steps:[
+    {n:19,t:"My Products → Post New Product",d:""},
+    {n:20,t:"เลือกหมวดหมู่ให้ถูกต้อง",d:"Category สำคัญมาก",warn:true},
+    {n:21,t:"เขียน Product Title อังกฤษ",d:"Keyword+จุดเด่น+วัสดุ+ขนาด",ai:true},
+    {n:22,t:"อัปโหลดรูปสินค้า",d:"Main พื้นขาว + 3–6 รูป"},
+    {n:23,t:"สร้าง Product Video",d:"เพิ่ม Conversion ได้มาก"},
+    {n:24,t:"เขียน Product Description",d:"ครบถ้วน มีตาราง Size/Spec",ai:true},
+    {n:25,t:"ตั้งราคา USD",d:"พิจารณาค่าส่ง + Commission 5–8%",warn:true},
+    {n:26,t:"ตั้งสต็อก + SKU Variant",d:"สี/ขนาด/แบบ"},
+    {n:27,t:"Submit รอ AliExpress Approve 1–3 วัน",d:""},
+  ]},
+  {id:5,icon:"🚚",label:"ตั้งค่าจัดส่ง",name:"ตั้งค่าการจัดส่ง",desc:"เลือกขนส่งระหว่างประเทศ",steps:[
+    {n:28,t:"Shipping → ตั้งค่า Shipping Template",d:""},
+    {n:29,t:"เลือกขนส่งระหว่างประเทศ",d:"AliExpress Standard/EMS/DHL/FedEx"},
+    {n:30,t:"ตั้งค่าค่าส่ง",d:"ฟรีค่าส่ง (แนะนำ) หรือผู้ซื้อจ่าย"},
+    {n:31,t:"ตั้ง Processing Time",d:"3–7 วัน"},
+    {n:32,t:"ตั้ง Shipping Region",d:"เลือกประเทศที่จะขาย"},
+    {n:33,t:"เปิด AliExpress Saver Shipping",d:"ลดค่าส่ง"},
+  ]},
+  {id:6,icon:"🎁",label:"โปรโมชั่น",name:"ตั้งค่าโปรโมชั่นและ Marketing",desc:"เข้าร่วม Campaign ระดับโลก",steps:[
+    {n:34,t:"Promotion → สร้างโปรโมชั่น",d:""},
+    {n:35,t:"สร้าง Coupon ส่วนลด",d:"% หรือลดราคาคงที่",ai:true},
+    {n:36,t:"เข้าร่วม AliExpress Campaign",d:"11.11/Anniversary/3.28"},
+    {n:37,t:"ตั้ง Flash Deal",d:"โปรลดราคาจำกัดเวลา"},
+    {n:38,t:"ใช้ AliExpress Affiliate",d:"ให้ Influencer โปรโมทสินค้า"},
+  ]},
+  {id:7,icon:"📢",label:"AliExpress Ads",name:"ใช้ AliExpress Ads",desc:"CPC โฆษณาขยายการเข้าถึง",steps:[
+    {n:39,t:"CPC Ads → สร้างแคมเปญ",d:"",ai:true},
+    {n:40,t:"เลือกสินค้า + Keyword",d:"",ai:true},
+    {n:41,t:"ตั้งงบโฆษณาต่อวัน + Bid",d:""},
+    {n:42,t:"ติดตาม CTR/Conversion/ROAS",d:"Dashboard"},
+  ]},
+  {id:8,icon:"🛎️",label:"รับออร์เดอร์",name:"รับออร์เดอร์และจัดการ",desc:"จัดการคำสั่งซื้อให้ทันเวลา",steps:[
+    {n:43,t:"รับ Notification ออร์เดอร์ใหม่",d:"Seller Center"},
+    {n:44,t:"ตรวจสอบรายละเอียด",d:"สินค้า/จำนวน/ที่อยู่/วิธีชำระ"},
+    {n:45,t:"ยืนยันออร์เดอร์และเตรียมสินค้า",d:"ภายใน Processing Time",warn:true},
+    {n:46,t:"แพ็คสินค้าตาม AliExpress Standard",d:""},
+    {n:47,t:"ส่งพัสดุระหว่างประเทศ",d:"EMS/DHL/AliExpress Standard"},
+    {n:48,t:"อัปโหลดเลข Tracking",d:"ใน Seller Center ภายในเวลากำหนด",warn:true},
+  ]},
+  {id:9,icon:"💰",label:"รับเงิน",name:"ระบบการชำระเงินและรับเงิน",desc:"AliPay Escrow → Wallet → Payoneer → ธนาคารไทย",steps:[
+    {n:49,t:"ลูกค้าชำระ AliPay/บัตร/PayPal",d:"หรือช่องทางท้องถิ่น"},
+    {n:50,t:"เงินเข้า AliExpress Escrow",d:"รอ Release หลังลูกค้ารับสินค้า",warn:true},
+    {n:51,t:"เงิน Release เข้า AliExpress Wallet",d:"15–20 วันหลังยืนยันส่ง"},
+    {n:52,t:"โอนเงิน Wallet → Payoneer",d:""},
+    {n:53,t:"โอน Payoneer → ธนาคารไทย",d:"แลก USD → THB"},
+  ]},
+  {id:10,icon:"⭐",label:"หลังการขาย",name:"จัดการหลังการขายและรีวิว",desc:"รักษา Shop Score ให้ดี",steps:[
+    {n:54,t:"ติดตามสถานะพัสดุ",d:"จนถึงมือลูกค้า"},
+    {n:55,t:"จัดการ Dispute",d:"ตอบใน 5 วัน ถ้าลูกค้าร้องเรียน",warn:true},
+    {n:56,t:"ขอรีวิวจากลูกค้า",d:"หลังรับสินค้า",ai:true},
+    {n:57,t:"ตอบรีวิวและ Feedback",d:"ทุกรายการ",ai:true},
+    {n:58,t:"วิเคราะห์ Shop Analytics",d:"Visitors/Conversion/Top Products",ai:true},
+  ]},
+];
+
+let aeCur=0;
+function aeBuild(){
+  const tabs=document.getElementById('ae-tabs');
+  const phases=document.getElementById('ae-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  aePhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='ae-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>aeGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='ae-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  aeUpdateNav();
+}
+function aeGo(i){
+  document.querySelectorAll('.ae-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.ae-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  aeCur=i;aeUpdateNav();
+}
+function aeChange(d){aeGo(Math.max(0,Math.min(aePhases.length-1,aeCur+d)));}
+function aeUpdateNav(){
+  document.getElementById('ae-prog').textContent=`ส่วนที่ ${aeCur+1} จาก ${aePhases.length}`;
+  document.getElementById('ae-prev').style.opacity=aeCur===0?'0.3':'1';
+  document.getElementById('ae-next').textContent=aeCur===aePhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+aeBuild();
+</script>

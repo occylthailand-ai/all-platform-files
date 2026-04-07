@@ -1,0 +1,194 @@
+<!-- Weibo Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .wb-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .wb-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,102,0,0.07) 0%,transparent 65%);pointer-events:none}
+  .wb-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .wb-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .wb-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,102,0,0.1);border:1px solid rgba(255,102,0,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#ff6600;font-weight:600;margin-bottom:18px}
+  .wb-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .wb-title .green{color:#1D9E75}.wb-title .orange{color:#ff6600}
+  .wb-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .wb-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .wb-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .wb-tab:hover,.wb-tab.active{border-color:#ff6600;background:rgba(255,102,0,0.1);color:#ff6600}
+  .wb-phase{display:none}.wb-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,102,0,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(255,102,0,0.12);color:#ff6600;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(255,102,0,0.05);border-color:rgba(255,102,0,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(255,102,0,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#ff6600;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#ff6600;color:#ff6600}
+  .nav-btn.primary{background:#ff6600;border-color:#ff6600;color:#fff}
+  .nav-btn.primary:hover{background:#e55a00}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .wb-cta{margin-top:40px;background:linear-gradient(135deg,rgba(255,102,0,0.1),rgba(29,158,117,0.07));border:1px solid rgba(255,102,0,0.22);border-radius:20px;padding:32px;text-align:center}
+  .wb-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .wb-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .wb-cta-btn{display:inline-block;background:#ff6600;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .wb-cta-btn:hover{background:#e55a00}
+</style>
+
+<section class="wb-section" id="weibo-guide">
+  <div class="wb-inner">
+    <div class="wb-badge">🔥 Weibo Roadmap</div>
+    <h2 class="wb-title">ขายของผ่าน <span class="orange">Weibo</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="wb-subtitle">73 ขั้นตอน ใน 12 ส่วน — Brand Awareness + KOL Marketing ตลาดจีน 600M+</p>
+    <div class="wb-tabs" id="wb-tabs"></div>
+    <div id="wb-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="wb-prev" onclick="wbChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="wb-prog">ส่วนที่ 1 จาก 12</span>
+      <button class="nav-btn primary" id="wb-next" onclick="wbChange(1)">ถัดไป →</button>
+    </div>
+    <div class="wb-cta">
+      <h3>ให้ OpenThai AI เขียนโพสต์จีน + Caption ให้ทุกวัน</h3>
+      <p>微博โพสต์ · KOL Brief · Caption · Hashtag — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="wb-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const wbPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี Weibo",desc:"เริ่มต้นสร้าง Weibo Account",steps:[
+    {n:1,t:"โหลดแอป Weibo",d:"App Store/Play Store หรือ weibo.com"},
+    {n:2,t:"กด 注册 + ใส่เบอร์จีน/อีเมล",d:"สมัครด้วยเบอร์มือถือจีน"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ตั้งชื่อบัญชี (Nickname)",d:"จีนหรืออังกฤษ สื่อถึงแบรนด์",ai:true},
+    {n:5,t:"ตั้งรหัสผ่าน",d:"อย่างน้อย 8 ตัวอักษร"},
+    {n:6,t:"ใส่รูปโปรไฟล์แบรนด์",d:"รูปชัดเจน สื่อถึงสินค้า"},
+    {n:7,t:"เขียน Bio 160 ตัวอักษร",d:"ขายอะไร ราคา ช่องทางสั่งซื้อ",ai:true},
+    {n:8,t:"เปิด Notification",d:"รับแจ้งเตือน Comment และ DM"},
+  ]},
+  {id:2,icon:"✅",label:"Verification",name:"ยืนยันตัวตนและสมัคร Business",desc:"ได้ V Badge เพิ่มความน่าเชื่อถือ",steps:[
+    {n:9,t:"Setting → Account → Verification",d:"Apply for Verification"},
+    {n:10,t:"เลือกประเภท Personal V / Enterprise V",d:"Enterprise = ธุรกิจ / Personal = บุคคล"},
+    {n:11,t:"อัปโหลดเอกสาร",d:"บัตรปชช./Passport/ทะเบียนธุรกิจ"},
+    {n:12,t:"ชำระค่าธรรมเนียม Verification",d:"~300 หยวน/ปี สำหรับ Enterprise",warn:true},
+    {n:13,t:"รอ Weibo ตรวจสอบ 3–7 วัน",d:""},
+    {n:14,t:"ได้รับ V Badge",d:"น้ำเงิน=Enterprise / ส้ม=Personal"},
+    {n:15,t:"เปิด Weibo Store Link",d:"เชื่อมกับร้านค้าภายนอก"},
+  ]},
+  {id:3,icon:"⚙️",label:"ตั้งค่าโปรไฟล์",name:"ตั้งค่าโปรไฟล์ให้พร้อมขาย",desc:"โปรไฟล์ดี ลูกค้าจีนเชื่อถือมากขึ้น",steps:[
+    {n:16,t:"ตั้งชื่อแบรนด์ชัดเจน",d:"ภาษาจีนแนะนำ"},
+    {n:17,t:"เขียน Bio ครบ",d:"ขายอะไร/ราคา/สั่งที่ไหน/WeChat ID",ai:true},
+    {n:18,t:"ใส่ลิงก์ร้านค้าใน Bio",d:"Taobao/Pinduoduo/WeChat Shop"},
+    {n:19,t:"ตั้งรูปปก Cover Photo",d:"แสดงสินค้าหรือโปรโมชั่น"},
+    {n:20,t:"Pin โพสต์ขายดีด้านบน",d:"โปรโมชั่นล่าสุดให้คนเห็นก่อน"},
+    {n:21,t:"เปิด DM (私信)",d:"รับคำสั่งซื้อจากลูกค้า"},
+  ]},
+  {id:4,icon:"✍️",label:"สร้าง Content",name:"สร้างคอนเทนต์และโพสต์ขาย",desc:"AI เขียนโพสต์จีนให้ทุกวัน",steps:[
+    {n:22,t:"เขียนโพสต์ 2,000 ตัวอักษร",d:"Hook ดึงใจบรรทัดแรก",ai:true},
+    {n:23,t:"แนบรูปสินค้า สูงสุด 18 รูป",d:"รูปคุณภาพสูง พื้นหลังสะอาด"},
+    {n:24,t:"แนบวิดีโอสินค้า",d:"ความยาวสูงสุด 15 นาที"},
+    {n:25,t:"ใส่ Hashtag (#话题#) 2–5 อัน",d:"Trending หรือเกี่ยวข้องกับสินค้า",ai:true},
+    {n:26,t:"Tag บัญชีที่เกี่ยวข้อง",d:"ซัพพลายเออร์/KOL/พาร์ทเนอร์"},
+    {n:27,t:"ใส่ลิงก์สินค้าในโพสต์",d:"Taobao/Pinduoduo/WeChat Shop"},
+    {n:28,t:"ตั้งเวลาโพสต์ที่ดี",d:"จีน: 07:00-09:00/12:00/20:00-22:00"},
+    {n:29,t:"โพสต์ 3–5 ครั้ง/วัน",d:"สม่ำเสมอ คุณภาพสำคัญ"},
+    {n:30,t:"Repost + Caption ใหม่",d:"ขยาย Reach โพสต์เดิม",ai:true},
+  ]},
+  {id:5,icon:"💫",label:"Story & Super Topic",name:"Weibo Story และ Super Topics",desc:"สร้างชุมชนแบรนด์บน Weibo",steps:[
+    {n:31,t:"โพสต์ Weibo Story (故事)",d:"รูป/วิดีโอสั้น อายุ 24 ชั่วโมง",ai:true},
+    {n:32,t:"สร้าง Super Topic (超话)",d:"ชุมชนของแบรนด์ให้ลูกค้า Follow"},
+    {n:33,t:"โพสต์ใน Super Topic",d:"เข้าถึงคนที่สนใจโดยตรง",ai:true},
+    {n:34,t:"จัด Event / Giveaway",d:"ดึงผู้ติดตามใหม่ใน Super Topic"},
+    {n:35,t:"ติดตาม #热搜# Trending",d:"เชื่อมสินค้ากับกระแสจีน",ai:true},
+  ]},
+  {id:6,icon:"🔴",label:"Live ขายสด",name:"Weibo Live Streaming ขายสด",desc:"Live ครอบคลุมลูกค้าจีน 600M+",steps:[
+    {n:36,t:"เปิดแอป → Live (直播)",d:"ตั้งชื่อ Live บอกสินค้าและโปร",ai:true},
+    {n:37,t:"ตั้งค่า Live Shopping",d:"เชื่อมลิงก์สินค้าจาก Taobao/PDD"},
+    {n:38,t:"Live 30–60 นาที",d:"ตอบ Comment ตลอด"},
+    {n:39,t:"Pin ลิงก์สินค้าระหว่าง Live",d:"ให้ผู้ชมกดซื้อได้เลย"},
+    {n:40,t:"จัด Flash Sale ช่วง Live",d:"สร้าง FOMO ยอดขายพุ่ง"},
+    {n:41,t:"บันทึก Live สรุปยอดขาย",d:"จำนวนผู้ชมและยอดขาย"},
+  ]},
+  {id:7,icon:"🌟",label:"KOL Marketing",name:"ใช้ KOL / Influencer Marketing",desc:"KOL จีนสร้าง Trust ได้เร็วมาก",steps:[
+    {n:42,t:"ค้นหา KOL (大V) ที่เหมาะ",d:"ตรงกลุ่มสินค้าและ Target"},
+    {n:43,t:"ติดต่อ KOL ผ่าน DM",d:"หรือ Weibo Marketing Platform"},
+    {n:44,t:"ส่งสินค้าให้ KOL รีวิว",d:"Seeding หรือจ่ายค่าโปรโมท",ai:true},
+    {n:45,t:"KOL โพสต์รีวิว + ลิงก์ร้าน",d:"ลิงก์ไปยัง Taobao/PDD/WeChat"},
+    {n:46,t:"ติดตาม Traffic จาก KOL",d:"Dashboard วิเคราะห์ยอดขาย",ai:true},
+  ]},
+  {id:8,icon:"📢",label:"Weibo Ads",name:"Weibo Ads โปรโมทสินค้า",desc:"ขยายการเข้าถึงด้วยโฆษณา",steps:[
+    {n:47,t:"เข้า Weibo Marketing Platform",d:"weibo.com/ad"},
+    {n:48,t:"เลือก Ad Format",d:"Feed Ads/Search Ads/Display Ads"},
+    {n:49,t:"ตั้ง Target Audience",d:"อายุ/เพศ/ความสนใจ/ที่อยู่จีน",ai:true},
+    {n:50,t:"ตั้งงบโฆษณา",d:"Daily Budget หรือ Total Budget"},
+    {n:51,t:"เผยแพร่ + ติดตาม CTR",d:"Impressions/Conversion/Dashboard"},
+  ]},
+  {id:9,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อทาง DM",steps:[
+    {n:52,t:"รับ DM คำสั่งซื้อใน Weibo",d:"แจ้งเตือนทันทีเมื่อมีออร์เดอร์"},
+    {n:53,t:"ตอบคำถามสินค้า/ราคา",d:"ตอบเร็ว 5 นาที = ปิดขายสูง",ai:true},
+    {n:54,t:"ส่งรูปสินค้า/วิดีโอรีวิว",d:"ข้อมูลเพิ่มเติมใน DM"},
+    {n:55,t:"ยืนยันออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่จัดส่ง"},
+    {n:56,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:57,t:"ส่งลิงก์ชำระ Alipay/WeChat/PromptPay",d:"ให้ลูกค้าเลือกวิธีชำระ"},
+    {n:58,t:"รอยืนยันการชำระเงิน",d:"ลูกค้ายืนยันทาง DM"},
+  ]},
+  {id:10,icon:"✅",label:"ยืนยันชำระ",name:"ตรวจสอบและยืนยันชำระเงิน",desc:"เช็คเงินเข้าและยืนยันลูกค้า",steps:[
+    {n:59,t:"ตรวจสอบ Alipay/WeChat/สลิป",d:"ยอด/วันที่/ชื่อผู้โอน"},
+    {n:60,t:"เช็คยอดเข้าจริง",d:"Alipay Wallet/WeChat Pay/Mobile Banking"},
+    {n:61,t:"แจ้งยืนยันชำระแล้ว",d:"ส่งข้อความยืนยันทาง DM",ai:true},
+    {n:62,t:"บันทึกออร์เดอร์ลงระบบ",d:"Excel/Google Sheets"},
+    {n:63,t:"ออก Receipt ให้ลูกค้า",d:"Order Confirmation ทาง DM",ai:true},
+  ]},
+  {id:11,icon:"📦",label:"จัดส่ง",name:"แพ็คและจัดส่งสินค้า",desc:"ส่งสินค้าให้ถึงมือลูกค้า",steps:[
+    {n:64,t:"แพ็คสินค้า + ใบปะหน้า",d:"เขียนที่อยู่ลูกค้าชัดเจน"},
+    {n:65,t:"ส่งพัสดุกับขนส่ง",d:"SF Express/YTO/ไปรษณีย์ไทย"},
+    {n:66,t:"แจ้ง Tracking ทาง DM",d:"ส่ง Tracking Number ให้ลูกค้า",ai:true},
+    {n:67,t:"ลูกค้าติดตามพัสดุ",d:"แอปขนส่งหรือเว็บไซต์"},
+    {n:68,t:"ลูกค้ารับสินค้าแล้ว",d:"ขอรีวิวทาง DM หรือ Comment ใน Weibo",ai:true},
+  ]},
+  {id:12,icon:"⭐",label:"หลังการขาย",name:"หลังการขายและ Retention",desc:"รักษาลูกค้าจีนให้กลับมาซื้อ",steps:[
+    {n:69,t:"ขอรีวิวและรูปถ่าย",d:"รูปสินค้าจากลูกค้าจริง",ai:true},
+    {n:70,t:"Repost รีวิวใน Weibo",d:"สร้าง Social Proof",ai:true},
+    {n:71,t:"Follow up หลัง 3–5 วัน",d:"ถามความพอใจ แนะนำเพิ่ม",ai:true},
+    {n:72,t:"เพิ่มลูกค้าเข้า WeChat VIP Group",d:"โปรโมชั่นพิเศษก่อนใคร"},
+    {n:73,t:"วิเคราะห์ Weibo Analytics",d:"Engagement สูง → ทำเพิ่ม",ai:true},
+  ]},
+];
+
+let wbCur=0;
+function wbBuild(){
+  const tabs=document.getElementById('wb-tabs');
+  const phases=document.getElementById('wb-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  wbPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='wb-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>wbGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='wb-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  wbUpdateNav();
+}
+function wbGo(i){
+  document.querySelectorAll('.wb-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.wb-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  wbCur=i;wbUpdateNav();
+}
+function wbChange(d){wbGo(Math.max(0,Math.min(wbPhases.length-1,wbCur+d)));}
+function wbUpdateNav(){
+  document.getElementById('wb-prog').textContent=`ส่วนที่ ${wbCur+1} จาก ${wbPhases.length}`;
+  document.getElementById('wb-prev').style.opacity=wbCur===0?'0.3':'1';
+  document.getElementById('wb-next').textContent=wbCur===wbPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+wbBuild();
+</script>

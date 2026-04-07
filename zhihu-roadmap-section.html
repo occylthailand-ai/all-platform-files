@@ -1,0 +1,185 @@
+<!-- Zhihu Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .zh-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .zh-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,106,255,0.07) 0%,transparent 65%);pointer-events:none}
+  .zh-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .zh-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .zh-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,106,255,0.1);border:1px solid rgba(0,106,255,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#006aff;font-weight:600;margin-bottom:18px}
+  .zh-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .zh-title .green{color:#1D9E75}.zh-title .blue{color:#006aff}
+  .zh-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .zh-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .zh-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .zh-tab:hover,.zh-tab.active{border-color:#006aff;background:rgba(0,106,255,0.1);color:#006aff}
+  .zh-phase{display:none}.zh-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(0,106,255,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(0,106,255,0.12);color:#006aff;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(0,106,255,0.05);border-color:rgba(0,106,255,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(0,106,255,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#006aff;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .tip-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(0,106,255,0.1);color:#006aff;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#006aff;color:#006aff}
+  .nav-btn.primary{background:#006aff;border-color:#006aff;color:#fff}
+  .nav-btn.primary:hover{background:#0055cc}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .zh-cta{margin-top:40px;background:linear-gradient(135deg,rgba(0,106,255,0.1),rgba(29,158,117,0.07));border:1px solid rgba(0,106,255,0.22);border-radius:20px;padding:32px;text-align:center}
+  .zh-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .zh-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .zh-cta-btn{display:inline-block;background:#006aff;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .zh-cta-btn:hover{background:#0055cc}
+</style>
+
+<section class="zh-section" id="zhihu-guide">
+  <div class="zh-inner">
+    <div class="zh-badge">📚 Zhihu (知乎) Roadmap</div>
+    <h2 class="zh-title">ขายของผ่าน <span class="blue">Zhihu</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="zh-subtitle">66 ขั้นตอน ใน 11 ส่วน — Q&A + Content Marketing คนจีนพรีเมี่ยม 100M+</p>
+    <div class="zh-tabs" id="zh-tabs"></div>
+    <div id="zh-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="zh-prev" onclick="zhChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="zh-prog">ส่วนที่ 1 จาก 11</span>
+      <button class="nav-btn primary" id="zh-next" onclick="zhChange(1)">ถัดไป →</button>
+    </div>
+    <div class="zh-cta">
+      <h3>ให้ OpenThai AI เขียนคำตอบ Q&A + บทความจีนให้ทุกวัน</h3>
+      <p>คำตอบ · บทความ · Bio · Caption — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="zh-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const zhPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี Zhihu",desc:"เริ่มต้นสร้าง Zhihu Account",steps:[
+    {n:1,t:"โหลดแอป Zhihu (知乎)",d:"App Store/Play Store หรือ zhihu.com"},
+    {n:2,t:"กด 注册 + เบอร์/WeChat/Weibo",d:"สมัครด้วยเบอร์หรือ Social"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ตั้งชื่อบัญชี (名字)",d:"น่าเชื่อถือ ชื่อแบรนด์หรือผู้เชี่ยวชาญ",ai:true},
+    {n:5,t:"ตั้งรหัสผ่าน",d:"อย่างน้อย 8 ตัวอักษร"},
+    {n:6,t:"เลือก Category ที่สนใจ",d:"สุขภาพ/อาหาร/ท่องเที่ยว/ความงาม"},
+    {n:7,t:"เปิด Notification",d:"รับแจ้งเตือน Comment และ Follower"},
+  ]},
+  {id:2,icon:"⚙️",label:"ตั้งค่าโปรไฟล์",name:"ตั้งค่าโปรไฟล์ให้น่าเชื่อถือ",desc:"โปรไฟล์ดี = คนเชื่อถือ = ซื้อง่ายขึ้น",steps:[
+    {n:8,t:"ใส่รูปโปรไฟล์มืออาชีพ",d:"รูปบุคคล หรือโลโก้แบรนด์"},
+    {n:9,t:"เขียน Bio",d:"ตำแหน่ง/ความเชี่ยวชาญ/แบรนด์",ai:true},
+    {n:10,t:"เพิ่ม Education/Work Experience",d:"เพิ่มความน่าเชื่อถือ"},
+    {n:11,t:"ใส่ลิงก์ร้านค้าใน Profile",d:"Taobao/Pinduoduo/WeChat Shop"},
+    {n:12,t:"ตั้ง Headline ความเชี่ยวชาญ",d:"'ผู้เชี่ยวชาญด้าน...' ชัดเจน",ai:true},
+    {n:13,t:"Pin คำถาม/บทความที่ดีที่สุด",d:"ด้านบนโปรไฟล์"},
+    {n:14,t:"เชื่อม WeChat / Weibo",d:"เพิ่มความน่าเชื่อถือ"},
+  ]},
+  {id:3,icon:"✅",label:"Creator Account",name:"สมัคร Zhihu Creator / Institutional",desc:"ได้ Badge เพิ่มความน่าเชื่อถือ",steps:[
+    {n:15,t:"Creator Center → 机构号",d:"สมัคร Institutional Account"},
+    {n:16,t:"กรอกข้อมูลธุรกิจ",d:"ชื่อบริษัท/ทะเบียนพาณิชย์"},
+    {n:17,t:"อัปโหลดเอกสาร",d:"Business License/หลักฐานตัวตน"},
+    {n:18,t:"รอ Zhihu ตรวจสอบ 3–7 วัน",d:""},
+    {n:19,t:"ได้รับ Institutional Badge ✓",d:"เพิ่มความน่าเชื่อถือ"},
+    {n:20,t:"เปิด Creator Dashboard",d:"Analytics และ Revenue"},
+  ]},
+  {id:4,icon:"✍️",label:"สร้าง Content",name:"สร้าง Content ประเภทต่างๆ",desc:"AI เขียนคำตอบ Q&A + บทความจีนทุกวัน",steps:[
+    {n:21,t:"ตอบคำถาม (回答)",d:"ค้นหาคำถามเกี่ยวสินค้า ตอบละเอียด",ai:true},
+    {n:22,t:"เขียนบทความ (文章)",d:"รีวิวสินค้า/วิธีใช้/ประโยชน์",ai:true},
+    {n:23,t:"เขียน Idea (想法)",d:"โพสต์สั้น 140 ตัวอักษร คล้าย Twitter",ai:true},
+    {n:24,t:"สร้าง Column (专栏)",d:"รวมบทความหัวข้อเดียวกัน"},
+    {n:25,t:"ใส่รูปสินค้าคุณภาพสูง",d:"ในบทความ/คำตอบ"},
+    {n:26,t:"ใส่ลิงก์สินค้าใน Content",d:"Taobao/Pinduoduo/JD.com"},
+    {n:27,t:"เขียน Headline ดึงดูด",d:"ตั้งคำถามหรือบอกประโยชน์ชัด",ai:true},
+    {n:28,t:"ใส่ Keyword จีนใน Title/Content",d:"ที่คนจีนค้นหาบ่อย",ai:true},
+    {n:29,t:"ตอบคำถาม 1–3 ครั้ง/วัน",d:"สม่ำเสมอ"},
+    {n:30,t:"ติดตาม Topic เกี่ยวข้อง",d:"ตอบคำถามใหม่ๆ เสมอ"},
+  ]},
+  {id:5,icon:"🎥",label:"Live & Video",name:"ใช้ Zhihu Live และ Video",desc:"เพิ่ม Engagement และ Trust",steps:[
+    {n:31,t:"สร้าง Zhihu Live (Live Talk)",d:"สอนหรือแชร์ความรู้เกี่ยวสินค้า",ai:true},
+    {n:32,t:"ตั้งราคา Live Talk",d:"ฟรี หรือมีค่าธรรมเนียม"},
+    {n:33,t:"อัปโหลด Video Content",d:"เพิ่ม Engagement ใน Zhihu"},
+    {n:34,t:"ใช้ Salt Video (盐选视频)",d:"สำหรับ Premium Content"},
+    {n:35,t:"แชร์ Link Live/Video",d:"WeChat/Weibo ดึง Traffic"},
+  ]},
+  {id:6,icon:"💎",label:"Salt Selection",name:"Zhihu Salt Selection Premium Content",desc:"รายได้จาก Subscription",steps:[
+    {n:36,t:"สมัคร Salt Selection Creator",d:"盐选作者"},
+    {n:37,t:"สร้าง Premium Content/E-book",d:"เกี่ยวข้องกับสินค้า",ai:true},
+    {n:38,t:"ตั้งราคา Premium Content",d:"สมาชิกจ่ายเพื่ออ่าน"},
+    {n:39,t:"รับรายได้จาก Subscription",d:"Salt Selection Revenue"},
+  ]},
+  {id:7,icon:"📢",label:"ZH Ads",name:"Zhihu Advertising",desc:"โฆษณาในรูปแบบ Q&A ดูเป็นธรรมชาติ",steps:[
+    {n:40,t:"เข้า Zhihu Marketing Platform",d:"知乎营销平台"},
+    {n:41,t:"สร้าง Knowledge Ads (知识广告)",d:"โฆษณาในรูปแบบ Q&A",ai:true},
+    {n:42,t:"ตั้ง Target Audience",d:"อายุ/การศึกษา/ความสนใจ/ภูมิภาค",ai:true},
+    {n:43,t:"ติดตาม CTR/Engagement/CVR",d:"Dashboard"},
+  ]},
+  {id:8,icon:"🔗",label:"ดึง Traffic",name:"ดึง Traffic จาก Zhihu ไปร้านค้า",desc:"Zhihu → WeChat / Taobao / ร้านค้า",steps:[
+    {n:44,t:"ใส่ลิงก์ร้านค้าในทุก Content",d:"Taobao/Pinduoduo/WeChat Shop"},
+    {n:45,t:"เพิ่ม WeChat ID ในโปรไฟล์",d:"ให้ลูกค้าเพิ่มเพื่อนได้เลย"},
+    {n:46,t:"สร้าง QR Code WeChat ใน Bio",d:"หรือในบทความ"},
+    {n:47,t:"บอกให้ DM WeChat เพื่อสั่งซื้อ",d:"ในคำตอบและบทความ"},
+    {n:48,t:"แชร์ Content Zhihu ไป WeChat/Weibo",d:"ขยาย Reach"},
+  ]},
+  {id:9,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อทาง DM",steps:[
+    {n:49,t:"รับ DM จากลูกค้าใน Zhihu/WeChat",d:"แจ้งเตือนทันที"},
+    {n:50,t:"ตอบคำถามสินค้า/ราคา/สั่งซื้อ",d:"ตอบเร็ว = ปิดขายสูง",ai:true},
+    {n:51,t:"ส่งรูปสินค้า/ลิงก์ใน DM",d:"ข้อมูลเพิ่มเติม"},
+    {n:52,t:"ยืนยันออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่จัดส่ง"},
+    {n:53,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:54,t:"ส่ง QR PromptPay/Alipay/WeChat Pay",d:"ให้ลูกค้าชำระ"},
+  ]},
+  {id:10,icon:"✅",label:"ชำระ+จัดส่ง",name:"ตรวจสอบชำระและจัดส่ง",desc:"เช็คเงินเข้าและส่งสินค้า",steps:[
+    {n:55,t:"ตรวจสอบ Alipay/WeChat/PromptPay",d:"ยอด/วันที่/ชื่อ"},
+    {n:56,t:"เช็คยอดเข้าจริง",d:"Wallet หรือ Mobile Banking"},
+    {n:57,t:"แจ้งยืนยันชำระแล้ว",d:"ส่งข้อความยืนยันทาง DM",ai:true},
+    {n:58,t:"บันทึกออร์เดอร์ลงระบบ",d:"Excel/Google Sheets"},
+    {n:59,t:"แพ็คสินค้า + ส่งพัสดุ",d:"SF Express/ไปรษณีย์ไทย"},
+    {n:60,t:"แจ้งเลข Tracking ทาง DM",d:"ให้ลูกค้าติดตามพัสดุ",ai:true},
+  ]},
+  {id:11,icon:"⭐",label:"หลังการขาย",name:"หลังการขายและ Retention",desc:"รักษาลูกค้าจีนพรีเมี่ยม",steps:[
+    {n:61,t:"ลูกค้ารับสินค้า → ขอรีวิว",d:"ทาง DM",ai:true},
+    {n:62,t:"นำรีวิวเขียนเป็น Case Study",d:"บทความใน Zhihu",ai:true},
+    {n:63,t:"ตอบ Comment ในบทความ/คำตอบ",d:"ทุกวัน",ai:true},
+    {n:64,t:"Follow up หลัง 3–5 วัน",d:"WeChat/Zhihu DM",ai:true},
+    {n:65,t:"เพิ่มลูกค้าเข้า WeChat VIP Group",d:"รับโปรโมชั่นพิเศษ"},
+    {n:66,t:"วิเคราะห์ Zhihu Analytics",d:"Views สูง → ทำเพิ่ม",ai:true},
+  ]},
+];
+
+let zhCur=0;
+function zhBuild(){
+  const tabs=document.getElementById('zh-tabs');
+  const phases=document.getElementById('zh-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  zhPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='zh-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>zhGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='zh-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.tip?'<span class="tip-tag">💡 เคล็ดลับ</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  zhUpdateNav();
+}
+function zhGo(i){
+  document.querySelectorAll('.zh-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.zh-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  zhCur=i;zhUpdateNav();
+}
+function zhChange(d){zhGo(Math.max(0,Math.min(zhPhases.length-1,zhCur+d)));}
+function zhUpdateNav(){
+  document.getElementById('zh-prog').textContent=`ส่วนที่ ${zhCur+1} จาก ${zhPhases.length}`;
+  document.getElementById('zh-prev').style.opacity=zhCur===0?'0.3':'1';
+  document.getElementById('zh-next').textContent=zhCur===zhPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+zhBuild();
+</script>

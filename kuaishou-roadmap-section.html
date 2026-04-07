@@ -1,0 +1,200 @@
+<!-- Kuaishou Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .ks-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .ks-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,165,0,0.07) 0%,transparent 65%);pointer-events:none}
+  .ks-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .ks-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .ks-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,165,0,0.1);border:1px solid rgba(255,165,0,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#ffa500;font-weight:600;margin-bottom:18px}
+  .ks-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .ks-title .green{color:#1D9E75}.ks-title .orange{color:#ffa500}
+  .ks-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .ks-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .ks-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .ks-tab:hover,.ks-tab.active{border-color:#ffa500;background:rgba(255,165,0,0.1);color:#ffa500}
+  .ks-phase{display:none}.ks-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,165,0,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(255,165,0,0.12);color:#ffa500;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(255,165,0,0.05);border-color:rgba(255,165,0,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(255,165,0,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#ffa500;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#ffa500;color:#ffa500}
+  .nav-btn.primary{background:#ffa500;border-color:#ffa500;color:#000}
+  .nav-btn.primary:hover{background:#e69400}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .ks-cta{margin-top:40px;background:linear-gradient(135deg,rgba(255,165,0,0.1),rgba(29,158,117,0.07));border:1px solid rgba(255,165,0,0.22);border-radius:20px;padding:32px;text-align:center}
+  .ks-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .ks-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .ks-cta-btn{display:inline-block;background:#ffa500;color:#000;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:background 0.2s}
+  .ks-cta-btn:hover{background:#e69400}
+</style>
+
+<section class="ks-section" id="kuaishou-guide">
+  <div class="ks-inner">
+    <div class="ks-badge">⚡ Kuaishou (快手) Roadmap</div>
+    <h2 class="ks-title">ขายของผ่าน <span class="orange">Kuaishou</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="ks-subtitle">79 ขั้นตอน ใน 12 ส่วน — Live Commerce จีน 700M+ เมืองรองและชนบท</p>
+    <div class="ks-tabs" id="ks-tabs"></div>
+    <div id="ks-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="ks-prev" onclick="ksChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="ks-prog">ส่วนที่ 1 จาก 12</span>
+      <button class="nav-btn primary" id="ks-next" onclick="ksChange(1)">ถัดไป →</button>
+    </div>
+    <div class="ks-cta">
+      <h3>ให้ OpenThai AI เขียน Caption + Live Script ภาษาจีนให้ทุกวัน</h3>
+      <p>วิดีโอ · Live Script · Caption · Hashtag — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="ks-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const ksPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี Kuaishou",desc:"เริ่มต้นสร้าง Kuaishou Account",steps:[
+    {n:1,t:"โหลดแอป Kuaishou (快手)",d:"App Store / Play Store"},
+    {n:2,t:"กด 注册 + เบอร์จีน/WeChat/Weibo",d:"สมัครด้วยเบอร์หรือ Social"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ตั้งชื่อบัญชี (昵称)",d:"จีนหรืออังกฤษ สื่อถึงแบรนด์",ai:true},
+    {n:5,t:"ตั้งรหัสผ่าน",d:"อย่างน้อย 8 ตัวอักษร"},
+    {n:6,t:"ใส่รูปโปรไฟล์แบรนด์",d:"รูปชัดเจน สื่อถึงสินค้า"},
+    {n:7,t:"เขียน Bio 50 ตัวอักษร",d:"ขายอะไร จุดเด่น วิธีสั่งซื้อ",ai:true},
+    {n:8,t:"เปิด Notification",d:"รับแจ้งเตือน Comment และ DM"},
+  ]},
+  {id:2,icon:"✅",label:"Verification",name:"สมัคร Creator / Business Account",desc:"ได้ Badge เพิ่มความน่าเชื่อถือ",steps:[
+    {n:9,t:"Me → Creator Center → Certification",d:"Apply for Verification"},
+    {n:10,t:"เลือก Personal Creator / Enterprise",d:"Enterprise = ธุรกิจ"},
+    {n:11,t:"กรอกข้อมูลส่วนตัว/ธุรกิจ",d:""},
+    {n:12,t:"อัปโหลดเอกสาร",d:"บัตรปชช.จีน/Passport/Business License"},
+    {n:13,t:"รอ Kuaishou ตรวจสอบ 3–7 วัน",d:""},
+    {n:14,t:"ได้รับ Verified Badge",d:"เพิ่มความน่าเชื่อถือ"},
+    {n:15,t:"เปิด Creator Center",d:"Analytics/Revenue/Content Performance"},
+  ]},
+  {id:3,icon:"🏪",label:"KS Shop",name:"ตั้งค่า Kuaishou Shop",desc:"ร้านค้าในแอป ซื้อได้เลย",steps:[
+    {n:16,t:"Creator Center → Shop → เปิดร้าน",d:"开店 สมัครเปิดร้านค้า"},
+    {n:17,t:"เลือกประเภทร้าน",d:"ร้านทั่วไป (普通店) หรือ แบรนด์"},
+    {n:18,t:"กรอกข้อมูลธุรกิจ",d:"ชื่อบริษัท/ทะเบียน/ที่อยู่"},
+    {n:19,t:"อัปโหลดเอกสาร",d:"Business License/Passport/หลักฐานสินค้า"},
+    {n:20,t:"เชื่อม Alipay/WeChat/KS Pay",d:"รับชำระเงินจากลูกค้า"},
+    {n:21,t:"ชำระค่ามัดจำร้านค้า",d:"แล้วแต่หมวดสินค้า",warn:true},
+    {n:22,t:"รอ Approve 3–7 วัน",d:""},
+    {n:23,t:"ตั้งชื่อร้าน + โลโก้ + คำอธิบาย",d:"ภาษาจีน แนะนำ",ai:true},
+  ]},
+  {id:4,icon:"📦",label:"เพิ่มสินค้า",name:"เพิ่มสินค้าใน Kuaishou Shop",desc:"AI เขียน Title + Description ภาษาจีน",steps:[
+    {n:24,t:"Shop Dashboard → เพิ่มสินค้าใหม่",d:""},
+    {n:25,t:"เลือกหมวดหมู่สินค้า",d:"ต้องถูกต้อง Category ผิดถูกลบ",warn:true},
+    {n:26,t:"ตั้งชื่อสินค้าภาษาจีน",d:"SEO Keyword หลัก",ai:true},
+    {n:27,t:"อัปโหลดรูปสินค้า",d:"Main Image พื้นขาว + รายละเอียด 3–8 รูป"},
+    {n:28,t:"เขียนรายละเอียดภาษาจีน",d:"วัสดุ/ขนาด/วิธีใช้/จุดเด่น",ai:true},
+    {n:29,t:"ตั้งราคา/สต็อก/SKU Variant",d:"สี/ขนาด/รุ่น"},
+    {n:30,t:"Submit รอ Approve 24–48 ชม.",d:""},
+  ]},
+  {id:5,icon:"⚙️",label:"ตั้งค่าโปรไฟล์",name:"ตั้งค่าโปรไฟล์และร้านให้พร้อม",desc:"โปรไฟล์ดี ลูกค้าจีนเชื่อถือมากขึ้น",steps:[
+    {n:31,t:"ใส่ลิงก์ Kuaishou Shop ใน Bio",d:""},
+    {n:32,t:"ตั้ง Cover Photo",d:"แสดงสินค้าหลักหรือโปรโมชั่น"},
+    {n:33,t:"Pin วิดีโอขายดีด้านบน",d:"ให้คนเห็นก่อน"},
+    {n:34,t:"ตั้ง Auto Reply ใน DM",d:"คำถามที่พบบ่อย",ai:true},
+    {n:35,t:"ตั้งค่าการจัดส่ง",d:"ขนส่ง/ค่าส่ง/พื้นที่"},
+    {n:36,t:"ตั้ง After-sale Policy",d:"คืนสินค้าและรับประกัน"},
+  ]},
+  {id:6,icon:"🎬",label:"สร้าง Content",name:"สร้างคอนเทนต์วิดีโอสั้น",desc:"AI เขียน Caption + Script ภาษาจีนทุกวัน",steps:[
+    {n:37,t:"ถ่ายวิดีโอแนวตั้ง 9:16",d:"15 วิ–10 นาที"},
+    {n:38,t:"ตัดต่อในแอป KS หรือ CapCut",d:"subtitle, transition, effect"},
+    {n:39,t:"ใส่เสียง Trending",d:"Kuaishou Music Library"},
+    {n:40,t:"เพิ่ม Text/Sticker/Effect",d:"feature ที่แอปแนะนำ"},
+    {n:41,t:"เขียน Caption จีน + Hook",d:"บรรทัดแรกดึงใจ",ai:true},
+    {n:42,t:"ใส่ Hashtag 3–8 อัน",d:"Trending + เกี่ยวข้องสินค้า",ai:true},
+    {n:43,t:"Tag สินค้าจาก Shop",d:"ลูกค้ากดซื้อได้เลย"},
+    {n:44,t:"ตั้งเวลาโพสต์ที่ดี",d:"จีน: 07:00/12:00/19:00-22:00"},
+    {n:45,t:"โพสต์ 1–3 ครั้ง/วัน",d:"สม่ำเสมอ คุณภาพสำคัญ"},
+  ]},
+  {id:7,icon:"🔴",label:"Live ขายสด",name:"Kuaishou Live Streaming ขายสด",desc:"Live ยาว = อัลกอริทึมชอบ + ยอดขายพุ่ง",steps:[
+    {n:46,t:"เปิดแอป → Live (直播)",d:"ตั้งชื่อ Live บอกสินค้าและโปร",ai:true},
+    {n:47,t:"เพิ่มสินค้าเข้า Live Cart",d:"ก่อนเริ่ม Live"},
+    {n:48,t:"ตั้งราคา Flash Sale ช่วง Live",d:"สร้าง FOMO"},
+    {n:49,t:"Live อย่างน้อย 2 ชั่วโมง",d:"Kuaishou ชอบ Live ยาว มีคะแนนพิเศษ",warn:true},
+    {n:50,t:"ตอบ Comment + Pin สินค้า",d:"ให้ผู้ชมกดซื้อตลอด"},
+    {n:51,t:"ใช้ Gift Feature",d:"ผู้ชมส่ง Gift แลกโปรโมชั่น"},
+    {n:52,t:"สรุปยอดขายหลัง Live",d:"วิเคราะห์ผลใน Dashboard"},
+  ]},
+  {id:8,icon:"🌟",label:"KOL/Affiliate",name:"ใช้ KOL / Affiliate Marketing",desc:"KOL จีนสร้าง Trust ได้เร็วมาก",steps:[
+    {n:53,t:"ค้นหา KOL (达人) ที่เหมาะ",d:"ตรงกลุ่มสินค้าและ Target"},
+    {n:54,t:"ติดต่อผ่าน DM / 磁力聚星",d:"Kuaishou Affiliate Platform"},
+    {n:55,t:"ส่งสินค้าให้รีวิว/Commission",d:"Seeding หรือจ่ายค่า Commission",ai:true},
+    {n:56,t:"KOL โพสต์วิดีโอ + Tag สินค้า",d:"ลิงก์ KS Shop ของคุณ"},
+    {n:57,t:"ติดตาม Traffic จาก KOL",d:"Dashboard วิเคราะห์ยอดขาย",ai:true},
+  ]},
+  {id:9,icon:"📢",label:"KS Ads",name:"Kuaishou Ads โปรโมทสินค้า",desc:"ขยายการเข้าถึงด้วยโฆษณา",steps:[
+    {n:58,t:"เข้า 磁力引擎 Marketing Platform",d:"Kuaishou Ads"},
+    {n:59,t:"เลือก Ad Format",d:"Feed Ads/Live Ads/Search Ads",ai:true},
+    {n:60,t:"ตั้ง Target Audience",d:"อายุ/เพศ/ความสนใจ/ภูมิภาคจีน",ai:true},
+    {n:61,t:"ตั้งงบ + เผยแพร่ + ติดตาม",d:"CTR/CVR Dashboard"},
+  ]},
+  {id:10,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อใน Shop + DM",steps:[
+    {n:62,t:"รับ Order Notification",d:"Shop Dashboard"},
+    {n:63,t:"ตรวจสอบรายละเอียด",d:"สินค้า/จำนวน/ที่อยู่"},
+    {n:64,t:"ยืนยันออร์เดอร์",d:"เริ่มเตรียมสินค้า"},
+    {n:65,t:"รับ DM จากลูกค้า",d:"คำถามเพิ่มเติม"},
+    {n:66,t:"ตอบคำถาม/แนะนำ/แจ้งราคา",d:"ตอบเร็ว = ปิดขายสูง",ai:true},
+    {n:67,t:"ลูกค้าชำระ Alipay/WeChat/KS Pay",d:"ในแอปโดยตรง"},
+  ]},
+  {id:11,icon:"📦",label:"ชำระ+จัดส่ง",name:"ตรวจสอบชำระและจัดส่ง",desc:"Escrow → Release หลังลูกค้ารับสินค้า",steps:[
+    {n:68,t:"ตรวจสอบการชำระใน Dashboard",d:""},
+    {n:69,t:"เงินเข้า Kuaishou Escrow",d:"รอ Release หลังลูกค้ารับสินค้า",warn:true},
+    {n:70,t:"แพ็คสินค้า + พิมพ์ใบปะหน้า",d:"จาก Dashboard"},
+    {n:71,t:"ส่งพัสดุภายใน 48 ชม.",d:"SF Express/YTO/ZTO",warn:true},
+    {n:72,t:"แจ้งเลข Tracking ในแอป",d:"ลูกค้าติดตามพัสดุ"},
+    {n:73,t:"ลูกค้ารับสินค้า → เงิน Release",d:"เข้า Kuaishou Wallet"},
+  ]},
+  {id:12,icon:"⭐",label:"ถอนเงิน+หลังขาย",name:"ถอนเงินและหลังการขาย",desc:"รักษาลูกค้าจีนให้กลับมาซื้อ",steps:[
+    {n:74,t:"Wallet → Withdraw",d:"โอนไปบัญชีธนาคารจีน"},
+    {n:75,t:"แลกเงินหยวน → บาท",d:"ธนาคารหรือ Money Changer"},
+    {n:76,t:"ขอรีวิวจากลูกค้า",d:"หลังรับสินค้า",ai:true},
+    {n:77,t:"Repost วิดีโอรีวิวเป็น Content ใหม่",d:"สร้าง Social Proof",ai:true},
+    {n:78,t:"Follow up หลัง 3–5 วัน",d:"ถามความพอใจ แนะนำเพิ่ม",ai:true},
+    {n:79,t:"วิเคราะห์ Dashboard",d:"GMV/Conversion/Watch Time/Fans Growth",ai:true},
+  ]},
+];
+
+let ksCur=0;
+function ksBuild(){
+  const tabs=document.getElementById('ks-tabs');
+  const phases=document.getElementById('ks-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  ksPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='ks-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>ksGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='ks-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  ksUpdateNav();
+}
+function ksGo(i){
+  document.querySelectorAll('.ks-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.ks-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  ksCur=i;ksUpdateNav();
+}
+function ksChange(d){ksGo(Math.max(0,Math.min(ksPhases.length-1,ksCur+d)));}
+function ksUpdateNav(){
+  document.getElementById('ks-prog').textContent=`ส่วนที่ ${ksCur+1} จาก ${ksPhases.length}`;
+  document.getElementById('ks-prev').style.opacity=ksCur===0?'0.3':'1';
+  document.getElementById('ks-next').textContent=ksCur===ksPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+ksBuild();
+</script>

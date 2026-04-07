@@ -1,0 +1,82 @@
+{
+  "continent": "Asia",
+  "country": "Korea",
+  "totalProducts": 40,
+  "categories": [
+    {
+      "name": "K-Beauty",
+      "items": [
+        "Sheet Mask",
+        "BB Cream",
+        "Cushion Foundation",
+        "Serum/Essence",
+        "Lip Tint",
+        "Sunscreen",
+        "Skincare Set",
+        "Snail Cream"
+      ]
+    },
+    {
+      "name": "K-Pop Merchandise",
+      "items": [
+        "Album BTS/BLACKPINK",
+        "Photocard",
+        "Lightstick",
+        "Poster",
+        "Keychain",
+        "T-Shirt Official"
+      ]
+    },
+    {
+      "name": "K-Food",
+      "items": [
+        "Ramyeon (มาม่าเกาหลี)",
+        "Kimchi",
+        "Gochujang",
+        "Soju",
+        "Korean Snack",
+        "Seaweed",
+        "Tteokbokki",
+        "Korean BBQ Sauce"
+      ]
+    },
+    {
+      "name": "K-Fashion",
+      "items": [
+        "เสื้อผ้า Korean Style",
+        "กระเป๋า",
+        "รองเท้า",
+        "แว่นตา",
+        "เครื่องประดับ"
+      ]
+    },
+    {
+      "name": "เทคโนโลยี",
+      "items": [
+        "Samsung Galaxy",
+        "LG Electronics",
+        "Hyundai Accessories",
+        "Korean Keyboard"
+      ]
+    },
+    {
+      "name": "Health",
+      "items": [
+        "Ginseng (โสมเกาหลี)",
+        "Vitamin",
+        "Collagen",
+        "Probiotics",
+        "Red Ginseng Extract"
+      ]
+    },
+    {
+      "name": "Lifestyle",
+      "items": [
+        "เครื่องใช้ Kakao Friends",
+        "LINE Friends",
+        "Stationery Cute",
+        "Home Decor Minimalist"
+      ]
+    }
+  ]
+}

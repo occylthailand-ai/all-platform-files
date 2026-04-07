@@ -1,0 +1,94 @@
+{
+  "continent": "Asia",
+  "country": "Japan",
+  "totalProducts": 47,
+  "categories": [
+    {
+      "name": "ความงาม Skincare",
+      "items": [
+        "Shiseido",
+        "SK-II",
+        "CANMAKE",
+        "DHC",
+        "Biore",
+        "Hada Labo",
+        "Sheet Mask",
+        "Sunscreen"
+      ]
+    },
+    {
+      "name": "อาหารและขนม",
+      "items": [
+        "ชาเขียว Matcha",
+        "KitKat รสพิเศษ",
+        "Pocky",
+        "ราเมนกึ่งสำเร็จรูป",
+        "วาซาบิ",
+        "ซอสถั่วเหลือง",
+        "Mochi",
+        "Sake"
+      ]
+    },
+    {
+      "name": "Anime/Manga",
+      "items": [
+        "ฟิกเกอร์",
+        "Manga",
+        "Gashapon",
+        "Plush Toys",
+        "Cosplay",
+        "Stationery Anime"
+      ]
+    },
+    {
+      "name": "เทคโนโลยี",
+      "items": [
+        "กล้อง Canon/Nikon/Sony",
+        "หูฟัง Sony/Audio-Technica",
+        "เครื่องเล่นเกม Nintendo",
+        "คีย์บอร์ด Mechanical",
+        "Smart Home"
+      ]
+    },
+    {
+      "name": "เครื่องใช้ในบ้าน",
+      "items": [
+        "มีด Japanese Knife",
+        "เซรามิก Arita",
+        "ผ้าขนหนู Imabari",
+        "เครื่องครัว Muji",
+        "กระติกน้ำ Zojirushi"
+      ]
+    },
+    {
+      "name": "แฟชั่น",
+      "items": [
+        "Uniqlo",
+        "Comme des Garcons",
+        "Issey Miyake",
+        "กิโมโน",
+        "Streetwear Harajuku"
+      ]
+    },
+    {
+      "name": "สุขภาพ",
+      "items": [
+        "Supplement DHC",
+        "Eye Drops",
+        "ยาสามัญประจำบ้าน",
+        "Collagen",
+        "Vitamin"
+      ]
+    },
+    {
+      "name": "เครื่องเขียน",
+      "items": [
+        "ปากกา Pilot/Zebra",
+        "สมุด Kokuyo",
+        "ดินสอกด Pentel",
+        "Washi Tape",
+        "Planner"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+<!-- Baidu Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .bd-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .bd-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(44,107,254,0.07) 0%,transparent 65%);pointer-events:none}
+  .bd-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .bd-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .bd-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(44,107,254,0.1);border:1px solid rgba(44,107,254,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#2c6bfe;font-weight:600;margin-bottom:18px}
+  .bd-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .bd-title .green{color:#1D9E75}.bd-title .blue{color:#2c6bfe}
+  .bd-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .bd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .bd-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .bd-tab:hover,.bd-tab.active{border-color:#2c6bfe;background:rgba(44,107,254,0.1);color:#2c6bfe}
+  .bd-phase{display:none}.bd-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(44,107,254,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(44,107,254,0.12);color:#2c6bfe;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(44,107,254,0.05);border-color:rgba(44,107,254,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(44,107,254,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#2c6bfe;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#2c6bfe;color:#2c6bfe}
+  .nav-btn.primary{background:#2c6bfe;border-color:#2c6bfe;color:#fff}
+  .nav-btn.primary:hover{background:#1a56e8}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .bd-cta{margin-top:40px;background:linear-gradient(135deg,rgba(44,107,254,0.1),rgba(29,158,117,0.07));border:1px solid rgba(44,107,254,0.22);border-radius:20px;padding:32px;text-align:center}
+  .bd-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .bd-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .bd-cta-btn{display:inline-block;background:#2c6bfe;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .bd-cta-btn:hover{background:#1a56e8}
+</style>
+
+<section class="bd-section" id="baidu-guide">
+  <div class="bd-inner">
+    <div class="bd-badge">🔍 Baidu (百度) Roadmap</div>
+    <h2 class="bd-title">ขายของผ่าน <span class="blue">Baidu</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="bd-subtitle">62 ขั้นตอน ใน 10 ส่วน — Search Engine จีน 1,000M+ ต่อเดือน SEO+SEM+Community</p>
+    <div class="bd-tabs" id="bd-tabs"></div>
+    <div id="bd-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="bd-prev" onclick="bdChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="bd-prog">ส่วนที่ 1 จาก 10</span>
+      <button class="nav-btn primary" id="bd-next" onclick="bdChange(1)">ถัดไป →</button>
+    </div>
+    <div class="bd-cta">
+      <h3>ให้ OpenThai AI เขียน Content SEO + Ad Copy จีนให้ทุกสินค้า</h3>
+      <p>Keyword Research · Content · Ad Copy · Tieba Post — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="bd-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const bdPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครบัญชี Baidu",desc:"หนึ่งบัญชีใช้ได้ทุก Baidu Product",steps:[
+    {n:1,t:"ไปที่ passport.baidu.com",d:"กด 注册 (Register)"},
+    {n:2,t:"ใส่เบอร์จีนหรืออีเมล",d:"สำหรับสมัครบัญชี"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ตั้งชื่อบัญชีและรหัสผ่าน",d:"用户名 + รหัสผ่าน"},
+    {n:5,t:"ยืนยันตัวตน",d:"บัตรปชช.จีน (สำหรับฟีเจอร์ขั้นสูง)",warn:true},
+    {n:6,t:"ได้รับ Baidu Account",d:"ใช้ได้ทุก Baidu Product"},
+    {n:7,t:"เปิด Notification",d:"รับแจ้งเตือนระบบ"},
+  ]},
+  {id:2,icon:"🔧",label:"Webmaster Tools",name:"ตั้งค่า Baidu Webmaster Tools",desc:"ให้ Baidu Crawl เว็บไซต์ร้านค้า",steps:[
+    {n:8,t:"ไปที่ ziyuan.baidu.com",d:"สมัครใช้งาน Webmaster"},
+    {n:9,t:"เพิ่มเว็บไซต์ร้านค้า",d:"ใส่ URL เว็บไซต์"},
+    {n:10,t:"ยืนยันความเป็นเจ้าของ",d:"HTML Tag หรือ DNS"},
+    {n:11,t:"Submit Sitemap",d:"ให้ Baidu Crawl เว็บ"},
+    {n:12,t:"ตั้งค่า Crawl Rate",d:"Preferred Domain"},
+    {n:13,t:"ติดตาม Index Status",d:"Baidu Crawl หน้าเว็บกี่หน้า"},
+  ]},
+  {id:3,icon:"📈",label:"Baidu SEO",name:"ทำ Baidu SEO ติดอันดับฟรี",desc:"AI เขียน Content SEO จีนให้ทุกหน้า",steps:[
+    {n:14,t:"วิจัย Keyword ภาษาจีน",d:"คนจีนค้นหาเกี่ยวกับสินค้าไทย",ai:true},
+    {n:15,t:"เขียน Title + Meta Description",d:"ภาษาจีนทุกหน้าสินค้า",ai:true},
+    {n:16,t:"สร้าง Content จีนคุณภาพสูง",d:"บนเว็บไซต์",ai:true},
+    {n:17,t:"ทำ Internal Linking",d:"เชื่อมหน้าสินค้าต่างๆ"},
+    {n:18,t:"สร้าง Backlink จากเว็บจีน",d:"Zhihu/Tieba/Douban"},
+    {n:19,t:"เว็บโหลดเร็ว + Mobile-Friendly",d:""},
+    {n:20,t:"ลงทะเบียนใน Baidu Maps",d:"ถ้ามีหน้าร้าน"},
+    {n:21,t:"ติดตาม Ranking",d:"Baidu Webmaster Tools ทุกสัปดาห์"},
+  ]},
+  {id:4,icon:"💰",label:"Baidu Ads",name:"สมัครและตั้งค่า Baidu Ads",desc:"โฆษณา SEM จ่ายต่อคลิก ผลเร็ว",steps:[
+    {n:22,t:"ไปที่ e.baidu.com → สมัคร Ads",d:"Baidu Ads Account"},
+    {n:23,t:"ยืนยันตัวตนและข้อมูลธุรกิจ",d:"ต้องมีทะเบียนจีน หรือ Agent",warn:true},
+    {n:24,t:"ชำระเงินเปิดบัญชี",d:"ขั้นต่ำ ~5,000 หยวน",warn:true},
+    {n:25,t:"สร้าง Campaign โฆษณาแรก",d:"ชื่อ/งบประมาณ/วันที่"},
+    {n:26,t:"สร้าง Ad Group + Keyword",d:"เกี่ยวข้องกับสินค้า",ai:true},
+    {n:27,t:"เขียน Ad Copy ภาษาจีน",d:"Title + Description ดึงดูดคลิก",ai:true},
+    {n:28,t:"ตั้ง Bid ต่อ Keyword",d:"ราคาประมูลแต่ละ Keyword"},
+    {n:29,t:"กำหนด Target",d:"ภูมิภาค/เวลา/อุปกรณ์",ai:true},
+  ]},
+  {id:5,icon:"💬",label:"Baidu Tieba",name:"ใช้ Baidu Tieba สร้าง Community",desc:"Forum จีนที่ใหญ่ที่สุด",steps:[
+    {n:30,t:"เข้า tieba.baidu.com",d:"ค้นหา Tieba เกี่ยวข้องสินค้า"},
+    {n:31,t:"เข้าร่วม Tieba มีสมาชิกมาก",d:"มีส่วนร่วมก่อน สร้างความน่าเชื่อถือ"},
+    {n:32,t:"โพสต์ข้อมูลสินค้าใน Tieba",d:"รูป+รายละเอียด+ราคา+วิธีสั่ง",ai:true},
+    {n:33,t:"ตอบ Comment สม่ำเสมอ",d:"สร้างตัวตนในชุมชน",ai:true},
+    {n:34,t:"สร้าง Tieba ของตัวเอง",d:"ชื่อแบรนด์หรือสินค้า"},
+    {n:35,t:"เชิญสมาชิกเข้า Tieba",d:""},
+    {n:36,t:"ใส่ลิงก์ร้านค้าใน Post",d:"Taobao/WeChat Shop"},
+  ]},
+  {id:6,icon:"📖",label:"Baidu Baike",name:"ใช้ Baidu Baike สร้าง Brand",desc:"Wikipedia จีน = Brand Authority",steps:[
+    {n:37,t:"ไปที่ baike.baidu.com",d:"สร้างหน้า Wiki ของแบรนด์"},
+    {n:38,t:"เขียนประวัติแบรนด์/สินค้า",d:"ที่มา/จุดเด่น ภาษาจีน",ai:true},
+    {n:39,t:"เพิ่มรูปสินค้าและ Logo",d:""},
+    {n:40,t:"ใส่ลิงก์เว็บและร้านค้า",d:""},
+    {n:41,t:"รอ Baidu Baike Approve",d:"3-14 วัน"},
+  ]},
+  {id:7,icon:"❓",label:"Baidu Know",name:"ใช้ Baidu Know สร้าง Trust",desc:"Q&A จีน = Trust ระยะยาว",steps:[
+    {n:42,t:"เข้า zhidao.baidu.com",d:"ค้นหาคำถามเกี่ยวสินค้าไทย"},
+    {n:43,t:"ตอบคำถามอย่างละเอียด",d:"คุณภาพสูง มีประโยชน์",ai:true},
+    {n:44,t:"แนะนำสินค้าในคำตอบ",d:"อย่างเป็นธรรมชาติ ไม่ Spam",ai:true},
+    {n:45,t:"ใส่ลิงก์ร้านค้าในคำตอบ",d:"ระมัดระวัง ไม่ Spam"},
+    {n:46,t:"ตอบ 2–3 คำถาม/วัน",d:"สร้าง Authority สม่ำเสมอ"},
+  ]},
+  {id:8,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"ลูกค้าจาก Baidu → ร้านค้าภายนอก",steps:[
+    {n:47,t:"ลูกค้าคลิกจาก Baidu",d:"→ Taobao/WeChat/เว็บร้านค้า"},
+    {n:48,t:"รับออร์เดอร์ผ่านช่องทางที่ลิงก์",d:"Taobao/WeChat/LINE"},
+    {n:49,t:"ตอบคำถามสินค้า/ราคา/สั่ง",d:"ตอบเร็ว = ปิดขายสูง",ai:true},
+    {n:50,t:"ยืนยันออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่จัดส่ง"},
+    {n:51,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:52,t:"ส่ง QR Alipay/WeChat/PromptPay",d:"ให้ลูกค้าชำระ"},
+  ]},
+  {id:9,icon:"📦",label:"ชำระ+จัดส่ง",name:"ตรวจสอบชำระและจัดส่ง",desc:"เช็คเงินเข้าและส่งสินค้า",steps:[
+    {n:53,t:"ตรวจสอบ Alipay/WeChat/PromptPay",d:"ยอด/วันที่/ชื่อ"},
+    {n:54,t:"เช็คยอดเข้าจริง",d:"Wallet หรือ Mobile Banking"},
+    {n:55,t:"แจ้งยืนยันชำระแล้ว",d:"ส่งข้อความยืนยันทาง Chat",ai:true},
+    {n:56,t:"แพ็คสินค้า + ส่งพัสดุ",d:"SF Express/ไปรษณีย์ไทย"},
+    {n:57,t:"แจ้งเลข Tracking",d:"ให้ลูกค้าติดตามพัสดุ",ai:true},
+  ]},
+  {id:10,icon:"📊",label:"วิเคราะห์+ปรับปรุง",name:"วิเคราะห์และปรับปรุง",desc:"Data-driven เพิ่ม ROI อย่างต่อเนื่อง",steps:[
+    {n:58,t:"ติดตาม Baidu Analytics",d:"Traffic/Keyword/Bounce Rate"},
+    {n:59,t:"ติดตาม Baidu Ads Performance",d:"CTR/CPC/ROI Dashboard"},
+    {n:60,t:"ปรับ Keyword Bid",d:"ตาม Conversion Rate",ai:true},
+    {n:61,t:"สร้าง Content ใหม่",d:"ตาม Keyword ที่คนค้นหาบ่อย",ai:true},
+    {n:62,t:"ทำ A/B Test Ad Copy",d:"เพิ่ม CTR อย่างต่อเนื่อง",ai:true},
+  ]},
+];
+
+let bdCur=0;
+function bdBuild(){
+  const tabs=document.getElementById('bd-tabs');
+  const phases=document.getElementById('bd-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  bdPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='bd-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>bdGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='bd-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  bdUpdateNav();
+}
+function bdGo(i){
+  document.querySelectorAll('.bd-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.bd-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  bdCur=i;bdUpdateNav();
+}
+function bdChange(d){bdGo(Math.max(0,Math.min(bdPhases.length-1,bdCur+d)));}
+function bdUpdateNav(){
+  document.getElementById('bd-prog').textContent=`ส่วนที่ ${bdCur+1} จาก ${bdPhases.length}`;
+  document.getElementById('bd-prev').style.opacity=bdCur===0?'0.3':'1';
+  document.getElementById('bd-next').textContent=bdCur===bdPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+bdBuild();
+</script>

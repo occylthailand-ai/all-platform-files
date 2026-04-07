@@ -1,0 +1,77 @@
+{
+  "continent": "LatinAmerica",
+  "country": "LATAM Multi",
+  "totalProducts": 35,
+  "categories": [
+    {
+      "name": "กาแฟ",
+      "items": [
+        "Colombian Coffee",
+        "Brazilian Coffee",
+        "Costa Rica Coffee",
+        "Guatemala Coffee",
+        "Peru Coffee"
+      ]
+    },
+    {
+      "name": "โกโก้และช็อกโกแลต",
+      "items": [
+        "Cacao Ecuador",
+        "Chocolate Mexico",
+        "Cacao Peru",
+        "Artisan Chocolate"
+      ]
+    },
+    {
+      "name": "Superfoods",
+      "items": [
+        "Quinoa",
+        "Chia Seeds",
+        "Acai Berry",
+        "Maca Root",
+        "Spirulina",
+        "Camu Camu"
+      ]
+    },
+    {
+      "name": "เครื่องเงินและหัตถกรรม",
+      "items": [
+        "Silver Mexico",
+        "Alpaca Wool Peru",
+        "Hammock",
+        "Pottery",
+        "Leather Argentina"
+      ]
+    },
+    {
+      "name": "ผ้าและแฟชั่น",
+      "items": [
+        "Alpaca Sweater",
+        "Poncho",
+        "Panama Hat",
+        "Huarache Sandals",
+        "Embroidered Blouse"
+      ]
+    },
+    {
+      "name": "อาหาร",
+      "items": [
+        "Tequila/Mezcal MX",
+        "Yerba Mate AR",
+        "Dulce de Leche",
+        "Hot Sauce",
+        "Achiote"
+      ]
+    },
+    {
+      "name": "เครื่องดื่ม",
+      "items": [
+        "Pisco Peru/Chile",
+        "Rum Caribbean",
+        "Cachaca Brazil",
+        "Mate Tea",
+        "Horchata"
+      ]
+    }
+  ]
+}

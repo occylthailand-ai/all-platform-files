@@ -1,0 +1,76 @@
+{
+  "continent": "Africa",
+  "country": "Africa Multi",
+  "totalProducts": 34,
+  "categories": [
+    {
+      "name": "กาแฟและโกโก้",
+      "items": [
+        "Ethiopian Coffee",
+        "Kenyan Coffee",
+        "Ghana Cocoa",
+        "Ivory Coast Cocoa",
+        "Rwanda Coffee"
+      ]
+    },
+    {
+      "name": "Shea Butter และความงาม",
+      "items": [
+        "Shea Butter Raw",
+        "African Black Soap",
+        "Marula Oil",
+        "Baobab Oil",
+        "Moringa Oil"
+      ]
+    },
+    {
+      "name": "ผ้าและแฟชั่น",
+      "items": [
+        "Ankara Fabric",
+        "Kente Cloth",
+        "Dashiki",
+        "Maasai Beads",
+        "African Print"
+      ]
+    },
+    {
+      "name": "หัตถกรรม",
+      "items": [
+        "Wood Carving",
+        "Basket Weaving",
+        "Beadwork",
+        "Soapstone",
+        "Mask Decoration"
+      ]
+    },
+    {
+      "name": "อาหาร",
+      "items": [
+        "Rooibos Tea ZA",
+        "Dried Fruits",
+        "Macadamia Nuts",
+        "Moringa Powder",
+        "Baobab Powder"
+      ]
+    },
+    {
+      "name": "แร่ธาตุ",
+      "items": [
+        "Tanzanite",
+        "Diamond (certified)",
+        "Gold Jewelry",
+        "Copper Craft"
+      ]
+    },
+    {
+      "name": "เกษตร",
+      "items": [
+        "Cashew Nuts",
+        "Sesame Seeds",
+        "Vanilla Madagascar",
+        "Clove Zanzibar",
+        "Avocado"
+      ]
+    }
+  ]
+}

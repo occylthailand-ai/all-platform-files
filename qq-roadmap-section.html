@@ -1,0 +1,181 @@
+<!-- QQ Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .qq-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .qq-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(18,183,245,0.07) 0%,transparent 65%);pointer-events:none}
+  .qq-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .qq-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .qq-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(18,183,245,0.1);border:1px solid rgba(18,183,245,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#12b7f5;font-weight:600;margin-bottom:18px}
+  .qq-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .qq-title .green{color:#1D9E75}.qq-title .cyan{color:#12b7f5}
+  .qq-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .qq-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .qq-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .qq-tab:hover,.qq-tab.active{border-color:#12b7f5;background:rgba(18,183,245,0.1);color:#12b7f5}
+  .qq-phase{display:none}.qq-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(18,183,245,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(18,183,245,0.12);color:#12b7f5;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(18,183,245,0.05);border-color:rgba(18,183,245,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(18,183,245,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#12b7f5;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#12b7f5;color:#12b7f5}
+  .nav-btn.primary{background:#12b7f5;border-color:#12b7f5;color:#000}
+  .nav-btn.primary:hover{background:#0ea0d8}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .qq-cta{margin-top:40px;background:linear-gradient(135deg,rgba(18,183,245,0.1),rgba(29,158,117,0.07));border:1px solid rgba(18,183,245,0.22);border-radius:20px;padding:32px;text-align:center}
+  .qq-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .qq-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .qq-cta-btn{display:inline-block;background:#12b7f5;color:#000;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:background 0.2s}
+  .qq-cta-btn:hover{background:#0ea0d8}
+</style>
+
+<section class="qq-section" id="qq-guide">
+  <div class="qq-inner">
+    <div class="qq-badge">🐧 QQ (腾讯QQ) Roadmap</div>
+    <h2 class="qq-title">ขายของผ่าน <span class="cyan">QQ</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="qq-subtitle">63 ขั้นตอน ใน 11 ส่วน — QQ Group + Community คนจีนรุ่นใหม่ 600M+</p>
+    <div class="qq-tabs" id="qq-tabs"></div>
+    <div id="qq-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="qq-prev" onclick="qqChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="qq-prog">ส่วนที่ 1 จาก 11</span>
+      <button class="nav-btn primary" id="qq-next" onclick="qqChange(1)">ถัดไป →</button>
+    </div>
+    <div class="qq-cta">
+      <h3>ให้ OpenThai AI เขียนโพสต์ QQ Zone + Group Message ให้ทุกวัน</h3>
+      <p>Caption · Group Notice · Newsletter · Reply — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="qq-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const qqPhases=[
+  {id:1,icon:"👤",label:"สมัครบัญชี",name:"สมัครและตั้งค่าบัญชี QQ",desc:"เริ่มต้นสร้าง QQ Account",steps:[
+    {n:1,t:"โหลดแอป QQ",d:"App Store/Play Store หรือ qq.com"},
+    {n:2,t:"กด 注册账号 + ใส่เบอร์จีน",d:"สมัครด้วยเบอร์มือถือ"},
+    {n:3,t:"ยืนยัน OTP",d:"รับรหัสทางเบอร์มือถือ"},
+    {n:4,t:"ได้รับ QQ Number",d:"เลขประจำตัว 9-10 หลัก อัตโนมัติ"},
+    {n:5,t:"ตั้งชื่อ QQ Nickname",d:"สื่อถึงแบรนด์สินค้า",ai:true},
+    {n:6,t:"ใส่รูปโปรไฟล์แบรนด์",d:"รูปชัดเจน สื่อถึงสินค้า"},
+    {n:7,t:"เปิด Notification",d:"รับแจ้งเตือนข้อความและออร์เดอร์"},
+  ]},
+  {id:2,icon:"⚙️",label:"ตั้งค่าโปรไฟล์",name:"ตั้งค่าโปรไฟล์ QQ ให้พร้อมขาย",desc:"โปรไฟล์ดี ลูกค้าจีนเชื่อถือมากขึ้น",steps:[
+    {n:8,t:"เขียน Bio (个性签名) 50 ตัว",d:"ขายอะไร ราคา วิธีสั่งซื้อ",ai:true},
+    {n:9,t:"ตั้ง QQ Level",d:"เพิ่ม Activity ให้ Level สูง = น่าเชื่อถือ"},
+    {n:10,t:"เปิด QQ Zone (空间)",d:"บล็อก/โซเชียลในตัว QQ"},
+    {n:11,t:"ใส่ลิงก์ร้านค้าใน Bio",d:"Taobao/WeChat Shop/Pinduoduo"},
+    {n:12,t:"เพิ่ม WeChat ID ใน Bio",d:"สำหรับลูกค้าต้องการติดต่อ"},
+    {n:13,t:"ตั้งค่า Privacy",d:"ใครเพิ่มเพื่อนได้ / ใครเห็น QQ Zone"},
+  ]},
+  {id:3,icon:"👥",label:"QQ Group",name:"สร้างและจัดการ QQ Group",desc:"ชุมชนลูกค้าเหนียวแน่น",steps:[
+    {n:14,t:"กด + → สร้าง QQ Group",d:""},
+    {n:15,t:"ตั้งชื่อ Group",d:"สื่อถึงสินค้าหรือแบรนด์",ai:true},
+    {n:16,t:"เลือกหมวด Group",d:"สินค้า/ท่องเที่ยว/ความงาม/อาหาร"},
+    {n:17,t:"ตั้ง Group Notice (公告)",d:"ประกาศสินค้า โปรโมชั่น วิธีสั่ง",ai:true},
+    {n:18,t:"เชิญลูกค้าและผู้สนใจเข้า Group",d:""},
+    {n:19,t:"ตั้ง Group Bot (机器人)",d:"Auto Reply คำถามที่พบบ่อย",ai:true},
+    {n:20,t:"แบ่ง Group หลายระดับ",d:"VIP / ทั่วไป / Wholesale"},
+  ]},
+  {id:4,icon:"📝",label:"QQ Zone Content",name:"ใช้ QQ Zone สร้างคอนเทนต์",desc:"AI เขียนโพสต์จีนให้ทุกวัน",steps:[
+    {n:21,t:"QQ Zone → สร้างโพสต์รูปสินค้า",d:"+ Caption ภาษาจีน",ai:true},
+    {n:22,t:"อัปโหลดรูปสินค้า สูงสุด 9 รูป",d:"คุณภาพสูง พื้นหลังสะอาด"},
+    {n:23,t:"เขียน Caption ภาษาจีน",d:"รีวิว/วิธีใช้/ราคา",ai:true},
+    {n:24,t:"แนบลิงก์สินค้า",d:"Taobao/Pinduoduo/WeChat Shop"},
+    {n:25,t:"ใส่ Hashtag เกี่ยวข้องสินค้า",d:""},
+    {n:26,t:"โพสต์ 2-3 ครั้ง/วัน",d:"สม่ำเสมอ"},
+    {n:27,t:"แชร์ QQ Zone เข้าทุก Group",d:"ขยาย Reach"},
+  ]},
+  {id:5,icon:"📧",label:"QQ Mail",name:"ใช้ QQ Mail สำหรับ Email Marketing",desc:"Newsletter หาลูกค้าทาง @qq.com",steps:[
+    {n:28,t:"ใช้ QQ Email (@qq.com)",d:"ส่ง Newsletter หาลูกค้า"},
+    {n:29,t:"สร้าง Email Template",d:"โปรโมชั่น/สินค้าใหม่/ส่วนลด",ai:true},
+    {n:30,t:"ส่ง Email ทุกสัปดาห์",d:"หาลูกค้าที่ Subscribe"},
+    {n:31,t:"ติดตาม Open Rate / Click Rate",d:"QQ Mail Dashboard"},
+  ]},
+  {id:6,icon:"🏢",label:"QQ Business",name:"สมัคร QQ Business",desc:"บัญชีธุรกิจเพิ่มความน่าเชื่อถือ",steps:[
+    {n:32,t:"สมัคร QQ for Business",d:"企业QQ ที่ b.qq.com"},
+    {n:33,t:"กรอกข้อมูลธุรกิจ",d:"ชื่อบริษัท/ทะเบียน/อีเมล"},
+    {n:34,t:"ได้รับ Business QQ Number",d:"เพิ่มความน่าเชื่อถือ"},
+    {n:35,t:"เปิด Multi-agent Support",d:"ทีมตอบ Chat ได้หลายคน"},
+    {n:36,t:"เชื่อม WeChat Official Account",d:"ข้ามแพลตฟอร์ม"},
+  ]},
+  {id:7,icon:"🛍️",label:"QQ Mall",name:"ใช้ QQ Mini App และ QQ Mall",desc:"ร้านค้าในแอป QQ",steps:[
+    {n:37,t:"QQ → Mini App → QQ Mini Shop",d:"ค้นหาและเปิดร้าน"},
+    {n:38,t:"สมัครเปิดร้านใน QQ Mall",d:"QQ小店"},
+    {n:39,t:"เพิ่มสินค้า",d:"ชื่อ/ราคา/รูปภาพ/สต็อก",ai:true},
+    {n:40,t:"เชื่อม QQ Pay",d:"รับชำระเงินจากลูกค้า"},
+  ]},
+  {id:8,icon:"💬",label:"รับออร์เดอร์",name:"รับออร์เดอร์และสื่อสาร",desc:"จัดการคำสั่งซื้อใน Chat + Group",steps:[
+    {n:41,t:"รับข้อความสั่งซื้อใน QQ Chat",d:"1:1 หรือ Group Chat"},
+    {n:42,t:"รับออร์เดอร์ใน QQ Group",d:"ตอบในกลุ่มหรือ DM"},
+    {n:43,t:"ตอบคำถามสินค้า/ราคา/สั่ง",d:"ตอบเร็ว = ปิดขายสูง",ai:true},
+    {n:44,t:"ส่งรูปสินค้า/วิดีโอรีวิว",d:"ข้อมูลเพิ่มเติมใน Chat"},
+    {n:45,t:"ยืนยันออร์เดอร์",d:"สินค้า/จำนวน/ที่อยู่จัดส่ง"},
+    {n:46,t:"แจ้งราคารวม",d:"ค่าสินค้า + ค่าจัดส่ง"},
+    {n:47,t:"ส่ง QQ Pay/WeChat/Alipay/PromptPay",d:"ให้ลูกค้าเลือกวิธีชำระ"},
+  ]},
+  {id:9,icon:"✅",label:"ยืนยันชำระ",name:"ตรวจสอบการชำระเงินและยืนยัน",desc:"เช็คเงินเข้าและยืนยันลูกค้า",steps:[
+    {n:48,t:"ตรวจสอบ QQ Pay/WeChat/Alipay",d:"ยอด/วันที่/ชื่อผู้โอน"},
+    {n:49,t:"เช็คยอดเข้าจริง",d:"QQ Wallet/WeChat/Mobile Banking"},
+    {n:50,t:"แจ้งยืนยันชำระแล้ว",d:"ส่งข้อความยืนยันทาง QQ Chat",ai:true},
+    {n:51,t:"บันทึกออร์เดอร์ลงระบบ",d:"Excel/Google Sheets"},
+    {n:52,t:"ออก Order Confirmation",d:"ให้ลูกค้าทาง Chat",ai:true},
+  ]},
+  {id:10,icon:"📦",label:"จัดส่ง",name:"แพ็คและจัดส่งสินค้า",desc:"ส่งสินค้าให้ถึงมือลูกค้า",steps:[
+    {n:53,t:"แพ็คสินค้า + ใบปะหน้า",d:"เขียนที่อยู่ลูกค้าชัดเจน"},
+    {n:54,t:"ส่งพัสดุกับขนส่ง",d:"SF Express/YTO/ZTO/ไปรษณีย์ไทย"},
+    {n:55,t:"แจ้งเลข Tracking ทาง QQ Chat",d:"ให้ลูกค้าติดตามพัสดุ",ai:true},
+    {n:56,t:"ลูกค้าติดตามพัสดุ",d:"แอปขนส่งหรือเว็บไซต์"},
+    {n:57,t:"ลูกค้ารับสินค้าแล้ว",d:"ขอรีวิวทาง QQ Chat",ai:true},
+  ]},
+  {id:11,icon:"⭐",label:"ถอนเงิน+หลังขาย",name:"ถอนเงินและหลังการขาย",desc:"รักษาลูกค้าจีนรุ่นใหม่",steps:[
+    {n:58,t:"QQ Wallet → Withdraw",d:"โอนไปบัญชีธนาคารจีน"},
+    {n:59,t:"แลกเงินหยวน → บาท",d:"ธนาคารหรือ Money Changer"},
+    {n:60,t:"ขอรีวิวและรูปถ่าย",d:"จากลูกค้าหลังรับสินค้า",ai:true},
+    {n:61,t:"โพสต์รีวิวใน QQ Zone/Group",d:"สร้าง Social Proof",ai:true},
+    {n:62,t:"Follow up หลัง 3–5 วัน",d:"ถามความพอใจ แนะนำเพิ่ม",ai:true},
+    {n:63,t:"วิเคราะห์ยอดขายและ Group Activity",d:"ปรับกลยุทธ์ให้ดีขึ้น",ai:true},
+  ]},
+];
+
+let qqCur=0;
+function qqBuild(){
+  const tabs=document.getElementById('qq-tabs');
+  const phases=document.getElementById('qq-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  qqPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='qq-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>qqGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='qq-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  qqUpdateNav();
+}
+function qqGo(i){
+  document.querySelectorAll('.qq-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.qq-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  qqCur=i;qqUpdateNav();
+}
+function qqChange(d){qqGo(Math.max(0,Math.min(qqPhases.length-1,qqCur+d)));}
+function qqUpdateNav(){
+  document.getElementById('qq-prog').textContent=`ส่วนที่ ${qqCur+1} จาก ${qqPhases.length}`;
+  document.getElementById('qq-prev').style.opacity=qqCur===0?'0.3':'1';
+  document.getElementById('qq-next').textContent=qqCur===qqPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+qqBuild();
+</script>

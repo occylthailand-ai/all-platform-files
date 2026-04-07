@@ -1,0 +1,177 @@
+<!-- Alibaba Roadmap Section — วาง ใน landing/index.html -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap');
+  .al-section{padding:80px 20px;background:#080810;font-family:'Sarabun',sans-serif;position:relative;overflow:hidden}
+  .al-section::before{content:'';position:absolute;top:-250px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(255,106,0,0.07) 0%,transparent 65%);pointer-events:none}
+  .al-section::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(29,158,117,0.07) 0%,transparent 65%);pointer-events:none}
+  .al-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  .al-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,106,0,0.1);border:1px solid rgba(255,106,0,0.25);border-radius:999px;padding:6px 16px;font-size:13px;color:#ff6a00;font-weight:600;margin-bottom:18px}
+  .al-title{font-family:'Kanit',sans-serif;font-size:clamp(24px,5vw,40px);font-weight:700;color:#fff;line-height:1.2;margin:0 0 12px}
+  .al-title .green{color:#1D9E75}.al-title .orange{color:#ff6a00}
+  .al-subtitle{font-size:15px;color:rgba(255,255,255,0.45);margin:0 0 48px}
+  .al-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+  .al-tab{padding:6px 13px;border-radius:999px;font-size:11px;font-weight:600;font-family:'Sarabun',sans-serif;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .al-tab:hover,.al-tab.active{border-color:#ff6a00;background:rgba(255,106,0,0.1);color:#ff6a00}
+  .al-phase{display:none}.al-phase.visible{display:block}
+  .phase-hd{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:18px 22px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+  .ph-icon{width:46px;height:46px;border-radius:13px;background:rgba(255,106,0,0.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .ph-name{font-family:'Kanit',sans-serif;font-size:17px;font-weight:600;color:#fff;margin:0 0 3px}
+  .ph-desc{font-size:12.5px;color:rgba(255,255,255,0.4);margin:0}
+  .ph-cnt{margin-left:auto;font-size:11px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(255,106,0,0.12);color:#ff6a00;white-space:nowrap}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:24px}
+  .step-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:13px;padding:14px 16px;transition:all 0.2s}
+  .step-card:hover{background:rgba(255,106,0,0.05);border-color:rgba(255,106,0,0.2)}
+  .step-top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .step-num{width:27px;height:27px;border-radius:7px;background:rgba(255,106,0,0.13);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#ff6a00;font-family:'Kanit',sans-serif;flex-shrink:0}
+  .step-title{font-family:'Kanit',sans-serif;font-size:13.5px;font-weight:600;color:#fff}
+  .step-desc{font-size:12px;color:rgba(255,255,255,0.42);line-height:1.55}
+  .ai-tag{display:inline-block;margin-top:7px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(29,158,117,0.13);color:#1D9E75;font-weight:600;margin-right:4px}
+  .warn-tag{display:inline-block;margin-top:5px;font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(245,166,35,0.12);color:#f5a623;font-weight:600}
+  .phase-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .nav-btn{padding:10px 22px;border-radius:10px;font-family:'Kanit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(255,255,255,0.45);transition:all 0.2s}
+  .nav-btn:hover{border-color:#ff6a00;color:#ff6a00}
+  .nav-btn.primary{background:#ff6a00;border-color:#ff6a00;color:#fff}
+  .nav-btn.primary:hover{background:#e55a00}
+  .phase-prog{font-size:12px;color:rgba(255,255,255,0.3);font-family:'Kanit',sans-serif}
+  .al-cta{margin-top:40px;background:linear-gradient(135deg,rgba(255,106,0,0.1),rgba(29,158,117,0.07));border:1px solid rgba(255,106,0,0.22);border-radius:20px;padding:32px;text-align:center}
+  .al-cta h3{font-family:'Kanit',sans-serif;font-size:21px;font-weight:700;color:#fff;margin:0 0 9px}
+  .al-cta p{font-size:14px;color:rgba(255,255,255,0.45);margin:0 0 22px}
+  .al-cta-btn{display:inline-block;background:#ff6a00;color:#fff;padding:13px 34px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:background 0.2s}
+  .al-cta-btn:hover{background:#e55a00}
+</style>
+
+<section class="al-section" id="alibaba-guide">
+  <div class="al-inner">
+    <div class="al-badge">🏭 Alibaba.com Roadmap</div>
+    <h2 class="al-title">ขายส่งสินค้าไทยบน <span class="orange">Alibaba</span><br>ด้วย <span class="green">OpenThai AI</span></h2>
+    <p class="al-subtitle">60 ขั้นตอน ใน 10 ส่วน — B2B Wholesale 200+ ประเทศ 40M+ Buyer ผู้ผลิต/ส่งออกไทย</p>
+    <div class="al-tabs" id="al-tabs"></div>
+    <div id="al-phases"></div>
+    <div class="phase-nav">
+      <button class="nav-btn" id="al-prev" onclick="alChange(-1)">← ก่อนหน้า</button>
+      <span class="phase-prog" id="al-prog">ส่วนที่ 1 จาก 10</span>
+      <button class="nav-btn primary" id="al-next" onclick="alChange(1)">ถัดไป →</button>
+    </div>
+    <div class="al-cta">
+      <h3>ให้ OpenThai AI เขียน Product Title + Description + Company Profile อังกฤษ</h3>
+      <p>Product Title · Description · Company Intro · Inquiry Reply — สร้างอัตโนมัติใน 3 คลิก</p>
+      <a class="al-cta-btn" href="#waitlist">เริ่มใช้งานฟรี →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const alPhases=[
+  {id:1,icon:"📋",label:"เตรียมตัว",name:"เตรียมตัวก่อนสมัคร",desc:"เตรียมเอกสารและกำหนด MOQ/ราคา",steps:[
+    {n:1,t:"เตรียมทะเบียนพาณิชย์ไทย",d:"ภ.พ.20 หรือทะเบียนบริษัท",warn:true},
+    {n:2,t:"เตรียม Passport หรือบัตรปชช.",d:"ยืนยันตัวตน"},
+    {n:3,t:"เตรียมบัญชีรับเงินต่างประเทศ",d:"Payoneer / Wise / SWIFT",warn:true},
+    {n:4,t:"เตรียมรูปสินค้า + รายละเอียดอังกฤษ",d:"คุณภาพสูง"},
+    {n:5,t:"กำหนด MOQ และราคา Wholesale",d:"",ai:true},
+  ]},
+  {id:2,icon:"👤",label:"สมัครและตั้งค่า",name:"สมัครและตั้งค่าบัญชี Alibaba Supplier",desc:"เปิด Supplier Account อย่างเป็นทางการ",steps:[
+    {n:6,t:"alibaba.com → Start Selling",d:"กด 'Become a Supplier'"},
+    {n:7,t:"สร้างบัญชีด้วยอีเมลธุรกิจ",d:"ตั้งรหัสผ่าน",ai:true},
+    {n:8,t:"เลือก Thailand → กรอกข้อมูลบริษัท",d:"ชื่อ/ที่อยู่/เบอร์"},
+    {n:9,t:"อัปโหลดเอกสาร",d:"ทะเบียนพาณิชย์+Passport"},
+    {n:10,t:"เลือกแผน Supplier",d:"Free หรือ Gold ($1,699-$5,999/ปี)",warn:true},
+    {n:11,t:"รอ Alibaba Approve 3–7 วัน",d:""},
+    {n:12,t:"ได้รับ Supplier Account",d:"เข้า Alibaba Seller Dashboard"},
+  ]},
+  {id:3,icon:"🏢",label:"ตั้งค่าบริษัท",name:"ตั้งค่าบริษัทและ Storefront",desc:"AI เขียน Company Profile อังกฤษ",steps:[
+    {n:13,t:"ตั้งค่า Company Profile",d:"ชื่อ/ปีก่อตั้ง/พนักงาน/โรงงาน"},
+    {n:14,t:"เพิ่มรูปบริษัท/โรงงาน/ใบรับรอง",d:"ISO/GMP/HACCP ถ้ามี"},
+    {n:15,t:"เขียน Company Introduction อังกฤษ",d:"จุดแข็ง/ความเชี่ยวชาญ/ตลาด",ai:true},
+    {n:16,t:"ตั้งค่า Trade Capacity",d:"กำลังผลิต/เครื่องจักร/R&D"},
+    {n:17,t:"ออกแบบ Storefront",d:"Banner/Logo/สีธีม",ai:true},
+    {n:18,t:"เปิดใช้ Trade Assurance",d:"ระบบค้ำประกันเงิน สำคัญมาก",warn:true},
+  ]},
+  {id:4,icon:"📦",label:"เพิ่มสินค้า",name:"เพิ่มสินค้าและตั้งค่า Listing",desc:"AI เขียน Title + Description + Spec อังกฤษ",steps:[
+    {n:19,t:"Dashboard → Post Product",d:""},
+    {n:20,t:"เลือกหมวดหมู่ให้ถูกต้อง",d:"Category สำคัญมาก",warn:true},
+    {n:21,t:"เขียน Product Title อังกฤษ",d:"Keyword+จุดเด่น+วัสดุ+ขนาด",ai:true},
+    {n:22,t:"อัปโหลดรูปสินค้า",d:"Main + รายละเอียด 6–15 รูป"},
+    {n:23,t:"สร้าง Product Video",d:"กระบวนการผลิต/สินค้า"},
+    {n:24,t:"เขียน Product Description",d:"Spec Sheet/วัสดุ/Size Chart/Cert",ai:true},
+    {n:25,t:"ตั้ง FOB/CIF Price + MOQ",d:"ขั้นต่ำในการสั่ง",warn:true},
+    {n:26,t:"ตั้ง Price Range ตามจำนวน",d:"ยิ่งสั่งเยอะ ยิ่งถูก"},
+    {n:27,t:"Submit รอ Approve 1–3 วัน",d:""},
+  ]},
+  {id:5,icon:"✅",label:"Verified Supplier",name:"ยืนยันตัวตนและสมัคร Verified Supplier",desc:"Badge เพิ่มความน่าเชื่อถือ = ออร์เดอร์เพิ่ม",steps:[
+    {n:28,t:"สมัคร Verified Supplier",d:"ตรวจสอบโดย SGS / Bureau Veritas"},
+    {n:29,t:"เตรียมให้ Inspector ตรวจโรงงาน",d:"สถานที่ผลิต"},
+    {n:30,t:"ผ่านการตรวจ → ได้ Verified Badge",d:""},
+    {n:31,t:"อัปโหลด Certificate เพิ่มเติม",d:"ISO/CE/FDA/HACCP/ฮาลาล ฯลฯ"},
+    {n:32,t:"Verified = อันดับ Search สูงขึ้น",d:"ลูกค้าไว้วางใจมากขึ้น"},
+  ]},
+  {id:6,icon:"📢",label:"Marketing Tools",name:"ใช้ Alibaba Marketing Tools",desc:"AI ช่วยเขียน Ad Copy + เลือก Keyword",steps:[
+    {n:33,t:"เข้าร่วม Keyword Advertising",d:"เหมือน Google Ads ใน Alibaba",ai:true},
+    {n:34,t:"ตั้ง P4P (Pay for Performance)",d:"โฆษณาจ่ายต่อคลิก",ai:true},
+    {n:35,t:"เข้าร่วม Alibaba Trade Show",d:"Virtual หรือ Online Expo"},
+    {n:36,t:"ใช้ Smart Posting",d:"AI ช่วยเขียน Description"},
+    {n:37,t:"ติดตาม Analytics",d:"Impressions/Clicks/Inquiries/CVR"},
+  ]},
+  {id:7,icon:"💬",label:"รับ Inquiry",name:"รับ Inquiry และสื่อสารกับผู้ซื้อ",desc:"AI เขียน Inquiry Reply + Proposal อังกฤษ",steps:[
+    {n:38,t:"รับ Inquiry ใน Message Center",d:"คำถามสั่งซื้อจากทั่วโลก"},
+    {n:39,t:"ตอบ Inquiry ภายใน 24 ชั่วโมง",d:"Response Rate ส่งผลต่ออันดับ",warn:true},
+    {n:40,t:"ส่ง Catalogue / Spec Sheet / Price",d:"ให้ผู้ซื้อ",ai:true},
+    {n:41,t:"เจรจา MOQ/ราคา/เงื่อนไข/จัดส่ง",d:"",ai:true},
+    {n:42,t:"ส่ง Proforma Invoice (PI)",d:"ให้ผู้ซื้อยืนยัน",ai:true},
+    {n:43,t:"ตกลงเงื่อนไขและยืนยัน Order",d:"Sales Contract"},
+  ]},
+  {id:8,icon:"📄",label:"Trade Order",name:"สร้างและจัดการ Trade Order",desc:"บริหาร Order ตั้งแต่มัดจำถึงผลิตเสร็จ",steps:[
+    {n:44,t:"สร้าง Trade Order ในระบบ Alibaba",d:""},
+    {n:45,t:"กำหนดเงื่อนไขชำระ",d:"T/T / L/C / Trade Assurance / Escrow",warn:true},
+    {n:46,t:"ผู้ซื้อชำระ Deposit 30%",d:"ก่อนเริ่มผลิต"},
+    {n:47,t:"เริ่มผลิตสินค้าตาม Spec + Timeline",d:""},
+    {n:48,t:"แจ้งความคืบหน้าการผลิต",d:"ให้ผู้ซื้อรับทราบ",ai:true},
+  ]},
+  {id:9,icon:"🚢",label:"QC+จัดส่ง",name:"QC และจัดส่งสินค้า",desc:"ตรวจสอบคุณภาพและส่งออกอย่างมืออาชีพ",steps:[
+    {n:49,t:"ตรวจสอบคุณภาพสินค้า (QC)",d:"ก่อนจัดส่ง"},
+    {n:50,t:"ผู้ซื้อชำระยอดที่เหลือ",d:"Balance Payment ก่อน/หลังจัดส่ง",warn:true},
+    {n:51,t:"เตรียมเอกสารส่งออก",d:"Invoice/Packing List/B/L/COO",warn:true},
+    {n:52,t:"จัดส่งผ่าน Freight Forwarder",d:"Sea / Air ระหว่างประเทศ"},
+    {n:53,t:"แจ้ง Tracking / เลข B/L",d:"ให้ผู้ซื้อ",ai:true},
+    {n:54,t:"ผู้ซื้อรับสินค้า → ยืนยันในระบบ",d:""},
+  ]},
+  {id:10,icon:"💰",label:"รับเงิน+หลังขาย",name:"รับเงินและหลังการขาย",desc:"รับเงิน + สร้าง Repeat Order",steps:[
+    {n:55,t:"รับเงิน Wire Transfer/Trade Assurance",d:"หรือ Payoneer",warn:true},
+    {n:56,t:"แลกเงินตราต่างประเทศ",d:"โอนเข้าธนาคารไทย"},
+    {n:57,t:"ออก Receipt / เอกสารบัญชีครบ",d:""},
+    {n:58,t:"ขอ Review / Feedback",d:"ใน Alibaba",ai:true},
+    {n:59,t:"Follow-up เพื่อ Repeat Order",d:"",ai:true},
+    {n:60,t:"วิเคราะห์ข้อมูล",d:"ประเทศ/สินค้าขายดี/ราคา",ai:true},
+  ]},
+];
+
+let alCur=0;
+function alBuild(){
+  const tabs=document.getElementById('al-tabs');
+  const phases=document.getElementById('al-phases');
+  tabs.innerHTML='';phases.innerHTML='';
+  alPhases.forEach((p,i)=>{
+    const tab=document.createElement('button');
+    tab.className='al-tab'+(i===0?' active':'');
+    tab.textContent=p.label;tab.onclick=()=>alGo(i);
+    tabs.appendChild(tab);
+    const aiCnt=p.steps.filter(s=>s.ai).length;
+    const div=document.createElement('div');
+    div.className='al-phase'+(i===0?' visible':'');
+    div.innerHTML=`<div class="phase-hd"><div class="ph-icon">${p.icon}</div><div><p class="ph-name">${p.name}</p><p class="ph-desc">${p.desc}</p></div>${aiCnt>0?`<span class="ph-cnt">🤖 AI ช่วย ${aiCnt} ขั้น</span>`:''}</div><div class="steps-grid">${p.steps.map(s=>`<div class="step-card"><div class="step-top"><div class="step-num">${s.n}</div><span class="step-title">${s.t}</span></div><p class="step-desc">${s.d}</p>${s.ai?'<span class="ai-tag">🤖 AI ช่วยได้</span>':''}${s.warn?'<span class="warn-tag">⚠️ ข้อควรรู้</span>':''}</div>`).join('')}</div>`;
+    phases.appendChild(div);
+  });
+  alUpdateNav();
+}
+function alGo(i){
+  document.querySelectorAll('.al-phase').forEach((el,idx)=>el.classList.toggle('visible',idx===i));
+  document.querySelectorAll('.al-tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  alCur=i;alUpdateNav();
+}
+function alChange(d){alGo(Math.max(0,Math.min(alPhases.length-1,alCur+d)));}
+function alUpdateNav(){
+  document.getElementById('al-prog').textContent=`ส่วนที่ ${alCur+1} จาก ${alPhases.length}`;
+  document.getElementById('al-prev').style.opacity=alCur===0?'0.3':'1';
+  document.getElementById('al-next').textContent=alCur===alPhases.length-1?'🎉 เริ่มขายเลย!':'ถัดไป →';
+}
+alBuild();
+</script>
