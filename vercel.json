@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "name": "openthai-ai-dashboard",
+  "builds": [
+    { "src": "**/*.html", "use": "@vercel/static" },
+    { "src": "**/*.json", "use": "@vercel/static" },
+    { "src": "**/*.jsx", "use": "@vercel/static" },
+    { "src": "**/*.pdf", "use": "@vercel/static" },
+    { "src": "**/*.md", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
+}
