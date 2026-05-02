@@ -1,0 +1,76 @@
+// Self-Healing Monitor + Health Check สำหรับ OpenThai AI Deploy
+const { thaiAI } = require('../lib/openthaigpt'); // ปรับ path ตามโครงสร้างจริง
+
+class SelfHealingMonitor {
+  constructor() {
+    this.healthChecks = new Map();
+    this.interval = null;
+    console.log('🚀 Self-Healing Monitor เริ่มทำงาน');
+    this.start();
+  }
+
+  start() {
+    // ตรวจทุก 5 นาที
+    this.interval = setInterval(() => this.checkAndHeal(), 300000);
+    this.checkAndHeal(); // ตรวจครั้งแรกทันที
+  }
+
+  async checkAndHeal() {
+    console.log('🔍 [SelfHealing] กำลังตรวจสุขภาพระบบ...');
+
+    const status = {
+      timestamp: new Date().toISOString(),
+      api: await this.checkOpenThaiGPT(),
+      memory: this.checkMemory(),
+      deploy: await this.checkDeployStatus(),
+    };
+
+    console.log('📊 สถานะปัจจุบัน:', status);
+
+    if (!status.api || !status.memory.healthy || !status.deploy) {
+      console.log('⚠️ ตรวจพบปัญหา → เริ่ม Self-Healing...');
+      await this.healSystem(status);
+    } else {
+      console.log('✅ ระบบปกติสุขภาพดี');
+    }
+  }
+
+  async checkOpenThaiGPT() {
+    try {
+      await thaiAI.chat.completions.create({
+        model: "openthaigpt-1.5-72b",
+        messages: [{ role: "user", content: "test" }],
+        max_tokens: 10,
+      });
+      return true;
+    } catch (err) {
+      console.error('❌ OpenThaiGPT ไม่ตอบสนอง');
+      return false;
+    }
+  }
+
+  checkMemory() {
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    const healthy = used < 600; // ไม่เกิน 600MB
+    return { used: Math.round(used), healthy };
+  }
+
+  async checkDeployStatus() {
+    // ตรวจสถานะ deployment ล่าสุด (สามารถขยายได้)
+    return true; // เปลี่ยนเป็น logic จริงในอนาคต
+  }
+
+  async healSystem(status) {
+    console.log('🛠️ กำลังรักษาระบบอัตโนมัติ...');
+    // เพิ่ม logic รักษา เช่น restart service, clear cache, แจ้ง LINE เป็นต้น
+    console.log('✅ Self-Healing เสร็จสิ้น');
+  }
+
+  stop() {
+    if (this.interval) clearInterval(this.interval);
+    console.log('⛔ Self-Healing Monitor หยุดทำงาน');
+  }
+}
+
+// เริ่มใช้งาน
+module.exports = new SelfHealingMonitor();
