@@ -1,37 +1,20 @@
-name: OpenThai AI Deploy - Auto Deploy
+# 🇹🇭 ThaiForge AI (OpenThai AI Deploy)
 
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+**พิมพ์ไทย → สร้างโค้ด + Content + Deploy อัตโนมัติในที่เดียว**
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+ThaiForge AI คือแพลตฟอร์ม All-in-One ที่รวม **Cursor + OpenThaiGPT + Auto Deploy + Content Studio** เข้าเป็นหนึ่งเดียวสำหรับนักพัฒนาไทย
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+---
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+## ✨ ฟีเจอร์หลัก
 
-      - name: Install dependencies
-        run: npm ci
+- **AI Coding ภาษาไทยล้วน** (Cursor-style Agent)
+- **Self-Healing Monitor** — ระบบตรวจสุขภาพและซ่อมตัวเองอัตโนมัติ
+- **One-Click Auto Deploy** ไปยัง Render, Vercel, Dot Enterprise, Kubernetes, Google Play
+- **Content Studio** — สร้างรูปภาพ, วิดีโอสั้น TikTok, ข่าว, ช็อปปิ้ง + Deploy พร้อมกัน
+- **OpenThaiGPT Integration** (72B / R1 / Typhoon) เป็นสมองหลัก
+- **Thai Knowledge RAG** — เข้าใจบริบทไทย (PDPA, ภาษี, OTOP, LINE OA, วันแรงงาน 2026)
 
-      - name: Run Self-Healing Monitor + OpenThaiGPT Agent
-        run: |
-          echo "🚀 เริ่ม Self-Healing Monitor + OpenThaiGPT Agent"
-          node -e "
-            const { thaiAI } = require('./lib/openthaigpt');
-            console.log('✅ OpenThaiGPT เชื่อมต่อสำเร็จ');
-          "
+---
 
-      - name: Deploy to Render / Vercel / Dot Enterprise
-        run: echo "✅ Deploy อัตโนมัติสำเร็จ (เชื่อม Render / Vercel / de.co.th)"
-
-      - name: Notify via OpenThaiGPT
-        run: echo "📢 Deploy เรียบร้อย! ThaiForge AI ออนไลน์แล้ว"
-        
+## 📁 โครงสร้างโปรเจกต์
