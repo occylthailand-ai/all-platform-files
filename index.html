@@ -103,6 +103,9 @@ footer p{color:#666;font-size:0.9rem}
   <div class="tab" onclick="filterByGroup('ecom')">🛒 E-com Platform</div>
 </div>
 
+<!-- RESULT COUNT (live filter/search feedback) -->
+<p id="resultCount" style="text-align:center;color:#999;font-size:0.9rem;padding:8px 20px 0"></p>
+
 <!-- MAIN GRID -->
 <div class="grid" id="mainGrid"></div>
 
@@ -252,7 +255,7 @@ function renderCards(filter='') {
     return matchGroup && matchSearch;
   });
 
-  grid.innerHTML = filtered.map(p => `
+  grid.innerHTML = filtered.length ? filtered.map(p => `
     <a href="${p.file}" class="card">
       <div class="card-header">
         <span class="card-name">${p.name}</span>
@@ -264,10 +267,12 @@ function renderCards(filter='') {
       </div>
       <div class="card-link" style="background:${p.color};color:#fff;">เปิด Roadmap →</div>
     </a>
-  `).join('');
+  `).join('') : '<p style="grid-column:1/-1;text-align:center;color:#777;padding:32px">ไม่พบแพลตฟอร์มที่ตรงกับการค้นหา</p>';
 
-  // Update count
-  document.querySelector('.hero-stats .stat:first-child .stat-num').textContent = filtered.length;
+  // Live filter/search feedback shown next to the grid — do NOT overwrite the hero
+  // "แพลตฟอร์ม" headline stat (that clobbered the marketing count to the array length
+  // on every render, including the initial load where it flipped 241 → the card count).
+  document.getElementById('resultCount').textContent = `แสดง ${filtered.length} แพลตฟอร์ม`;
 }
 
 function filterByGroup(group) {
