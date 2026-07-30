@@ -51,4 +51,4 @@
 - OpenThai AI ช่วยเขียน Script + Title + Description + Tags + Keyword Research
 
 ---
-*สร้างโดย OpenThai AI — www.openthaiai.com*
+*สร้างโดย OpenThai AI — www.openthai-ai.com*

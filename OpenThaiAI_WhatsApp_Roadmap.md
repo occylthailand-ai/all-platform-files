@@ -95,4 +95,4 @@
 - OpenThai AI ช่วยเขียน Catalog + Status + Broadcast ได้ทุกภาษา
 
 ---
-*สร้างโดย OpenThai AI — www.openthaiai.com*
+*สร้างโดย OpenThai AI — www.openthai-ai.com*
