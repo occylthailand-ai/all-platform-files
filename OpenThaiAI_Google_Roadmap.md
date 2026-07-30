@@ -44,4 +44,4 @@
 - OpenThai AI ช่วยเขียน Product Feed + SEO Content + Blog + Posts
 
 ---
-*สร้างโดย OpenThai AI — www.openthai-ai.com*
+*สร้างโดย OpenThai AI — [www.openthai-ai.com](https://www.openthai-ai.com)*

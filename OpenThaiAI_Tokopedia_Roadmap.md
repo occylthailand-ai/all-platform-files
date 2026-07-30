@@ -43,4 +43,4 @@
 - OpenThai AI ช่วยเขียนชื่อสินค้า + รายละเอียดภาษาอินโดนีเซีย
 
 ---
-*สร้างโดย OpenThai AI — www.openthai-ai.com*
+*สร้างโดย OpenThai AI — [www.openthai-ai.com](https://www.openthai-ai.com)*
