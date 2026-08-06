@@ -1,0 +1,21 @@
+name: 🗂️ Validate product catalogs
+
+# รันทุก push และทุก PR — กันไม่ให้ products-<region>.json มี totalProducts ที่ไม่ตรงกับจำนวน item จริง
+# (หรือ JSON เสีย / schema เพี้ยน) หลุดเข้า branch. ตรรกะทั้งหมดอยู่ใน validate-products.mjs (stdlib ล้วน).
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: 🗂️ Regional catalog integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - name: Validate products-*.json (totalProducts === actual item count + schema)
+        run: node validate-products.mjs
