@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OpenThai AI — 241 Platforms | 512 Products | 29 Affiliates | ขายทั่วโลก</title>
 <meta name="description" content="OpenThai AI ระบบ AI ช่วยขายสินค้าทั่วโลก 241 แพลตฟอร์ม 56 ระบบชำระเงิน 512 สินค้า 29 Affiliate Programs">
+<meta name="theme-color" content="#0f0f1a">
+<!-- Social share preview (LINE/Facebook/X). og:image points at the verified OpenThaiAi brand
+     asset on the funnel domain (a real, working 1200x630 image); the page's own deploy domain
+     isn't hard-coded here, so crawlers resolve the page URL themselves. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OpenThai AI">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="OpenThai AI — 241 แพลตฟอร์ม ขายทั่วโลก">
+<meta property="og:description" content="ระบบ AI ช่วยขายสินค้าทั่วโลก — 241 แพลตฟอร์ม, 56 ระบบชำระเงิน, 512 สินค้า, 29 Affiliate Programs. เริ่มที่ www.openthai-ai.com">
+<meta property="og:image" content="https://www.openthai-ai.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="OpenThai AI — ขายทั่วโลกด้วย AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenThai AI — 241 แพลตฟอร์ม ขายทั่วโลก">
+<meta name="twitter:description" content="ระบบ AI ช่วยขายสินค้าทั่วโลก — 241 แพลตฟอร์ม, 56 ระบบชำระเงิน, 512 สินค้า, 29 Affiliate Programs.">
+<meta name="twitter:image" content="https://www.openthai-ai.com/og-image.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Sarabun','Segoe UI',sans-serif;background:#0a0a0a;color:#fff;line-height:1.6}
@@ -103,6 +120,9 @@ footer p{color:#666;font-size:0.9rem}
   <div class="tab" onclick="filterByGroup('ecom')">🛒 E-com Platform</div>
 </div>
 
+<!-- RESULT COUNT (live filter/search feedback) -->
+<p id="resultCount" style="text-align:center;color:#999;font-size:0.9rem;padding:8px 20px 0"></p>
+
 <!-- MAIN GRID -->
 <div class="grid" id="mainGrid"></div>
 
@@ -117,7 +137,7 @@ footer p{color:#666;font-size:0.9rem}
 <footer>
   <p>🤖 OpenThai AI — ระบบ AI ช่วยขายสินค้าทั่วโลก</p>
   <p>241 แพลตฟอร์ม | 56 ระบบชำระเงิน | 512 สินค้า | 29 Affiliate Programs | 7 ทวีป</p>
-  <p style="margin-top:8px;color:#444;">สร้างโดย OpenThai AI Team — www.openthaiai.com</p>
+  <p style="margin-top:8px;color:#444;">สร้างโดย OpenThai AI Team — www.openthai-ai.com</p>
 </footer>
 
 <script>
@@ -252,7 +272,7 @@ function renderCards(filter='') {
     return matchGroup && matchSearch;
   });
 
-  grid.innerHTML = filtered.map(p => `
+  grid.innerHTML = filtered.length ? filtered.map(p => `
     <a href="${p.file}" class="card">
       <div class="card-header">
         <span class="card-name">${p.name}</span>
@@ -264,10 +284,12 @@ function renderCards(filter='') {
       </div>
       <div class="card-link" style="background:${p.color};color:#fff;">เปิด Roadmap →</div>
     </a>
-  `).join('');
+  `).join('') : '<p style="grid-column:1/-1;text-align:center;color:#777;padding:32px">ไม่พบแพลตฟอร์มที่ตรงกับการค้นหา</p>';
 
-  // Update count
-  document.querySelector('.hero-stats .stat:first-child .stat-num').textContent = filtered.length;
+  // Live filter/search feedback shown next to the grid — do NOT overwrite the hero
+  // "แพลตฟอร์ม" headline stat (that clobbered the marketing count to the array length
+  // on every render, including the initial load where it flipped 241 → the card count).
+  document.getElementById('resultCount').textContent = `แสดง ${filtered.length} แพลตฟอร์ม`;
 }
 
 function filterByGroup(group) {

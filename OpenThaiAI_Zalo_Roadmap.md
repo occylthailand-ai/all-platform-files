@@ -44,4 +44,4 @@
 - OpenThai AI ช่วยเขียน Post + Broadcast + Article ภาษาเวียดนามได้
 
 ---
-*สร้างโดย OpenThai AI — www.openthaiai.com*
+*สร้างโดย OpenThai AI — [www.openthai-ai.com](https://www.openthai-ai.com)*
