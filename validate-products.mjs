@@ -41,12 +41,30 @@ for (const file of files) {
   }
 
   // Every category must have a name and a non-empty items[] array of strings; count the items.
+  // Also collect names to catch duplicates: totalProducts is defined as the item count, so a
+  // product listed twice (same name in two categories, or twice in one) both double-counts the
+  // header and shows a browsing consumer the same product twice — a real data-quality bug the
+  // count check alone can't see (the totals still add up). Category names must be unique too, or
+  // the catalog renders two sections with the same heading.
   let items = 0;
+  const catNames = new Map();     // lowercased category name -> original (dup category headings)
+  const itemNames = new Map();    // lowercased item name -> category it first appeared in
   data.categories.forEach((c, i) => {
     if (!c || typeof c.name !== 'string' || !c.name.trim()) fail(file, `categories[${i}] has no name`);
+    else {
+      const key = c.name.trim().toLowerCase();
+      if (catNames.has(key)) fail(file, `duplicate category name "${c.name}" (already used)`);
+      else catNames.set(key, c.name);
+    }
     if (!Array.isArray(c.items)) { fail(file, `categories[${i}] ("${c && c.name}") has no items[]`); return; }
     if (c.items.length === 0) fail(file, `categories[${i}] ("${c.name}") has an empty items[]`);
     if (!c.items.every((it) => typeof it === 'string' && it.trim())) fail(file, `categories[${i}] ("${c.name}") has a blank/non-string item`);
+    for (const it of c.items) {
+      if (typeof it !== 'string' || !it.trim()) continue;
+      const key = it.trim().toLowerCase();
+      if (itemNames.has(key)) fail(file, `duplicate product "${it}" (in "${c.name}" and "${itemNames.get(key)}") — double-counts totalProducts`);
+      else itemNames.set(key, c.name);
+    }
     items += c.items.length;
   });
 

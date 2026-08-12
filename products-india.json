@@ -1,7 +1,7 @@
 {
   "continent": "Asia",
   "country": "India",
-  "totalProducts": 41,
+  "totalProducts": 40,
   "categories": [
     {
       "name": "เครื่องเทศ",
@@ -55,8 +55,7 @@
         "Darjeeling Tea",
         "Assam Tea",
         "Chai Masala",
-        "Indian Coffee",
-        "Herbal Tea"
+        "Indian Coffee"
       ]
     },
     {
