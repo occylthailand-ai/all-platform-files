@@ -44,6 +44,10 @@ class Settings(BaseSettings):
     credit_cost_summary: int = 5
     credit_cost_agent: int = 30
 
+    # Settlement policy gates
+    live_money_enabled: bool = False          # requested mode — not gate authority
+    attestation_secret_key: str = "CHANGE_ME_ATTESTATION_SECRET_32BYTES"
+
     class Config:
         env_file = ".env"
 

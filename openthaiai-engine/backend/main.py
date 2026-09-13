@@ -18,7 +18,10 @@ from loguru import logger
 
 from .config import get_settings
 from .database import get_db, create_tables
-from .models import User, Task, TaskStatus, TaskType, PlanType, CreditLog, AutomationSchedule
+from .models import (
+    User, Task, TaskStatus, TaskType, PlanType, CreditLog, AutomationSchedule,
+    KillSwitch, GateAttestation, AuditLog, AuditAction,
+)
 from .auth import (
     hash_password, verify_password, create_access_token, get_current_user, require_admin
 )
@@ -257,6 +260,116 @@ def admin_users(
 ):
     users = db.query(User).order_by(User.created_at.desc()).offset(offset).limit(limit).all()
     return [_user_schema(u) for u in users]
+
+
+# ── Ops: Kill-switch ────────────────────────────────────────────────────────
+
+class KillSwitchRequest(BaseModel):
+    reason: str
+    expires_in_seconds: int = 3600   # default 1 h
+
+
+@app.post("/admin/kill-switch")
+def set_kill_switch(
+    req: KillSwitchRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin),
+):
+    """Activate live-settlement kill-switch. Ops only. Logged to audit trail."""
+    import time as _time
+    ks = KillSwitch(
+        active=True,
+        reason=req.reason,
+        set_by=current_user.email,
+        expires_at=int(_time.time()) + req.expires_in_seconds,
+    )
+    db.add(ks)
+
+    audit = AuditLog(
+        user_id=current_user.id,
+        action=AuditAction.KILL_SWITCH_SET,
+        details={"reason": req.reason, "expires_in": req.expires_in_seconds},
+        severity="critical",
+    )
+    db.add(audit)
+    db.commit()
+    return {"status": "kill_switch_activated", "expires_in_seconds": req.expires_in_seconds}
+
+
+@app.delete("/admin/kill-switch/{ks_id}")
+def deactivate_kill_switch(
+    ks_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin),
+):
+    ks = db.query(KillSwitch).filter(KillSwitch.id == ks_id).first()
+    if not ks:
+        raise HTTPException(404, "Kill switch not found")
+    ks.active = False
+    db.commit()
+    return {"status": "deactivated"}
+
+
+# ── Ops: G2 Attestation management ─────────────────────────────────────────
+
+class AttestationRequest(BaseModel):
+    token_id: str
+    authorizers: List[str]
+    expires_in_seconds: int = 86400   # 24 h
+
+
+@app.post("/admin/attestation")
+def register_attestation(
+    req: AttestationRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin),
+):
+    """Register a pre-signed G2 attestation token. Token must be dual-authorized (≥2 signers)."""
+    import time as _time
+    if len(set(req.authorizers)) < 2:
+        raise HTTPException(400, "Dual authorization required: at least 2 distinct authorizers")
+
+    now = int(_time.time())
+    att = GateAttestation(
+        token_id=req.token_id,
+        authorizers=req.authorizers,
+        issued_at=now,
+        expires_at=now + req.expires_in_seconds,
+    )
+    db.add(att)
+
+    audit = AuditLog(
+        user_id=current_user.id,
+        action=AuditAction.ATTESTATION_ISSUED,
+        details={"token_id": req.token_id, "authorizers": req.authorizers},
+        severity="info",
+    )
+    db.add(audit)
+    db.commit()
+    return {"status": "attestation_registered", "token_id": req.token_id}
+
+
+@app.delete("/admin/attestation/{token_id}")
+def revoke_attestation(
+    token_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin),
+):
+    att = db.query(GateAttestation).filter(GateAttestation.token_id == token_id).first()
+    if not att:
+        raise HTTPException(404, "Attestation not found")
+    att.revoked = True
+    att.revoked_by = current_user.email
+
+    audit = AuditLog(
+        user_id=current_user.id,
+        action=AuditAction.ATTESTATION_REVOKED,
+        details={"token_id": token_id},
+        severity="warning",
+    )
+    db.add(audit)
+    db.commit()
+    return {"status": "revoked", "token_id": token_id}
 
 
 # ── Helpers ─────────────────────────────────────────────────────────────────

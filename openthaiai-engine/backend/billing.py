@@ -1,6 +1,10 @@
 """
 Stripe billing: subscriptions, credit top-ups, webhooks.
+
+Every money action calls SettlementPolicyEngine.evaluate() first.
+No code path may bypass the policy engine.
 """
+import logging
 import stripe
 from fastapi import APIRouter, Depends, HTTPException, Request, Header
 from sqlalchemy.orm import Session
@@ -9,8 +13,11 @@ from typing import Optional
 
 from .database import get_db
 from .auth import get_current_user
-from .models import User, Payment, CreditLog, PlanType
+from .models import User, Payment, CreditLog, PlanType, GateAttestation
 from .config import get_settings
+from .settlement_policy import SettlementPolicyEngine, SettlementStatus
+
+logger = logging.getLogger(__name__)
 
 settings = get_settings()
 stripe.api_key = settings.stripe_secret_key
@@ -38,11 +45,60 @@ CREDIT_PACKS = {
 
 
 class SubscribeRequest(BaseModel):
-    plan: str  # "pro" | "biz"
+    plan: str                            # "pro" | "biz"
+    g2_attestation_token: Optional[str] = None
 
 
 class CreditPackRequest(BaseModel):
     pack_id: str
+    g2_attestation_token: Optional[str] = None
+
+
+def _get_ops_attestation_token(db: Session) -> Optional[str]:
+    """
+    Return the most-recent non-revoked attestation token from the DB.
+    Ops must register a valid token before live settlement is possible.
+    """
+    att = (
+        db.query(GateAttestation)
+        .filter(GateAttestation.revoked == False)  # noqa: E712
+        .order_by(GateAttestation.created_at.desc())
+        .first()
+    )
+    return att.token_id if att else None
+
+
+def _policy_check(
+    db: Session,
+    user_id: str,
+    action: str,
+    amount_satang: int,
+    g2_token: Optional[str] = None,
+) -> None:
+    """
+    Run full G1→G2→G3→env policy evaluation.
+    Raises HTTPException(402) on any denial.
+    Never raises on ALLOWED.
+    """
+    engine = SettlementPolicyEngine(db)
+    decision = engine.evaluate(
+        user_id=user_id,
+        action=action,
+        amount_satang=amount_satang,
+        g2_attestation_token=g2_token,
+    )
+    if not decision.allowed:
+        logger.warning(
+            "settlement_denied user=%s action=%s status=%s reasons=%s",
+            user_id, action, decision.status, decision.reason_codes,
+        )
+        raise HTTPException(
+            status_code=402,
+            detail={
+                "settlement_status": decision.status,
+                "reason_codes": decision.reason_codes,
+            },
+        )
 
 
 @router.post("/subscribe")
@@ -55,13 +111,20 @@ def create_subscription(
     if not config:
         raise HTTPException(400, "Invalid plan")
 
-    # Create or get Stripe customer
+    token = req.g2_attestation_token or _get_ops_attestation_token(db)
+    _policy_check(
+        db=db,
+        user_id=current_user.id,
+        action="subscribe",
+        amount_satang=config["amount_thb"] * 100,
+        g2_token=token,
+    )
+
     if not current_user.stripe_customer_id:
         customer = stripe.Customer.create(email=current_user.email)
         current_user.stripe_customer_id = customer.id
         db.commit()
 
-    # Create checkout session
     session = stripe.checkout.Session.create(
         customer=current_user.stripe_customer_id,
         mode="subscription",
@@ -82,6 +145,15 @@ def buy_credits(
     pack = CREDIT_PACKS.get(req.pack_id)
     if not pack:
         raise HTTPException(400, "Invalid pack")
+
+    token = req.g2_attestation_token or _get_ops_attestation_token(db)
+    _policy_check(
+        db=db,
+        user_id=current_user.id,
+        action="buy_credits",
+        amount_satang=pack["amount_thb"] * 100,
+        g2_token=token,
+    )
 
     if not current_user.stripe_customer_id:
         customer = stripe.Customer.create(email=current_user.email)
@@ -134,25 +206,57 @@ def _handle_checkout(session: dict, db: Session):
         return
 
     mode = session.get("mode")
+    amount_satang = session.get("amount_total", 0)
+
+    # Policy must pass before any settlement — full G1/G2/G3 + env evaluation
+    token = _get_ops_attestation_token(db)
+    engine = SettlementPolicyEngine(db)
+    decision = engine.evaluate(
+        user_id=user_id,
+        action=f"webhook_checkout_{mode}",
+        amount_satang=amount_satang,
+        g2_attestation_token=token,
+    )
+    if not decision.allowed:
+        logger.error(
+            "settlement_denied_in_webhook user=%s amount=%d status=%s reasons=%s — "
+            "credits NOT applied; payment recorded as policy_denied",
+            user_id, amount_satang, decision.status, decision.reason_codes,
+        )
+        # Record the failed settlement attempt but do NOT apply credits
+        payment = Payment(
+            user_id=user.id,
+            stripe_payment_intent_id=session.get("payment_intent"),
+            amount=amount_satang,
+            currency=session.get("currency", "thb"),
+            status=f"policy_denied:{decision.status}",
+        )
+        db.add(payment)
+        db.commit()
+        return
+
     if mode == "subscription":
         plan = session["metadata"]["plan"]
         config = PLAN_CONFIG[plan]
+        credits = config["credits"]
         user.plan = PlanType(plan)
-        user.credits += config["credits"]
+        user.credits += credits
         user.stripe_subscription_id = session.get("subscription")
     elif mode == "payment":
         credits = int(session["metadata"].get("credits", 0))
         user.credits += credits
+    else:
+        credits = 0
 
-    _log_credit(db, user, credits if mode == "payment" else PLAN_CONFIG[session["metadata"]["plan"]]["credits"])
+    _log_credit(db, user, credits)
 
     payment = Payment(
         user_id=user.id,
         stripe_payment_intent_id=session.get("payment_intent"),
-        amount=session.get("amount_total", 0),
+        amount=amount_satang,
         currency=session.get("currency", "thb"),
         plan=PlanType(session["metadata"]["plan"]) if mode == "subscription" else None,
-        credits_added=credits if mode == "payment" else 0,
+        credits_added=credits,
         status="paid",
     )
     db.add(payment)

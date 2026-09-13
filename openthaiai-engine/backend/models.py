@@ -1,10 +1,10 @@
 from sqlalchemy import (
     Column, String, Integer, BigInteger, Float, Boolean,
-    DateTime, Enum, Text, ForeignKey, JSON, Index
+    DateTime, Enum, Text, ForeignKey, JSON, Index, BigInteger as SA_BigInt
 )
 from sqlalchemy.orm import relationship, DeclarativeBase
 from sqlalchemy.sql import func
-import uuid, enum as pyenum
+import uuid, enum as pyenum, time
 
 class Base(DeclarativeBase):
     pass
@@ -47,6 +47,8 @@ class User(Base):
     subscription_expires_at = Column(DateTime(timezone=True))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+    pdpa_consent_at = Column(DateTime(timezone=True))   # G1 gate requirement
 
     tasks = relationship("Task", back_populates="user")
     payments = relationship("Payment", back_populates="user")
@@ -108,9 +110,85 @@ class AutomationSchedule(Base):
     name = Column(String(255), nullable=False)
     task_type = Column(Enum(TaskType), nullable=False)
     payload = Column(JSON, default={})
-    cron_expression = Column(String(50))   # e.g. "0 9 * * *"
+    cron_expression = Column(String(50))
     is_active = Column(Boolean, default=True)
     last_run_at = Column(DateTime(timezone=True))
     next_run_at = Column(DateTime(timezone=True))
     run_count = Column(Integer, default=0)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+# ── Policy engine models ───────────────────────────────────────────────────
+
+class AuditAction(str, pyenum.Enum):
+    SETTLEMENT_POLICY_EVAL = "settlement_policy_eval"
+    KILL_SWITCH_SET        = "kill_switch_set"
+    ATTESTATION_ISSUED     = "attestation_issued"
+    ATTESTATION_REVOKED    = "attestation_revoked"
+    BREAK_GLASS_ACTIVATED  = "break_glass_activated"
+    PAYMENT_CHARGE         = "payment_charge"
+    PAYMENT_REFUND         = "payment_refund"
+
+
+class AuditLog(Base):
+    """
+    Immutable audit trail.  Rows are append-only — no update/delete in application code.
+    Backed by PostgreSQL; never in-memory or SQLite for live money path.
+    """
+    __tablename__ = "audit_logs"
+
+    id         = Column(String(36), primary_key=True, default=gen_uuid)
+    user_id    = Column(String(36), index=True)
+    action     = Column(Enum(AuditAction), nullable=False, index=True)
+    details    = Column(JSON, default={})
+    severity   = Column(String(10), default="info")   # info | warning | critical
+    created_at = Column(DateTime(timezone=True), server_default=func.now(), index=True)
+
+
+class GateAttestation(Base):
+    """
+    Registered G2 attestation tokens with dual-authorization.
+    Only ops / authorized signers may insert rows.
+    """
+    __tablename__ = "gate_attestations"
+
+    id          = Column(String(36), primary_key=True, default=gen_uuid)
+    token_id    = Column(String(100), unique=True, nullable=False, index=True)
+    authorizers = Column(JSON, default=[])    # list of authorizer IDs
+    issued_at   = Column(SA_BigInt, nullable=False)
+    expires_at  = Column(SA_BigInt, nullable=False)
+    revoked     = Column(Boolean, default=False)
+    revoked_by  = Column(String(100))
+    created_at  = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class KillSwitch(Base):
+    """
+    Ops-controlled live-settlement kill switch.
+    Separate from env vars — must be set by ops via a separate authenticated channel.
+    """
+    __tablename__ = "kill_switches"
+
+    id          = Column(String(36), primary_key=True, default=gen_uuid)
+    active      = Column(Boolean, default=True)
+    reason      = Column(Text)
+    set_by      = Column(String(100), nullable=False)
+    expires_at  = Column(SA_BigInt, nullable=False)   # unix timestamp
+    created_at  = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class BreakGlass(Base):
+    """
+    Break-glass emergency access records.
+    Multi-party approval required; each activation is signed and has expiry.
+    """
+    __tablename__ = "break_glass_records"
+
+    id           = Column(String(36), primary_key=True, default=gen_uuid)
+    requested_by = Column(String(100), nullable=False)
+    approvers    = Column(JSON, default=[])     # min 2 distinct approvers
+    scope        = Column(String(255))
+    signature    = Column(Text)
+    expires_at   = Column(SA_BigInt, nullable=False)
+    active       = Column(Boolean, default=True)
+    created_at   = Column(DateTime(timezone=True), server_default=func.now())
