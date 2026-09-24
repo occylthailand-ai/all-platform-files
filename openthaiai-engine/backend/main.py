@@ -21,12 +21,14 @@ from .database import get_db, create_tables
 from .models import (
     User, Task, TaskStatus, TaskType, PlanType, CreditLog, AutomationSchedule,
     KillSwitch, GateAttestation, AuditLog, AuditAction,
+    AIStaff, AIStaffLog, DepartmentType,
 )
 from .auth import (
     hash_password, verify_password, create_access_token, get_current_user, require_admin
 )
 from .billing import router as billing_router
-from .tasks import process_ai_task
+from .tasks import process_ai_task, run_ai_staff_task
+from .ai_staff import seed_ai_staff, DEPARTMENT_SEEDS
 
 settings = get_settings()
 
@@ -69,6 +71,13 @@ CREDIT_COST = {
 @app.on_event("startup")
 def startup():
     create_tables()
+    db = next(get_db())
+    try:
+        n = seed_ai_staff(db)
+        if n:
+            logger.info("Seeded %d AI staff members", n)
+    finally:
+        db.close()
     logger.info("OpenThaiAI Growth Engine started")
 
 
@@ -372,6 +381,155 @@ def revoke_attestation(
     return {"status": "revoked", "token_id": token_id}
 
 
+# ── AI Staff / Departments ───────────────────────────────────────────────────
+
+class StaffTaskRequest(BaseModel):
+    task_type: str
+    instruction: str
+
+
+@app.get("/departments")
+def list_departments(db: Session = Depends(get_db), _: User = Depends(get_current_user)):
+    """List all departments with their AI staff member."""
+    staff_rows = db.query(AIStaff).all()
+    index = {s.department: s for s in staff_rows}
+    result = []
+    for seed in DEPARTMENT_SEEDS:
+        s = index.get(seed.department)
+        result.append({
+            "department": seed.department,
+            "name_th": s.name_th if s else seed.name_th,
+            "name_en": s.name_en if s else seed.name_en,
+            "role_th": s.role_th if s else seed.role_th,
+            "capabilities": s.capabilities if s else seed.capabilities,
+            "status": s.status if s else "inactive",
+            "tasks_done": s.tasks_done if s else 0,
+            "last_active": s.last_active if s else None,
+            "staff_id": s.id if s else None,
+        })
+    return result
+
+
+@app.get("/departments/{department}/staff")
+def get_department_staff(
+    department: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Get AI staff detail for a specific department."""
+    try:
+        dept = DepartmentType(department)
+    except ValueError:
+        raise HTTPException(400, f"Unknown department. Valid: {[d.value for d in DepartmentType]}")
+    staff = db.query(AIStaff).filter(AIStaff.department == dept).first()
+    if not staff:
+        raise HTTPException(404, "AI staff not seeded yet — restart the server")
+    recent_logs = (
+        db.query(AIStaffLog)
+        .filter(AIStaffLog.staff_id == staff.id)
+        .order_by(AIStaffLog.created_at.desc())
+        .limit(10)
+        .all()
+    )
+    return {**_staff_schema(staff), "recent_logs": [_log_schema(l) for l in recent_logs]}
+
+
+@app.post("/departments/{department}/tasks", status_code=201)
+def assign_staff_task(
+    department: str,
+    data: StaffTaskRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Assign a task to the AI staff of a department."""
+    try:
+        dept = DepartmentType(department)
+    except ValueError:
+        raise HTTPException(400, f"Unknown department. Valid: {[d.value for d in DepartmentType]}")
+
+    staff = db.query(AIStaff).filter(AIStaff.department == dept).first()
+    if not staff:
+        raise HTTPException(404, "AI staff not seeded yet — restart the server")
+    if staff.status == "inactive":
+        raise HTTPException(503, f"{staff.name_th} is currently inactive")
+    if data.task_type not in staff.capabilities:
+        raise HTTPException(
+            400,
+            f"{staff.name_th} ไม่รองรับ task_type '{data.task_type}'. "
+            f"รองรับ: {staff.capabilities}",
+        )
+
+    cost = CREDIT_COST.get(TaskType(data.task_type), 10)
+    if current_user.credits < cost:
+        raise HTTPException(402, f"Insufficient credits (need {cost}, have {current_user.credits})")
+    current_user.credits -= cost
+    log = CreditLog(
+        user_id=current_user.id,
+        delta=-cost,
+        balance_after=current_user.credits,
+        reason=f"ai_staff:{department}:{data.task_type}",
+    )
+    db.add(log)
+
+    staff_log = AIStaffLog(
+        staff_id=staff.id,
+        assigned_by=current_user.id,
+        task_type=data.task_type,
+        input_summary=data.instruction,
+        status="queued",
+    )
+    db.add(staff_log)
+    db.commit()
+    db.refresh(staff_log)
+
+    celery_result = run_ai_staff_task.delay(staff_log.id)
+    staff_log.celery_task_id = celery_result.id
+    db.commit()
+
+    return {
+        "log_id": staff_log.id,
+        "staff": staff.name_th,
+        "department": department,
+        "task_type": data.task_type,
+        "status": "queued",
+        "credits_used": cost,
+    }
+
+
+@app.get("/ai-staff/{staff_id}")
+def get_ai_staff(
+    staff_id: str,
+    db: Session = Depends(get_db),
+    _: User = Depends(get_current_user),
+):
+    staff = db.query(AIStaff).filter(AIStaff.id == staff_id).first()
+    if not staff:
+        raise HTTPException(404, "AI staff not found")
+    logs = (
+        db.query(AIStaffLog)
+        .filter(AIStaffLog.staff_id == staff_id)
+        .order_by(AIStaffLog.created_at.desc())
+        .limit(20)
+        .all()
+    )
+    return {**_staff_schema(staff), "logs": [_log_schema(l) for l in logs]}
+
+
+@app.get("/ai-staff/{staff_id}/logs/{log_id}")
+def get_staff_log(
+    staff_id: str,
+    log_id: str,
+    db: Session = Depends(get_db),
+    _: User = Depends(get_current_user),
+):
+    log = db.query(AIStaffLog).filter(
+        AIStaffLog.id == log_id, AIStaffLog.staff_id == staff_id
+    ).first()
+    if not log:
+        raise HTTPException(404, "Log not found")
+    return _log_schema(log)
+
+
 # ── Helpers ─────────────────────────────────────────────────────────────────
 
 def _user_schema(u: User) -> dict:
@@ -386,4 +544,21 @@ def _task_schema(t: Task) -> dict:
         "id": t.id, "task_type": t.task_type, "status": t.status,
         "payload": t.payload, "output": t.output, "credits_used": t.credits_used,
         "created_at": t.created_at, "completed_at": t.completed_at,
+    }
+
+def _staff_schema(s: AIStaff) -> dict:
+    return {
+        "id": s.id, "department": s.department,
+        "name_th": s.name_th, "name_en": s.name_en, "role_th": s.role_th,
+        "capabilities": s.capabilities, "status": s.status,
+        "tasks_done": s.tasks_done, "last_active": s.last_active,
+        "created_at": s.created_at,
+    }
+
+def _log_schema(l: AIStaffLog) -> dict:
+    return {
+        "id": l.id, "task_type": l.task_type, "status": l.status,
+        "input_summary": l.input_summary, "output": l.output,
+        "error_message": l.error_message,
+        "created_at": l.created_at, "completed_at": l.completed_at,
     }

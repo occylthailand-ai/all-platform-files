@@ -192,3 +192,63 @@ class BreakGlass(Base):
     expires_at   = Column(SA_BigInt, nullable=False)
     active       = Column(Boolean, default=True)
     created_at   = Column(DateTime(timezone=True), server_default=func.now())
+
+
+# ── AI Staff models ────────────────────────────────────────────────────────
+
+class DepartmentType(str, pyenum.Enum):
+    MARKETING        = "marketing"
+    SALES            = "sales"
+    CUSTOMER_SERVICE = "customer_service"
+    PRODUCT          = "product"
+    FINANCE          = "finance"
+    HR               = "hr"
+    OPERATIONS       = "operations"
+
+
+class AIStaffStatus(str, pyenum.Enum):
+    ACTIVE   = "active"
+    ON_TASK  = "on_task"
+    INACTIVE = "inactive"
+
+
+class AIStaff(Base):
+    """
+    One AI staff member per department.  Rows are seeded at startup — not created by users.
+    """
+    __tablename__ = "ai_staff"
+
+    id           = Column(String(36), primary_key=True, default=gen_uuid)
+    department   = Column(Enum(DepartmentType), unique=True, nullable=False, index=True)
+    name_th      = Column(String(100), nullable=False)   # Thai display name
+    name_en      = Column(String(100), nullable=False)
+    role_th      = Column(String(100), nullable=False)
+    capabilities = Column(JSON, default=[])              # list of task_type strings it handles
+    status       = Column(Enum(AIStaffStatus), default=AIStaffStatus.ACTIVE)
+    tasks_done   = Column(Integer, default=0)
+    last_active  = Column(DateTime(timezone=True))
+    created_at   = Column(DateTime(timezone=True), server_default=func.now())
+
+    logs = relationship("AIStaffLog", back_populates="staff", cascade="all, delete-orphan")
+
+
+class AIStaffLog(Base):
+    """
+    Activity log for each AI staff member — one row per assigned task.
+    """
+    __tablename__ = "ai_staff_logs"
+
+    id           = Column(String(36), primary_key=True, default=gen_uuid)
+    staff_id     = Column(String(36), ForeignKey("ai_staff.id"), nullable=False, index=True)
+    assigned_by  = Column(String(36), index=True)        # user_id who triggered this
+    task_type    = Column(String(50), nullable=False)
+    input_summary= Column(Text)
+    output       = Column(Text)
+    status       = Column(String(20), default="queued")  # queued | running | done | failed
+    celery_task_id = Column(String(100))
+    error_message= Column(Text)
+    started_at   = Column(DateTime(timezone=True))
+    completed_at = Column(DateTime(timezone=True))
+    created_at   = Column(DateTime(timezone=True), server_default=func.now())
+
+    staff = relationship("AIStaff", back_populates="logs")

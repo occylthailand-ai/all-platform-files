@@ -114,6 +114,17 @@ def send_growth_report():
         db.close()
 
 
+@celery_app.task(bind=True, max_retries=3, default_retry_delay=30)
+def run_ai_staff_task(self, log_id: str):
+    """Execute an AI staff assignment (one AIStaffLog row)."""
+    from .ai_staff import dispatch_staff_task
+    try:
+        dispatch_staff_task(log_id)
+        return {"log_id": log_id, "status": "done"}
+    except Exception as exc:
+        raise self.retry(exc=exc)
+
+
 @celery_app.task
 def check_subscription_renewals():
     """Expire subscriptions and reset free credits monthly."""
